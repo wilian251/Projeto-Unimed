@@ -1,0 +1,156 @@
+<mvc:View 
+	xmlns:mvc="sap.ui.core.mvc" 
+	xmlns="sap.m" 
+	xmlns:core="sap.ui.core"
+	xmlns:ui="sap.ui.table"
+	xmlns:smartTable="sap.ui.comp.smarttable"
+	xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
+	controllerName="com.prestativ.unmd.leaseagreements.controller.Main" 
+	displayBlock="true">
+	<NavContainer id="navContainer">
+		<pages>
+			<Page id="contentPage" title="{i18n>mainViewTitle}" titleLevel="H1">
+				<content>
+					<VBox width="100%">
+						<smartFilterBar:SmartFilterBar
+							id="smartFilterBar" 
+							persistencyKey="UniqueAndStablePersistencyKey"
+							considerSelectionVariants="true"
+							entitySet="ZFI_CDS_LEASE_AGREEMENTS"
+						>
+							<smartFilterBar:controlConfiguration>
+								<smartFilterBar:ControlConfiguration
+									key="vertn"
+									visibleInAdvancedArea="true"
+									preventInitialDataFetchInValueHelpDialog="false"
+									index="2"
+								/>
+								<smartFilterBar:ControlConfiguration
+									key="zfbdt"
+									visibleInAdvancedArea="true"
+									preventInitialDataFetchInValueHelpDialog="false"
+									index="3"
+								/>
+								<smartFilterBar:ControlConfiguration
+									key="h_budat"
+									visibleInAdvancedArea="true"
+									preventInitialDataFetchInValueHelpDialog="false"
+									index="4"
+								/>
+								<smartFilterBar:ControlConfiguration
+									key="belnr"
+									visibleInAdvancedArea="true"
+									preventInitialDataFetchInValueHelpDialog="false"
+									index="7"
+								/>
+							</smartFilterBar:controlConfiguration>
+						</smartFilterBar:SmartFilterBar>
+					</VBox>
+					
+					<Panel id="panelTable">
+						<content>
+							<smartTable:SmartTable
+								id="SmartTable"
+								entitySet="ZFI_CDS_LEASE_AGREEMENTS"
+								smartFilterId="smartFilterBar"
+								useExportToExcel="true"
+								beforeExport="onBeforeExport"
+								useVariantManagement="false"
+								useTablePersonalisation="true"
+								header="{i18n>mainViewTableTitle}"
+								showRowCount="true"
+								persistencyKey="SmartTableAnalytical_Explored"
+								enableAutoBinding="true"
+								class="sapUiResponsiveContentPadding"
+								initiallyVisibleFields="bukrs,kunnr,vertn,h_monat,gjahr,belnr,wrbtr"
+							>
+								<Table>
+									<columns>
+										<Column id="zfbdt" hAlign="Begin" width="8rem">
+											<customData>
+												<core:CustomData 
+													key="p13nData"
+													value='\{"columnKey": "zfbdt", "columnIndex":"4", "leadingProperty": "zfbdt", "sortProperty": "zfbdt", "displayBehaviour": "descriptionOnly", "width": "360px"}'
+												/>
+											</customData>
+											<Label text="{/#ZFI_CDS_LEASE_AGREEMENTS/zfbdt/@sap:label}" />
+										</Column>
+										<Column id="h_budat" hAlign="Begin" width="8rem">
+											<customData>
+												<core:CustomData 
+													key="p13nData"
+													value='\{"columnKey": "h_budat", "columnIndex":"5", "leadingProperty": "h_budat", "sortProperty": "h_budat", "displayBehaviour": "descriptionOnly", "width": "360px"}'
+												/>
+											</customData>
+											<Label text="{/#ZFI_CDS_LEASE_AGREEMENTS/h_budat/@sap:label}" />
+										</Column>
+										<Column id="xref1" hAlign="Begin" width="14rem">
+											<customData>
+												<core:CustomData 
+													key="p13nData"
+													value='\{"columnKey": "xref1", "columnIndex":"9", "leadingProperty": "xref1", "sortProperty": "xref1", "displayBehaviour": "descriptionOnly", "width": "360px"}'
+												/>
+											</customData>
+											<Label text="{/#ZFI_CDS_LEASE_AGREEMENTS/xref1/@sap:label}" />
+										</Column>
+									</columns>
+									<items>
+										<ColumnListItem>
+											<cells>	
+												<Text 
+													text="{
+														path: 'zfbdt',
+														type : 'sap.ui.model.type.Date',
+														formatOptions: {
+															style: 'short'
+														}
+													}"
+												/>
+
+												<Text 
+													text="{
+														path: 'h_budat',
+														type : 'sap.ui.model.type.Date',
+														formatOptions: {
+															style: 'short'
+														}
+													}"
+												/>
+
+												<Input
+													value="{
+														path: 'xref1',
+														type : 'sap.ui.model.type.String',
+														constraints : {
+															minLength: 1,
+															maxLength: 12
+														}
+													}"
+												/>
+											</cells>
+										</ColumnListItem>
+									</items>
+								</Table>
+
+								<smartTable:layoutData>
+									<FlexItemData growFactor="1" baseSize="0%"/>
+								</smartTable:layoutData>
+							</smartTable:SmartTable>
+						</content>
+					</Panel>
+				</content>
+
+				<footer>
+					<OverflowToolbar>
+						<ToolbarSpacer/>
+						<Button
+							text="{i18n>mainViewfooterButtonExecute}"
+							type="Emphasized"
+							press="onPressExecute"
+						/>
+					</OverflowToolbar>
+				</footer>
+			</Page>
+		</pages>
+	</NavContainer>
+</mvc:View>

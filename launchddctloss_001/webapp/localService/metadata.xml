@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
+    <edmx:Reference Uri="./sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_AGGREGATION',Version='0001',SAP__Origin='DS4CLNT050')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="Org.OData.Aggregation.V1" Alias="Aggregation"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="./sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_ANALYTICS',Version='0001',SAP__Origin='DS4CLNT050')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.Analytics.v1" Alias="Analytics"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="./sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_CAPABILITIES',Version='0001',SAP__Origin='DS4CLNT050')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="Org.OData.Capabilities.V1" Alias="Capabilities"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="./sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_CODELIST',Version='0001',SAP__Origin='DS4CLNT050')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.CodeList.v1" Alias="SAP__CodeList"/>
+        <edmx:Include Namespace="com.sap.vocabularies.CodeList.v1" Alias="CodeList"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="./sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMON',Version='0001',SAP__Origin='DS4CLNT050')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.Common.v1" Alias="Common"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="./sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMUNICATION',Version='0001',SAP__Origin='DS4CLNT050')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.Communication.v1" Alias="Communication"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="./sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_MEASURES',Version='0001',SAP__Origin='DS4CLNT050')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="Org.OData.Measures.V1" Alias="Measures"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="./sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_PERSONALDATA',Version='0001',SAP__Origin='DS4CLNT050')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.PersonalData.v1" Alias="PersonalData"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="./sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_UI',Version='0001',SAP__Origin='DS4CLNT050')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.UI.v1" Alias="UI"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="./sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_VALIDATION',Version='0001',SAP__Origin='DS4CLNT050')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="Org.OData.Validation.V1" Alias="Validation"/>
+    </edmx:Reference>
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema Namespace="ZFI_CDS_RETURN_TITCLI_CDS" xml:lang="pt" sap:schema-version="1" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+            <Annotation Term="Core.SchemaVersion" String="1.0.0" xmlns="http://docs.oasis-open.org/odata/ns/edm"/>
+            <EntityType Name="P_BusinessPlace_VHType" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="bukrs"/>
+                    <PropertyRef Name="branch"/>
+                    <PropertyRef Name="bupla"/>
+                </Key>
+                <Property Name="bukrs" Type="Edm.String" Nullable="false" MaxLength="4" sap:display-format="UpperCase" sap:label="Empresa"/>
+                <Property Name="branch" Type="Edm.String" Nullable="false" MaxLength="4" sap:display-format="UpperCase" sap:text="name" sap:label="Local de negócios"/>
+                <Property Name="bupla" Type="Edm.String" Nullable="false" MaxLength="4" sap:display-format="UpperCase" sap:text="name" sap:label="Local de negócios"/>
+                <Property Name="name" Type="Edm.String" MaxLength="30" sap:label="Nome 1" sap:quickinfo="Nome"/>
+            </EntityType>
+            <EntityType Name="ZFI_CDS_RETURN_TITCLIType" sap:label="Retorno de titulos de clientes" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="bukrs"/>
+                </Key>
+                <Property Name="bukrs" Type="Edm.String" Nullable="false" MaxLength="4" sap:display-format="UpperCase" sap:required-in-filter="true" sap:text="to_Company/bukrs_Text" sap:label="Empresa" sap:value-list="standard"/>
+                <Property Name="kunnr" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:required-in-filter="true" sap:text="to_Client/kunnr_Text" sap:label="Cliente" sap:quickinfo="Nº cliente" sap:value-list="standard"/>
+                <Property Name="blart" Type="Edm.String" MaxLength="2" sap:display-format="UpperCase" sap:required-in-filter="true" sap:text="to_ACCRecord/blart_Text" sap:label="Tipo lçto.contábil" sap:quickinfo="Tipo de documento" sap:value-list="standard"/>
+                <Property Name="bupla" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:required-in-filter="true" sap:text="to_PlaceOfBusiness/name" sap:label="Local de negócio" sap:quickinfo="Local de negócios" sap:value-list="standard"/>
+                <NavigationProperty Name="to_ACCRecord" Relationship="ZFI_CDS_RETURN_TITCLI_CDS.assoc_337A7D246E6BEC265EF5103F77A288F7" FromRole="FromRole_assoc_337A7D246E6BEC265EF5103F77A288F7" ToRole="ToRole_assoc_337A7D246E6BEC265EF5103F77A288F7"/>
+                <NavigationProperty Name="to_Client" Relationship="ZFI_CDS_RETURN_TITCLI_CDS.assoc_622D6BF1180EE8FCA2E3990155C83655" FromRole="FromRole_assoc_622D6BF1180EE8FCA2E3990155C83655" ToRole="ToRole_assoc_622D6BF1180EE8FCA2E3990155C83655"/>
+                <NavigationProperty Name="to_Company" Relationship="ZFI_CDS_RETURN_TITCLI_CDS.assoc_91F27E1EA52BDD8125A9C01280A21D16" FromRole="FromRole_assoc_91F27E1EA52BDD8125A9C01280A21D16" ToRole="ToRole_assoc_91F27E1EA52BDD8125A9C01280A21D16"/>
+                <NavigationProperty Name="to_PlaceOfBusiness" Relationship="ZFI_CDS_RETURN_TITCLI_CDS.assoc_DE2564AC6163E69911AFE2B0D53CD7DC" FromRole="FromRole_assoc_DE2564AC6163E69911AFE2B0D53CD7DC" ToRole="ToRole_assoc_DE2564AC6163E69911AFE2B0D53CD7DC"/>
+            </EntityType>
+            <EntityType Name="ZFI__CDS_ACCOUNTINGRECORDType" sap:label="Lançamento Contábil" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="blart"/>
+                </Key>
+                <Property Name="blart" Type="Edm.String" Nullable="false" MaxLength="2" sap:display-format="UpperCase" sap:text="blart_Text" sap:label="Lançamento contábil" sap:quickinfo="Tipo de documento"/>
+                <Property Name="blart_Text" Type="Edm.String" MaxLength="20" sap:label="Descrição" sap:quickinfo="Denominação do tipo de documento" sap:creatable="false" sap:updatable="false"/>
+            </EntityType>
+            <EntityType Name="ZFI__CDS_CLIENTType" sap:label="Número do cliente" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="kunnr"/>
+                </Key>
+                <Property Name="kunnr" Type="Edm.String" Nullable="false" MaxLength="10" sap:display-format="UpperCase" sap:text="kunnr_Text" sap:label="Número do cliente" sap:quickinfo="Nº cliente"/>
+                <Property Name="kunnr_Text" Type="Edm.String" MaxLength="35" sap:label="Descrição" sap:quickinfo="Nome 1" sap:creatable="false" sap:updatable="false"/>
+            </EntityType>
+            <EntityType Name="ZFI__CDS_COMPANYType" sap:label="Número da empresa" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="bukrs"/>
+                </Key>
+                <Property Name="bukrs" Type="Edm.String" Nullable="false" MaxLength="4" sap:display-format="UpperCase" sap:text="bukrs_Text" sap:label="Número da Empresa" sap:quickinfo="Empresa"/>
+                <Property Name="bukrs_Text" Type="Edm.String" MaxLength="25" sap:label="Descrição" sap:quickinfo="Denominação de empresa ou sociedade" sap:creatable="false" sap:updatable="false"/>
+            </EntityType>
+            <Association Name="assoc_622D6BF1180EE8FCA2E3990155C83655" sap:content-version="1">
+                <End Type="ZFI_CDS_RETURN_TITCLI_CDS.ZFI_CDS_RETURN_TITCLIType" Multiplicity="1" Role="FromRole_assoc_622D6BF1180EE8FCA2E3990155C83655"/>
+                <End Type="ZFI_CDS_RETURN_TITCLI_CDS.ZFI__CDS_CLIENTType" Multiplicity="1" Role="ToRole_assoc_622D6BF1180EE8FCA2E3990155C83655"/>
+                <ReferentialConstraint>
+                    <Principal Role="ToRole_assoc_622D6BF1180EE8FCA2E3990155C83655">
+                        <PropertyRef Name="kunnr"/>
+                    </Principal>
+                    <Dependent Role="FromRole_assoc_622D6BF1180EE8FCA2E3990155C83655">
+                        <PropertyRef Name="kunnr"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="assoc_91F27E1EA52BDD8125A9C01280A21D16" sap:content-version="1">
+                <End Type="ZFI_CDS_RETURN_TITCLI_CDS.ZFI_CDS_RETURN_TITCLIType" Multiplicity="1" Role="FromRole_assoc_91F27E1EA52BDD8125A9C01280A21D16"/>
+                <End Type="ZFI_CDS_RETURN_TITCLI_CDS.ZFI__CDS_COMPANYType" Multiplicity="1" Role="ToRole_assoc_91F27E1EA52BDD8125A9C01280A21D16"/>
+                <ReferentialConstraint>
+                    <Principal Role="ToRole_assoc_91F27E1EA52BDD8125A9C01280A21D16">
+                        <PropertyRef Name="bukrs"/>
+                    </Principal>
+                    <Dependent Role="FromRole_assoc_91F27E1EA52BDD8125A9C01280A21D16">
+                        <PropertyRef Name="bukrs"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="assoc_DE2564AC6163E69911AFE2B0D53CD7DC" sap:content-version="1">
+                <End Type="ZFI_CDS_RETURN_TITCLI_CDS.ZFI_CDS_RETURN_TITCLIType" Multiplicity="1" Role="FromRole_assoc_DE2564AC6163E69911AFE2B0D53CD7DC"/>
+                <End Type="ZFI_CDS_RETURN_TITCLI_CDS.P_BusinessPlace_VHType" Multiplicity="1" Role="ToRole_assoc_DE2564AC6163E69911AFE2B0D53CD7DC"/>
+            </Association>
+            <Association Name="assoc_337A7D246E6BEC265EF5103F77A288F7" sap:content-version="1">
+                <End Type="ZFI_CDS_RETURN_TITCLI_CDS.ZFI_CDS_RETURN_TITCLIType" Multiplicity="1" Role="FromRole_assoc_337A7D246E6BEC265EF5103F77A288F7"/>
+                <End Type="ZFI_CDS_RETURN_TITCLI_CDS.ZFI__CDS_ACCOUNTINGRECORDType" Multiplicity="1" Role="ToRole_assoc_337A7D246E6BEC265EF5103F77A288F7"/>
+                <ReferentialConstraint>
+                    <Principal Role="ToRole_assoc_337A7D246E6BEC265EF5103F77A288F7">
+                        <PropertyRef Name="blart"/>
+                    </Principal>
+                    <Dependent Role="FromRole_assoc_337A7D246E6BEC265EF5103F77A288F7">
+                        <PropertyRef Name="blart"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <EntityContainer Name="ZFI_CDS_RETURN_TITCLI_CDS_Entities" m:IsDefaultEntityContainer="true" sap:message-scope-supported="true" sap:supported-formats="atom json xlsx">
+                <EntitySet Name="P_BusinessPlace_VH" EntityType="ZFI_CDS_RETURN_TITCLI_CDS.P_BusinessPlace_VHType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:searchable="true" sap:content-version="1"/>
+                <EntitySet Name="ZFI_CDS_RETURN_TITCLI" EntityType="ZFI_CDS_RETURN_TITCLI_CDS.ZFI_CDS_RETURN_TITCLIType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:requires-filter="true" sap:content-version="1"/>
+                <EntitySet Name="ZFI__CDS_ACCOUNTINGRECORD" EntityType="ZFI_CDS_RETURN_TITCLI_CDS.ZFI__CDS_ACCOUNTINGRECORDType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:searchable="true" sap:content-version="1"/>
+                <EntitySet Name="ZFI__CDS_CLIENT" EntityType="ZFI_CDS_RETURN_TITCLI_CDS.ZFI__CDS_CLIENTType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:searchable="true" sap:content-version="1"/>
+                <EntitySet Name="ZFI__CDS_COMPANY" EntityType="ZFI_CDS_RETURN_TITCLI_CDS.ZFI__CDS_COMPANYType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:searchable="true" sap:content-version="1"/>
+                <AssociationSet Name="assoc_622D6BF1180EE8FCA2E3990155C83655" Association="ZFI_CDS_RETURN_TITCLI_CDS.assoc_622D6BF1180EE8FCA2E3990155C83655" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="ZFI_CDS_RETURN_TITCLI" Role="FromRole_assoc_622D6BF1180EE8FCA2E3990155C83655"/>
+                    <End EntitySet="ZFI__CDS_CLIENT" Role="ToRole_assoc_622D6BF1180EE8FCA2E3990155C83655"/>
+                </AssociationSet>
+                <AssociationSet Name="assoc_DE2564AC6163E69911AFE2B0D53CD7DC" Association="ZFI_CDS_RETURN_TITCLI_CDS.assoc_DE2564AC6163E69911AFE2B0D53CD7DC" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="ZFI_CDS_RETURN_TITCLI" Role="FromRole_assoc_DE2564AC6163E69911AFE2B0D53CD7DC"/>
+                    <End EntitySet="P_BusinessPlace_VH" Role="ToRole_assoc_DE2564AC6163E69911AFE2B0D53CD7DC"/>
+                </AssociationSet>
+                <AssociationSet Name="assoc_91F27E1EA52BDD8125A9C01280A21D16" Association="ZFI_CDS_RETURN_TITCLI_CDS.assoc_91F27E1EA52BDD8125A9C01280A21D16" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="ZFI_CDS_RETURN_TITCLI" Role="FromRole_assoc_91F27E1EA52BDD8125A9C01280A21D16"/>
+                    <End EntitySet="ZFI__CDS_COMPANY" Role="ToRole_assoc_91F27E1EA52BDD8125A9C01280A21D16"/>
+                </AssociationSet>
+                <AssociationSet Name="assoc_337A7D246E6BEC265EF5103F77A288F7" Association="ZFI_CDS_RETURN_TITCLI_CDS.assoc_337A7D246E6BEC265EF5103F77A288F7" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="ZFI_CDS_RETURN_TITCLI" Role="FromRole_assoc_337A7D246E6BEC265EF5103F77A288F7"/>
+                    <End EntitySet="ZFI__CDS_ACCOUNTINGRECORD" Role="ToRole_assoc_337A7D246E6BEC265EF5103F77A288F7"/>
+                </AssociationSet>
+            </EntityContainer>
+            <Annotations Target="ZFI_CDS_RETURN_TITCLI_CDS.ZFI_CDS_RETURN_TITCLIType/bukrs" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.ValueList">
+                    <Record>
+                        <PropertyValue Property="Label" String="Número da empresa"/>
+                        <PropertyValue Property="CollectionPath" String="ZFI__CDS_COMPANY"/>
+                        <PropertyValue Property="SearchSupported" Bool="true"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="bukrs"/>
+                                    <PropertyValue Property="ValueListProperty" String="bukrs"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="bukrs_Text"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Mandatory"/>
+            </Annotations>
+            <Annotations Target="ZFI_CDS_RETURN_TITCLI_CDS.ZFI_CDS_RETURN_TITCLIType/kunnr" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.ValueList">
+                    <Record>
+                        <PropertyValue Property="Label" String="Número do cliente"/>
+                        <PropertyValue Property="CollectionPath" String="ZFI__CDS_CLIENT"/>
+                        <PropertyValue Property="SearchSupported" Bool="true"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="kunnr"/>
+                                    <PropertyValue Property="ValueListProperty" String="kunnr"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="kunnr_Text"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="ZFI_CDS_RETURN_TITCLI_CDS.ZFI_CDS_RETURN_TITCLIType/blart" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.ValueList">
+                    <Record>
+                        <PropertyValue Property="Label" String="Lançamento Contábil"/>
+                        <PropertyValue Property="CollectionPath" String="ZFI__CDS_ACCOUNTINGRECORD"/>
+                        <PropertyValue Property="SearchSupported" Bool="true"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="blart"/>
+                                    <PropertyValue Property="ValueListProperty" String="blart"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="blart_Text"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="ZFI_CDS_RETURN_TITCLI_CDS.ZFI_CDS_RETURN_TITCLIType/bupla" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.ValueList">
+                    <Record>
+                        <PropertyValue Property="Label" String=""/>
+                        <PropertyValue Property="CollectionPath" String="P_BusinessPlace_VH"/>
+                        <PropertyValue Property="SearchSupported" Bool="true"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="bukrs"/>
+                                    <PropertyValue Property="ValueListProperty" String="bukrs"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="bupla"/>
+                                    <PropertyValue Property="ValueListProperty" String="bupla"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="name"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="ZFI_CDS_RETURN_TITCLI_CDS.ZFI_CDS_RETURN_TITCLI_CDS_Entities" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.ApplyMultiUnitBehaviorForSortingAndFiltering" Bool="true"/>
+            </Annotations>
+            <Annotations Target="ZFI_CDS_RETURN_TITCLI_CDS.ZFI_CDS_RETURN_TITCLI_CDS_Entities/ZFI_CDS_RETURN_TITCLI" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Capabilities.FilterRestrictions">
+                    <Record>
+                        <PropertyValue Property="RequiresFilter" Bool="true"/>
+                        <PropertyValue Property="RequiredProperties">
+                            <Collection>
+                                <PropertyPath>bukrs</PropertyPath>
+                                <PropertyPath>kunnr</PropertyPath>
+                                <PropertyPath>blart</PropertyPath>
+                                <PropertyPath>bupla</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <atom:link rel="self" href="https://vhunmds4ci.sap.unimedpoa.com.br:44300/sap/opu/odata/sap/ZFI_CDS_RETURN_TITCLI_CDS/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+            <atom:link rel="latest-version" href="https://vhunmds4ci.sap.unimedpoa.com.br:44300/sap/opu/odata/sap/ZFI_CDS_RETURN_TITCLI_CDS/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>

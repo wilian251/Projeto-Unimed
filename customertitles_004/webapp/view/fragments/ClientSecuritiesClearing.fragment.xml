@@ -1,0 +1,151 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core"
+>
+	<Dialog
+		contentHeight="400px"
+		contentWidth="750px"
+		title="{i18n>dialogClieSecurClearTitle}"
+	>
+		<beginButton>
+			<Button
+				id="launchCustomerTitles"
+				text="{i18n>dialogClieSecurClearThrow}"
+				press="onLaunchCustomerTitles"
+				enabled="false"
+			/>
+		</beginButton>
+
+		<content>
+			<VBox height="100%" width="100%" alignItems="Center" justifyContent="Center">
+				<VBox class="dialogClieSecurClearFlex">
+					<VBox class="dialogClieSecurClear">
+						<RadioButtonGroup id="GroupCompensate">
+							<RadioButton 
+								id="compensateOrigin"
+								text="{i18n>dialogClieSecurClearCompensateOrigin}"
+								select="onSelectCompensateRB"
+							/>
+							<RadioButton
+								id="compensateSpecific"
+								text="{i18n>dialogClieSecurClearCompensateSpecific}"
+								select="onSelectCompensateRB"
+							/>
+							<RadioButton
+								id="compensateBank"
+								text="{i18n>dialogClieSecurClearCompensateBank}"
+								select="onSelectCompensateRB"
+							/>
+						</RadioButtonGroup>
+					</VBox>
+
+					<VBox id="containerAccountCorporateBank" class="dialogClieSecurClear">
+						<VBox id="containerAccount">
+							<Label text="{i18n>dialogClieSecurClearAccount}" required="true"/>
+							<ComboBox
+								id="account"
+								width="250px"
+								selectedKey=""
+								valueState="None"
+								valueStateText=""
+								items="{account>/items}"
+								change="onValidationFields"
+							>
+								<core:Item key="{account>saknr}" text="{account>saknr} - {account>txt50}"/>
+							</ComboBox>
+						</VBox>
+
+						<VBox id="containerCorporateBank" class="marginTop05REM">
+							<Label text="{i18n>dialogClieSecurClearCorporateBank}" required="true"/>
+							<ComboBox
+								id="corporateBank"
+								width="250px"
+								selectedKey=""
+								valueState="None"
+								valueStateText=""
+								items="{ path: '/ZFI__CDS_ACCOUNTINGBANK' }"
+								change="onValidationFields"
+							>
+								<core:Item key="{hbkid}" text="{hbkid} - {hbkid_Text}"/>
+							</ComboBox>
+						</VBox>
+					</VBox>
+				</VBox>
+
+				<VBox class="dialogClieSecurClearFlex">
+					<VBox class="dialogClieSecurClear">
+						<VBox>
+							<Label text="{i18n>dialogClieSecurClearDocumentDate}" required="true"/>
+							<DatePicker 
+								id="documentDate"
+								valueFormat="dd/MM/yyyy"
+								displayFormat="short"
+								placeholder="dd/mm/aaaa"
+								dateValue=""
+								valueState="None"
+								valueStateText=""
+								width="250px"
+								required="true"
+								change="onValidationFields"
+							/>
+						</VBox>
+
+						<VBox class="marginTop05REM">
+							<Label text="{i18n>dialogClieSecurClearReleaseDate}" required="true"/>
+							<DatePicker 
+								id="releaseDate"
+								valueFormat="dd/MM/yyyy"
+								displayFormat="short"
+								placeholder="dd/mm/aaaa"
+								dateValue=""
+								valueState="None"
+								valueStateText=""
+								width="250px"
+								required="true"
+								change="onValidationFields"
+							/>
+						</VBox>
+					</VBox>
+
+					<VBox class="dialogClieSecurClear">
+						<VBox class="marginTop05REM">
+							<Label text="{i18n>dialogClieSecurClearAccountingEntry}" required="true"/>
+							<ComboBox
+								id="accountingEntry"
+								width="250px"
+								change="onValidationFields"
+								selectedKey=""
+								valueState="None"
+								valueStateText=""
+								items="{
+									path: '/ZFI__CDS_ACCOUNTINGRECORD'
+								}"
+							>
+								<core:Item key="{blart}" text="{blart} - {blart_Text}"/>
+							</ComboBox>
+						</VBox>
+
+						<VBox class="marginTop05REM">
+							<Label text="{i18n>dialogClieSecurClearHeaderText}" required="true"/>
+							<Input
+								id="headerText"
+								width="250px"
+								value=""
+								valueState="None"
+								valueStateText=""
+								change="onValidationFields"
+							/>
+						</VBox>
+					</VBox>
+				</VBox>
+			</VBox>
+		</content>
+
+		<endButton>
+			<Button
+				text="{i18n>dialogClieSecurClearCancel}"
+				press="onClientSecrClearingCancel"
+			/>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

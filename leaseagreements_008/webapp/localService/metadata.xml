@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<edmx:Edmx xmlns:sap="http://www.sap.com/Protocols/SAPData" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" Version="1.0">
+    <edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Uri="https://vhunmds4ci.sap.unimedpoa.com.br:44300/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_AGGREGATION',Version='0001',SAP__Origin='DS4CLNT050')/$value">
+        <edmx:Include Alias="Aggregation" Namespace="Org.OData.Aggregation.V1" />
+    </edmx:Reference>
+
+    <edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Uri="https://vhunmds4ci.sap.unimedpoa.com.br:44300/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_ANALYTICS',Version='0001',SAP__Origin='DS4CLNT050')/$value">
+        <edmx:Include Alias="Analytics" Namespace="com.sap.vocabularies.Analytics.v1" />
+    </edmx:Reference>
+
+    <edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Uri="https://vhunmds4ci.sap.unimedpoa.com.br:44300/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_CAPABILITIES',Version='0001',SAP__Origin='DS4CLNT050')/$value">
+        <edmx:Include Alias="Capabilities" Namespace="Org.OData.Capabilities.V1" />
+    </edmx:Reference>
+
+    <edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Uri="https://vhunmds4ci.sap.unimedpoa.com.br:44300/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_CODELIST',Version='0001',SAP__Origin='DS4CLNT050')/$value">
+        <edmx:Include Alias="SAP__CodeList" Namespace="com.sap.vocabularies.CodeList.v1" />
+
+        <edmx:Include Alias="CodeList" Namespace="com.sap.vocabularies.CodeList.v1" />
+    </edmx:Reference>
+
+    <edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Uri="https://vhunmds4ci.sap.unimedpoa.com.br:44300/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMON',Version='0001',SAP__Origin='DS4CLNT050')/$value">
+        <edmx:Include Alias="Common" Namespace="com.sap.vocabularies.Common.v1" />
+    </edmx:Reference>
+
+    <edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Uri="https://vhunmds4ci.sap.unimedpoa.com.br:44300/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMUNICATION',Version='0001',SAP__Origin='DS4CLNT050')/$value">
+        <edmx:Include Alias="Communication" Namespace="com.sap.vocabularies.Communication.v1" />
+    </edmx:Reference>
+
+    <edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Uri="https://vhunmds4ci.sap.unimedpoa.com.br:44300/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_MEASURES',Version='0001',SAP__Origin='DS4CLNT050')/$value">
+        <edmx:Include Alias="Measures" Namespace="Org.OData.Measures.V1" />
+    </edmx:Reference>
+
+    <edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Uri="https://vhunmds4ci.sap.unimedpoa.com.br:44300/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_PERSONALDATA',Version='0001',SAP__Origin='DS4CLNT050')/$value">
+        <edmx:Include Alias="PersonalData" Namespace="com.sap.vocabularies.PersonalData.v1" />
+    </edmx:Reference>
+
+    <edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Uri="https://vhunmds4ci.sap.unimedpoa.com.br:44300/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_UI',Version='0001',SAP__Origin='DS4CLNT050')/$value">
+        <edmx:Include Alias="UI" Namespace="com.sap.vocabularies.UI.v1" />
+    </edmx:Reference>
+
+    <edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Uri="https://vhunmds4ci.sap.unimedpoa.com.br:44300/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_VALIDATION',Version='0001',SAP__Origin='DS4CLNT050')/$value">
+        <edmx:Include Alias="Validation" Namespace="Org.OData.Validation.V1" />
+    </edmx:Reference>
+
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema xml:lang="pt" Namespace="ZFI_CDS_LEASE_AGREEMENTS_CDS" xmlns="http://schemas.microsoft.com/ado/2008/09/edm" sap:schema-version="1">
+            <Annotation xmlns="http://docs.oasis-open.org/odata/ns/edm" String="1.0.0" Term="Core.SchemaVersion" />
+
+            <EntityType sap:content-version="1" sap:label="Contratos Locação" Name="ZFI_CDS_LEASE_AGREEMENTSType">
+                <Key>
+                    <PropertyRef Name="bukrs" />
+
+                    <PropertyRef Name="belnr" />
+
+                    <PropertyRef Name="gjahr" />
+
+                    <PropertyRef Name="buzei" />
+                </Key>
+
+                <Property sap:label="Empresa" Name="bukrs" sap:value-list="standard" sap:text="to_Company/bukrs_Text" sap:required-in-filter="true" sap:display-format="UpperCase" MaxLength="4" Nullable="false" Type="Edm.String" />
+
+                <Property sap:label="Nº documento" Name="belnr" sap:display-format="UpperCase" MaxLength="10" Nullable="false" Type="Edm.String" sap:quickinfo="Nº documento de um documento contábil" />
+
+                <Property sap:label="Exercício" Name="gjahr" sap:required-in-filter="true" sap:display-format="NonNegative" MaxLength="4" Nullable="false" Type="Edm.String" />
+
+                <Property sap:label="Item" Name="buzei" sap:display-format="NonNegative" MaxLength="3" Nullable="false" Type="Edm.String" sap:quickinfo="Nº linha de lançamento no documento contábil" />
+
+                <Property sap:label="Contrato" Name="vertn" sap:display-format="UpperCase" MaxLength="13" Type="Edm.String" sap:quickinfo="Nº do contrato" />
+
+                <Property sap:label="Data vencimento" Name="zfbdt" sap:display-format="Date" Type="Edm.DateTime" sap:quickinfo="Data base para cálculo do vencimento" Precision="0" />
+
+                <Property sap:label="Data lançamento" Name="h_budat" sap:display-format="Date" Type="Edm.DateTime" sap:quickinfo="Data de lançamento no documento" Precision="0" />
+
+                <Property sap:label="Período contábil" Name="h_monat" sap:required-in-filter="true" sap:display-format="NonNegative" MaxLength="2" Type="Edm.String" sap:quickinfo="Mês do exercício" />
+
+                <Property sap:label="Cliente" Name="kunnr" sap:display-format="UpperCase" MaxLength="10" Type="Edm.String" sap:quickinfo="Nº cliente" />
+
+                <Property sap:label="Moeda" Name="waers" MaxLength="5" Type="Edm.String" sap:quickinfo="Código da moeda" sap:semantics="currency-code" />
+
+                <Property sap:label="Montante" Name="wrbtr" Type="Edm.Decimal" Precision="23" sap:unit="waers" Scale="2" />
+
+                <Property sap:label="Informar Nº documento boleto" Name="xref1" MaxLength="12" Type="Edm.String" />
+
+                <NavigationProperty Name="to_Company" ToRole="ToRole_assoc_82C3770C38FB3779AA045ED197C273DC" FromRole="FromRole_assoc_82C3770C38FB3779AA045ED197C273DC" Relationship="ZFI_CDS_LEASE_AGREEMENTS_CDS.assoc_82C3770C38FB3779AA045ED197C273DC" />
+            </EntityType>
+
+            <EntityType sap:content-version="1" sap:label="Número da empresa" Name="ZFI__CDS_COMPANYType">
+                <Key>
+                    <PropertyRef Name="bukrs" />
+                </Key>
+
+                <Property sap:label="Número da Empresa" Name="bukrs" sap:text="bukrs_Text" sap:display-format="UpperCase" MaxLength="4" Nullable="false" Type="Edm.String" sap:quickinfo="Empresa" />
+
+                <Property sap:label="Descrição" Name="bukrs_Text" MaxLength="25" Type="Edm.String" sap:quickinfo="Denominação de empresa ou sociedade" sap:updatable="false" sap:creatable="false" />
+            </EntityType>
+
+            <Association sap:content-version="1" Name="assoc_82C3770C38FB3779AA045ED197C273DC">
+                <End Type="ZFI_CDS_LEASE_AGREEMENTS_CDS.ZFI_CDS_LEASE_AGREEMENTSType" Role="FromRole_assoc_82C3770C38FB3779AA045ED197C273DC" Multiplicity="1" />
+
+                <End Type="ZFI_CDS_LEASE_AGREEMENTS_CDS.ZFI__CDS_COMPANYType" Role="ToRole_assoc_82C3770C38FB3779AA045ED197C273DC" Multiplicity="1" />
+
+                <ReferentialConstraint>
+                    <Principal Role="ToRole_assoc_82C3770C38FB3779AA045ED197C273DC">
+                        <PropertyRef Name="bukrs" />
+                    </Principal>
+
+                    <Dependent Role="FromRole_assoc_82C3770C38FB3779AA045ED197C273DC">
+                        <PropertyRef Name="bukrs" />
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+
+            <EntityContainer Name="ZFI_CDS_LEASE_AGREEMENTS_CDS_Entities" sap:supported-formats="atom json xlsx" sap:message-scope-supported="true" m:IsDefaultEntityContainer="true">
+                <EntitySet sap:content-version="1" Name="ZFI_CDS_LEASE_AGREEMENTS" sap:updatable="false" sap:creatable="false" sap:requires-filter="true" sap:deletable="false" EntityType="ZFI_CDS_LEASE_AGREEMENTS_CDS.ZFI_CDS_LEASE_AGREEMENTSType" />
+
+                <EntitySet sap:content-version="1" Name="ZFI__CDS_COMPANY" sap:updatable="false" sap:creatable="false" sap:deletable="false" EntityType="ZFI_CDS_LEASE_AGREEMENTS_CDS.ZFI__CDS_COMPANYType" sap:searchable="true" />
+
+                <AssociationSet sap:content-version="1" Name="assoc_82C3770C38FB3779AA045ED197C273DC" sap:updatable="false" sap:creatable="false" sap:deletable="false" Association="ZFI_CDS_LEASE_AGREEMENTS_CDS.assoc_82C3770C38FB3779AA045ED197C273DC">
+                    <End Role="FromRole_assoc_82C3770C38FB3779AA045ED197C273DC" EntitySet="ZFI_CDS_LEASE_AGREEMENTS" />
+
+                    <End Role="ToRole_assoc_82C3770C38FB3779AA045ED197C273DC" EntitySet="ZFI__CDS_COMPANY" />
+                </AssociationSet>
+            </EntityContainer>
+
+            <Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="ZFI_CDS_LEASE_AGREEMENTS_CDS.ZFI_CDS_LEASE_AGREEMENTSType/bukrs">
+                <Annotation Term="Common.ValueList">
+                    <Record>
+                        <PropertyValue String="Número da empresa" Property="Label" />
+
+                        <PropertyValue String="ZFI__CDS_COMPANY" Property="CollectionPath" />
+
+                        <PropertyValue Property="SearchSupported" Bool="true" />
+
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="bukrs" />
+
+                                    <PropertyValue String="bukrs" Property="ValueListProperty" />
+                                </Record>
+
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue String="bukrs_Text" Property="ValueListProperty" />
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+
+            <Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="ZFI_CDS_LEASE_AGREEMENTS_CDS.ZFI_CDS_LEASE_AGREEMENTS_CDS_Entities">
+                <Annotation Term="Common.ApplyMultiUnitBehaviorForSortingAndFiltering" Bool="true" />
+            </Annotations>
+
+            <Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="ZFI_CDS_LEASE_AGREEMENTS_CDS.ZFI_CDS_LEASE_AGREEMENTS_CDS_Entities/ZFI_CDS_LEASE_AGREEMENTS">
+                <Annotation Term="Capabilities.FilterRestrictions">
+                    <Record>
+                        <PropertyValue Property="RequiresFilter" Bool="true" />
+
+                        <PropertyValue Property="RequiredProperties">
+                            <Collection>
+                                <PropertyPath>bukrs</PropertyPath>
+
+                                <PropertyPath>gjahr</PropertyPath>
+
+                                <PropertyPath>h_monat</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+
+            <atom:link xmlns:atom="http://www.w3.org/2005/Atom" href="https://vhunmds4ci.sap.unimedpoa.com.br:44300/sap/opu/odata/sap/ZFI_CDS_LEASE_AGREEMENTS_CDS/$metadata" rel="self" />
+
+            <atom:link xmlns:atom="http://www.w3.org/2005/Atom" href="https://vhunmds4ci.sap.unimedpoa.com.br:44300/sap/opu/odata/sap/ZFI_CDS_LEASE_AGREEMENTS_CDS/$metadata" rel="latest-version" />
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>

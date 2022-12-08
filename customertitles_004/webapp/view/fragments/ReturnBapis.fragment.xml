@@ -1,0 +1,136 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core"
+    xmlns:ui="sap.ui.table"
+>
+    <Dialog
+		contentHeight="100%"
+		contentWidth="100%"
+		title="{i18n>dialogReturnBapisTitle}"
+	>
+		<beginButton>
+			
+		</beginButton>
+
+		<content>
+			<Panel id="panelTableDialog"> 
+                <content>
+                    <ui:Table
+                        id="tableDialog"
+                        rows="{
+                            path: 'returnBapis>/items'
+                        }"
+                        selectionMode="None"
+                        visibleRowCount="{returnBapis>/rows}"
+                        enableColumnFreeze="false"
+                        enableGrouping="true"
+                    >
+                        <ui:columns>
+                            <ui:Column
+                                id="kunnrDialog"
+                                width="6rem"
+                                filterOperator="Contains" 
+                                filterProperty="Kunnr"
+                                sortProperty="Kunnr"
+                            >
+                                <Label text="{i18n>mainTableClient}" />
+                                <ui:template>
+                                    <Text text="{returnBapis>Kunnr}"/>
+                                </ui:template>
+                            </ui:Column>
+                            <ui:Column
+                                id="bukrsDialog"
+                                width="6rem"
+                                filterOperator="Contains" 
+                                filterProperty="Bukrs"
+                                sortProperty="Bukrs"
+                            >
+                                <Label text="{i18n>mainTableCompany}" />
+                                <ui:template>
+                                    <Text text="{returnBapis>Bukrs}"/>
+                                </ui:template>
+                            </ui:Column>
+                            <ui:Column
+                                id="gjahrDialog"
+                                width="6rem"
+                                filterOperator="Contains" 
+                                filterProperty="Gjahr"
+                                sortProperty="Gjahr"
+                            >
+                                <Label text="{i18n>mainTableExercise}" />
+                                <ui:template>
+                                    <Text text="{returnBapis>Gjahr}"/>
+                                </ui:template>
+                            </ui:Column>
+                            <ui:Column
+                                id="belnrDialog"
+                                width="7rem"
+                                filterOperator="Contains" 
+                                filterProperty="Belnr"
+                                sortProperty="Belnr"
+                            >
+                                <Label text="{i18n>mainTableDocumentNumber}" />
+                                <ui:template>
+                                    <Text text="{returnBapis>Belnr}"/>
+                                </ui:template>
+                            </ui:Column>
+                            <ui:Column
+                                id="buzeiDialog"
+                                width="6rem"
+                                filterOperator="Contains" 
+                                filterProperty="Buzei"
+                                sortProperty="Buzei"
+                            >
+                                <Label text="{i18n>mainTableItem}" />
+                                <ui:template>
+                                    <Text text="{returnBapis>Buzei}"/>
+                                </ui:template>
+                            </ui:Column>
+                            <ui:Column
+                                id="typeDialog"
+                                width="6rem"
+                                filterOperator="Contains" 
+                                filterProperty="Type"
+                                sortProperty="Type"
+                                hAlign="Center"
+                            >
+                                <Label text="{i18n>mainTableType}" />
+                                <ui:template>
+                                    <ObjectStatus
+                                        state="{
+                                            path: 'returnBapis>Type',
+                                            formatter: '.formatter.typeStatusState'
+                                        }"
+                                        icon="{
+                                            path: 'returnBapis>Type',
+                                            formatter: '.formatter.typeStatus'
+                                        }"
+                                    />
+                                </ui:template>
+                            </ui:Column>
+                            <ui:Column
+                                id="messageDialog"
+                                width="100%"
+                                filterOperator="Contains" 
+                                filterProperty="Message"
+                                sortProperty="Message"
+                            >
+                                <Label text="{i18n>mainTableMessage}" />
+                                <ui:template>
+                                    <Text text="{returnBapis>Message}"/>
+                                </ui:template>
+                            </ui:Column>
+                        </ui:columns>
+                    </ui:Table>
+                </content>
+            </Panel>
+		</content>
+
+		<endButton>
+			<Button
+				text="{i18n>dialogReturnBapisCancel}"
+				press="onReturnBapisCancel"
+			/>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

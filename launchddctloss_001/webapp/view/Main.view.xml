@@ -1,0 +1,288 @@
+<mvc:View 
+	xmlns:mvc="sap.ui.core.mvc" 
+	xmlns="sap.m"
+	xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
+	xmlns:ui="sap.ui.table"
+	controllerName="com.prestativ.unmd.launchddctloss.controller.Main" 
+	displayBlock="true">
+	<NavContainer id="navContainer">
+		<pages>
+			<Page id="contentPage" title="{i18n>mainViewTitle}" titleLevel="H1">
+				<content>
+					<VBox width="100%">
+						<smartFilterBar:SmartFilterBar
+							id="smartFilterBar" 
+							persistencyKey="UniqueAndStablePersistencyKey"
+							considerSelectionVariants="true"
+							entitySet="ZFI_CDS_LAUNCH_DDCT_LOSSSet"
+							search="onPressGoReport"
+						>
+							<smartFilterBar:controlConfiguration>
+								<smartFilterBar:ControlConfiguration
+									key="bukrs"
+									visibleInAdvancedArea="true"
+									preventInitialDataFetchInValueHelpDialog="false">
+								</smartFilterBar:ControlConfiguration>
+
+								<smartFilterBar:ControlConfiguration
+									key="kunnr"
+									visibleInAdvancedArea="true"
+									preventInitialDataFetchInValueHelpDialog="false">
+								</smartFilterBar:ControlConfiguration>
+
+								<smartFilterBar:ControlConfiguration
+									key="valor_de"
+									visibleInAdvancedArea="true"
+									preventInitialDataFetchInValueHelpDialog="false">
+								</smartFilterBar:ControlConfiguration>
+							</smartFilterBar:controlConfiguration>
+						</smartFilterBar:SmartFilterBar>
+					</VBox>
+
+					<Panel id="panelTable"> 
+						<content>
+							<ui:Table
+								id="tableLaunchDDCTLoss"
+								rows="{
+									path: 'launchddctloss>/items'
+								}"
+								selectionMode="None"
+								visibleRowCount="12"
+								enableColumnFreeze="false"
+								enableGrouping="true"
+								group="onGroup"
+							>
+								<ui:extension>
+									<OverflowToolbar style="Clear">
+										<Title text="{launchddctloss>/headerTitleTable}" level="H1" titleStyle="H3"/>
+										<ToolbarSpacer />
+										<Button
+											text="{i18n>mainLauncDDCTLoss}"
+											press="onOpenDialog"
+										>
+											<dependents>
+												<Text text="{launchddctloss>key}"/>
+											</dependents>
+										</Button>
+										<!--<OverflowToolbarButton
+											type="Transparent"
+											icon="sap-icon://action-settings"
+											iconDensityAware="false"
+											press="onPersoButtonPressed"
+										/>-->
+										<Button
+											icon="sap-icon://excel-attachment"
+											tooltip="{i18n>mainExportExcel}"
+											text="{i18n>mainExportExcel}"
+											press="onExportExcel"
+										/>
+									</OverflowToolbar>
+								</ui:extension>
+								<ui:columns>
+									<ui:Column
+										id="checkBoxColumn"
+										width="4.5rem"
+										hAlign="Center"
+										visible="false"
+									>
+										<CheckBox
+											id="checkBoxColumnAll"
+											select="onSelectedAllLines"
+										/>
+										<ui:template>
+											<CheckBox
+												selected="{launchddctloss>selectionColumn}"
+												visible="{launchddctloss>selectionColumnVisible}"
+											/>
+										</ui:template>
+									</ui:Column>
+									<ui:Column
+										id="kunnr"
+										width="6rem"
+										filterOperator="Contains" 
+										filterProperty="kunnr"
+										sortProperty="kunnr"
+									>
+										<Label text="{i18n>mainTableClient}" />
+										<ui:template>
+											<Text text="{launchddctloss>kunnr}"/>
+										</ui:template>
+									</ui:Column>
+									<ui:Column
+										id="clientName"
+										width="12rem"
+										filterOperator="Contains" 
+										filterProperty="clientName"
+										sortProperty="clientName"
+									>
+										<Label text="{i18n>mainTableCustomerName}" />
+										<ui:template>
+											<Text text="{launchddctloss>clientName}"/>
+										</ui:template>
+									</ui:Column>
+									<ui:Column
+										id="bukrs"
+										width="5rem"
+										filterOperator="Contains" 
+										filterProperty="bukrs"
+										sortProperty="bukrs"
+									>
+										<Label text="{i18n>mainTableCompany}" />
+										<ui:template>
+											<Text text="{launchddctloss>bukrs}"/>
+										</ui:template>
+									</ui:Column>
+									<ui:Column
+										id="companyName"
+										width="10rem"
+										filterOperator="Contains" 
+										filterProperty="companyName"
+										sortProperty="companyName"
+									>
+										<Label text="{i18n>mainTableCompanyName}" />
+										<ui:template>
+											<Text text="{launchddctloss>companyName}"/>
+										</ui:template>
+									</ui:Column>
+									<ui:Column
+										id="gjahr"
+										width="7rem"
+										filterOperator="Contains" 
+										filterProperty="gjahr"
+										sortProperty="gjahr"
+									>
+										<Label text="{i18n>mainTableExercise}" />
+										<ui:template>
+											<Text text="{launchddctloss>gjahr}"/>
+										</ui:template>
+									</ui:Column>
+									<ui:Column
+										id="belnr"
+										width="7rem"
+										filterOperator="Contains" 
+										filterProperty="belnr"
+										sortProperty="belnr"
+									>
+										<Label text="{i18n>mainTableDocumentNumber}" />
+										<ui:template>
+											<Text text="{launchddctloss>belnr}"/>
+										</ui:template>
+									</ui:Column>
+									<ui:Column
+										id="buzei"
+										width="4rem"
+										filterOperator="Contains" 
+										filterProperty="buzei"
+										sortProperty="buzei"
+									>
+										<Label text="{i18n>mainTableItem}" />
+										<ui:template>
+											<Text text="{launchddctloss>buzei}"/>
+										</ui:template>
+									</ui:Column>
+									<ui:Column
+										id="budat"
+										width="9rem"
+										filterOperator="Contains" 
+										filterProperty="budat"
+										sortProperty="budat"
+									>
+										<Label text="{i18n>mainTableDocumentDate}" />
+										<ui:template>
+											<Text 
+												text="{
+													path: 'launchddctloss>budat',
+													type : 'sap.ui.model.type.Date',
+													formatOptions: {
+														style: 'short'
+													}
+												}"
+											/>
+										</ui:template>
+									</ui:Column>
+									<ui:Column
+										id="bldat"
+										width="9rem"
+										filterOperator="Contains" 
+										filterProperty="bldat"
+										sortProperty="bldat"
+									>
+										<Label text="{i18n>mainTableReleaseDate}" />
+										<ui:template>
+											<Text 
+												text="{
+													path: 'launchddctloss>bldat',
+													type : 'sap.ui.model.type.Date',
+													formatOptions: {
+														style: 'short'
+													}
+												}"
+											/>
+										</ui:template>
+									</ui:Column>
+									<ui:Column
+										id="blart"
+										width="11rem"
+										filterOperator="Contains" 
+										filterProperty="blart"
+										sortProperty="blart"
+									>
+										<Label text="{i18n>mainTableDocumentType}" />
+										<ui:template>
+											<Text text="{launchddctloss>typeDocument}"/>
+										</ui:template>
+									</ui:Column>
+									<ui:Column
+										id="zuonr"
+										width="10rem"
+										filterOperator="Contains" 
+										filterProperty="zuonr"
+										sortProperty="zuonr"
+									>
+										<Label text="{i18n>mainTableAssignment}" />
+										<ui:template>
+											<Text 
+												text="{
+													path: 'launchddctloss>zuonr'
+												}"
+											/>
+										</ui:template>
+									</ui:Column>
+									<ui:Column
+										id="wrbtr"
+										width="8rem"
+										filterOperator="Contains" 
+										filterProperty="wrbtr"
+										sortProperty="wrbtr"
+									>
+										<Label text="{i18n>mainTableTransactionCurrencyAmount}" />
+										<ui:template>
+											<Text 
+												text="{
+													path: 'launchddctloss>wrbtr',
+                                            		formatter: '.formatter.currencyInBRL'
+												}"
+											/>
+										</ui:template>
+									</ui:Column>
+									<ui:Column
+										id="days_delay"
+										width="7rem"
+										filterOperator="Contains" 
+										filterProperty="days_delay"
+										sortProperty="days_delay"
+									>
+										<Label text="{i18n>mainTableDaysDelay}" />
+										<ui:template>
+											<Text text="{launchddctloss>days_delay}"/>
+										</ui:template>
+									</ui:Column>
+								</ui:columns>
+							</ui:Table>
+						</content>
+					</Panel>
+				</content>
+			</Page>
+		</pages>
+	</NavContainer>
+</mvc:View>

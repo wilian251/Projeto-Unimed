@@ -1,0 +1,62 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core"
+>
+	<Dialog
+		contentHeight="200px"
+		contentWidth="300px"
+		title="{i18n>dialogDocumentReleaseDatesTitle}"
+	>
+		<beginButton>
+			<Button
+				id="buttonLaunchDDCTLoss"
+				text="{i18n>mainLauncDDCTLoss}"
+				press="onLaunchDDCTLoss"
+				enabled="false"
+			/>
+		</beginButton>
+
+		<content>
+			<VBox height="100%" width="100%" alignItems="Center" justifyContent="Center">
+				<VBox class="dialogDocumentReleaseDates">
+					<VBox>
+						<VBox>
+							<Label text="{i18n>mainTableDocumentDate}" required="true"/>
+							<DatePicker 
+								id="documentDate"
+								valueFormat="dd/MM/yyyy"
+								displayFormat="short"
+								placeholder="dd/mm/aaaa"
+								width="250px"
+								value="{launchddctloss>/documentDate}"
+								required="true"
+								change="onChangeDocumentReleaseDates"
+							/>
+						</VBox>
+					</VBox>
+
+					<VBox class="marginTop05REM">
+						<Label text="{i18n>mainTableReleaseDate}" required="true"/>
+						<DatePicker 
+							id="releaseDate"
+							valueFormat="dd/MM/yyyy"
+							displayFormat="short"
+							placeholder="dd/mm/aaaa"
+							width="250px"
+							value="{launchddctloss>/releaseDate}"
+							required="true"
+							change="onChangeDocumentReleaseDates"
+						/>
+					</VBox>
+				</VBox>
+			</VBox>
+		</content>
+
+		<endButton>
+			<Button
+				text="{i18n>dialogDocumentReleaseDatesCancel}"
+				press="onDocumentReleaseDatesCancel"
+			/>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

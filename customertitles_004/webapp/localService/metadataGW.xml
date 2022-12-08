@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<edmx:Edmx xmlns:sap="http://www.sap.com/Protocols/SAPData" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" Version="1.0">
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema xml:lang="pt" xmlns="http://schemas.microsoft.com/ado/2008/09/edm" sap:schema-version="1" Namespace="ZFI_GW_CUSTOMERTITLES_SRV">
+            <Annotation xmlns="http://docs.oasis-open.org/odata/ns/edm" String="1.0.0" Term="Core.SchemaVersion" />
+
+            <EntityType sap:content-version="1" Name="CustomerTitles">
+                <Key>
+                    <PropertyRef Name="Bukrs" />
+
+                    <PropertyRef Name="Kunnr" />
+                </Key>
+
+                <Property Name="Bukrs" sap:filterable="false" sap:sortable="false" sap:updatable="false" sap:creatable="false" sap:label="Empresa" sap:unicode="false" MaxLength="4" Nullable="false" Type="Edm.String" />
+
+                <Property Name="Companyname" sap:filterable="false" sap:sortable="false" sap:updatable="false" sap:creatable="false" sap:label="Nome da Empresa" sap:unicode="false" MaxLength="50" Nullable="false" Type="Edm.String" />
+
+                <Property Name="Kunnr" sap:filterable="false" sap:sortable="false" sap:updatable="false" sap:creatable="false" sap:label="Cliente" sap:unicode="false" MaxLength="10" Nullable="false" Type="Edm.String" />
+
+                <Property Name="Customername" sap:filterable="false" sap:sortable="false" sap:updatable="false" sap:creatable="false" sap:label="Nome do Cliente" sap:unicode="false" MaxLength="30" Nullable="false" Type="Edm.String" />
+
+                <Property Name="Blart" sap:filterable="false" sap:sortable="false" sap:updatable="false" sap:creatable="false" sap:label="Tp.doc." sap:unicode="false" MaxLength="2" Nullable="false" Type="Edm.String" />
+
+                <Property Name="Xblnr" sap:filterable="false" sap:sortable="false" sap:updatable="false" sap:creatable="false" sap:label="Referência" sap:unicode="false" MaxLength="16" Nullable="false" Type="Edm.String" />
+
+                <Property Name="Budat" sap:filterable="false" sap:sortable="false" sap:updatable="false" sap:creatable="false" sap:label="Data do documento" sap:unicode="false" Nullable="false" Type="Edm.DateTime" Precision="7" />
+
+                <Property Name="Bldat" sap:filterable="false" sap:sortable="false" sap:updatable="false" sap:creatable="false" sap:label="Data de lançamento" sap:unicode="false" Nullable="false" Type="Edm.DateTime" Precision="7" />
+
+                <Property Name="Bktxt" sap:filterable="false" sap:sortable="false" sap:updatable="false" sap:creatable="false" sap:label="Txt.cab.doc." sap:unicode="false" MaxLength="25" Nullable="false" Type="Edm.String" />
+
+                <Property Name="Bupla" sap:filterable="false" sap:sortable="false" sap:updatable="false" sap:creatable="false" sap:label="Loc.negócios" sap:unicode="false" MaxLength="4" Nullable="false" Type="Edm.String" />
+
+                <Property Name="Wrbtr" sap:filterable="false" sap:sortable="false" sap:updatable="false" sap:creatable="false" sap:label="Montante" sap:unicode="false" Nullable="false" Type="Edm.Decimal" Precision="24" Scale="3" />
+
+                <Property Name="WrbtrAppli" sap:filterable="false" sap:sortable="false" sap:updatable="false" sap:creatable="false" sap:label="Montante" sap:unicode="false" Nullable="false" Type="Edm.Decimal" Precision="24" Scale="3" />
+            </EntityType>
+
+            <EntityType sap:content-version="1" Name="ReturnBapis">
+                <Key>
+                    <PropertyRef Name="Bukrs" />
+
+                    <PropertyRef Name="Kunnr" />
+
+                    <PropertyRef Name="Gjahr" />
+
+                    <PropertyRef Name="Belnr" />
+
+                    <PropertyRef Name="Buzei" />
+                </Key>
+
+                <Property Name="Bukrs" sap:filterable="false" sap:sortable="false" sap:updatable="false" sap:creatable="false" sap:label="Empresa" sap:unicode="false" MaxLength="4" Nullable="false" Type="Edm.String" />
+
+                <Property Name="Kunnr" sap:filterable="false" sap:sortable="false" sap:updatable="false" sap:creatable="false" sap:label="Cliente" sap:unicode="false" MaxLength="10" Nullable="false" Type="Edm.String" />
+
+                <Property Name="Gjahr" sap:filterable="false" sap:sortable="false" sap:updatable="false" sap:creatable="false" sap:label="Exercício" sap:unicode="false" MaxLength="4" Nullable="false" Type="Edm.String" />
+
+                <Property Name="Belnr" sap:filterable="false" sap:sortable="false" sap:updatable="false" sap:creatable="false" sap:label="Nº documento" sap:unicode="false" MaxLength="10" Nullable="false" Type="Edm.String" />
+
+                <Property Name="Buzei" sap:filterable="false" sap:sortable="false" sap:updatable="false" sap:creatable="false" sap:label="Item" sap:unicode="false" MaxLength="3" Nullable="false" Type="Edm.String" />
+
+                <Property Name="Type" sap:filterable="false" sap:sortable="false" sap:updatable="false" sap:creatable="false" sap:label="Tipo mensagem" sap:unicode="false" MaxLength="1" Nullable="false" Type="Edm.String" />
+
+                <Property Name="Message" sap:filterable="false" sap:sortable="false" sap:updatable="false" sap:creatable="false" sap:label="Txt.mensagem" sap:unicode="false" MaxLength="220" Nullable="false" Type="Edm.String" />
+            </EntityType>
+
+            <EntityType sap:content-version="1" Name="SearchHelpAccount">
+                <Key>
+                    <PropertyRef Name="ktopl" />
+
+                    <PropertyRef Name="saknr" />
+                </Key>
+
+                <Property Name="ktopl" sap:filterable="false" sap:sortable="false" sap:updatable="false" sap:creatable="false" sap:unicode="false" Nullable="false" Type="Edm.String" />
+
+                <Property Name="saknr" sap:filterable="false" sap:sortable="false" sap:updatable="false" sap:creatable="false" sap:unicode="false" Nullable="false" Type="Edm.String" />
+
+                <Property Name="txt50" sap:filterable="false" sap:sortable="false" sap:updatable="false" sap:creatable="false" sap:unicode="false" Nullable="false" Type="Edm.String" />
+            </EntityType>
+
+            <EntityContainer Name="ZFI_GW_CUSTOMERTITLES_SRV_Entities" sap:supported-formats="atom json xlsx" m:IsDefaultEntityContainer="true">
+                <EntitySet sap:content-version="1" Name="CustomerTitlesSet" sap:updatable="false" sap:creatable="false" sap:pageable="false" sap:deletable="false" EntityType="ZFI_GW_CUSTOMERTITLES_SRV.CustomerTitles" />
+
+                <EntitySet sap:content-version="1" Name="ReturnBapisSet" sap:updatable="false" sap:creatable="false" sap:pageable="false" sap:deletable="false" EntityType="ZFI_GW_CUSTOMERTITLES_SRV.ReturnBapis" />
+
+                <EntitySet sap:content-version="1" Name="SearchHelpAccountSet" sap:updatable="false" sap:creatable="false" sap:pageable="false" sap:deletable="false" EntityType="ZFI_GW_CUSTOMERTITLES_SRV.SearchHelpAccount" sap:addressable="false" />
+
+                <FunctionImport Name="LaunchCustomerTitles" m:HttpMethod="GET" EntitySet="ReturnBapisSet" ReturnType="Collection(ZFI_GW_CUSTOMERTITLES_SRV.ReturnBapis)">
+                    <Parameter Name="Customer" Type="Edm.String" Mode="In" />
+
+                    <Parameter Name="Company" Type="Edm.String" Mode="In" />
+
+                    <Parameter Name="DocumentNumber" Type="Edm.String" Mode="In" />
+
+                    <Parameter Name="Exercise" Type="Edm.String" Mode="In" />
+
+                    <Parameter Name="Item" Type="Edm.String" Mode="In" />
+
+                    <Parameter Name="Account" Type="Edm.String" Mode="In" />
+
+                    <Parameter Name="CorporateBank" Type="Edm.String" Mode="In" />
+
+                    <Parameter Name="DocumentDate" sap:label="Registro hora" Type="Edm.DateTime" Precision="7" Mode="In" />
+
+                    <Parameter Name="ReleaseDate" sap:label="Registro hora" Type="Edm.DateTime" Precision="7" Mode="In" />
+
+                    <Parameter Name="AccountingEntry" Type="Edm.String" Mode="In" />
+
+                    <Parameter Name="HeaderText" Type="Edm.String" Mode="In" />
+
+                    <Parameter Name="AmountAllocated" Type="Edm.String" Mode="In" />
+                </FunctionImport>
+            </EntityContainer>
+
+            <atom:link xmlns:atom="http://www.w3.org/2005/Atom" href="https://vhunmds4ci.sap.unimedpoa.com.br:44300/sap/opu/odata/sap/ZFI_GW_CUSTOMERTITLES_SRV/$metadata" rel="self" />
+
+            <atom:link xmlns:atom="http://www.w3.org/2005/Atom" href="https://vhunmds4ci.sap.unimedpoa.com.br:44300/sap/opu/odata/sap/ZFI_GW_CUSTOMERTITLES_SRV/$metadata" rel="latest-version" />
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>

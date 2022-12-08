@@ -1,0 +1,16 @@
+.sapMBarTitleAlignAuto .sapMBarPH {
+    justify-content: center;
+}
+
+.dialogDocumentReleaseDates {
+    width: 100%;
+
+    align-items: center;
+    justify-content: center;
+
+    margin-top: 2rem;
+}
+
+.marginTop05REM {
+    margin-top: 0.5rem;
+}

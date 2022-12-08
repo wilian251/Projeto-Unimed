@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<edmx:Edmx xmlns:sap="http://www.sap.com/Protocols/SAPData" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" Version="1.0">
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema xml:lang="pt" xmlns="http://schemas.microsoft.com/ado/2008/09/edm" sap:schema-version="1" Namespace="ZFI_GW_LEASEAGREEMENTS_SRV">
+            <Annotation xmlns="http://docs.oasis-open.org/odata/ns/edm" String="1.0.0" Term="Core.SchemaVersion" />
+
+            <EntityType sap:content-version="1" Name="ReturnBapi">
+                <Key>
+                    <PropertyRef Name="Line" />
+                </Key>
+
+                <Property Name="Line" sap:filterable="false" sap:sortable="false" sap:updatable="false" sap:creatable="false" sap:unicode="false" Nullable="false" Type="Edm.String" />
+
+                <Property Name="Type" sap:filterable="false" sap:sortable="false" sap:updatable="false" sap:creatable="false" sap:unicode="false" Nullable="false" Type="Edm.String" sap:label="Tipo mensagem" MaxLength="1" />
+
+                <Property Name="Message" sap:filterable="false" sap:sortable="false" sap:updatable="false" sap:creatable="false" sap:unicode="false" Nullable="false" Type="Edm.String" sap:label="Txt.mensagem" MaxLength="220" />
+            </EntityType>
+
+            <EntityContainer Name="ZFI_GW_LEASEAGREEMENTS_SRV_Entities" sap:supported-formats="atom json xlsx" m:IsDefaultEntityContainer="true">
+                <EntitySet sap:content-version="1" Name="ReturnBapiSet" sap:updatable="false" sap:creatable="false" sap:pageable="false" sap:deletable="false" EntityType="ZFI_GW_LEASEAGREEMENTS_SRV.ReturnBapi" />
+            </EntityContainer>
+
+            <atom:link xmlns:atom="http://www.w3.org/2005/Atom" href="https://vhunmds4ci.sap.unimedpoa.com.br:44300/sap/opu/odata/sap/ZFI_GW_LEASEAGREEMENTS_SRV/$metadata" rel="self" />
+
+            <atom:link xmlns:atom="http://www.w3.org/2005/Atom" href="https://vhunmds4ci.sap.unimedpoa.com.br:44300/sap/opu/odata/sap/ZFI_GW_LEASEAGREEMENTS_SRV/$metadata" rel="latest-version" />
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>

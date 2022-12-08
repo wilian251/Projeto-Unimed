@@ -1,0 +1,188 @@
+{
+    "_version": "1.32.0",
+    "sap.app": {
+        "id": "com.prestativ.unmd.customertitles",
+        "type": "application",
+        "i18n": "i18n/i18n.properties",
+        "title": "{{appTitle}}",
+        "description": "{{appDescription}}",
+        "applicationVersion": {
+            "version": "1.0.0"
+        },
+        "resources": "resources.json",
+        "dataSources": {
+            "TITCLI_CDS": {
+                "uri": "/sap/opu/odata/sap/ZFI_CDS_RETURN_TITCLI_CDS/",
+                "type": "OData",
+				"settings": {
+					"annotations": [],
+                    "localUri": "localService/metadata.xml",
+                    "odataVersion": "2.0"
+                }
+            },
+            "GW_CustTitles": {
+                "uri": "/sap/opu/odata/sap/ZFI_GW_CUSTOMERTITLES_SRV/",
+                "type": "OData",
+				"settings": {
+					"annotations": [],
+                    "localUri": "localService/metadataGW.xml",
+                    "odataVersion": "2.0"
+                }
+            }
+        },
+        "ach": "ach",
+        "crossNavigation": {
+            "inbounds": {
+                "com-itsgroup-brz-customertitles-inbound": {
+                    "signature": {
+                        "parameters": {},
+                        "additionalParameters": "allowed"
+                    },
+                    "semanticObject": "customertitles",
+                    "action": "Display",
+                    "title": "{{flpTitle}}",
+                    "subTitle": "{{flpSubtitle}}",
+                    "icon": ""
+                }
+            }
+        }
+    },
+    "sap.ui": {
+        "technology": "UI5",
+        "icons": {
+            "icon": "sap-icon://task",
+            "favIcon": "",
+            "phone": "",
+            "phone@2": "",
+            "tablet": "",
+            "tablet@2": ""
+        },
+        "deviceTypes": {
+            "desktop": true,
+            "tablet": true,
+            "phone": true
+        }
+    },
+    "sap.ui5": {
+        "flexEnabled": false,
+        "rootView": {
+            "viewName": "com.prestativ.unmd.customertitles.view.App",
+            "type": "XML",
+            "async": true,
+            "id": "App"
+        },
+        "dependencies": {
+            "minUI5Version": "1.84.14",
+            "libs": {
+                "sap.ui.core": {},
+                "sap.m": {},
+                "sap.ui.layout": {},
+                "sap.f": {}
+            }
+        },
+        "contentDensities": {
+            "compact": true,
+            "cozy": true
+        },
+        "models": {
+            "i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "settings": {
+                    "bundleName": "com.prestativ.unmd.customertitles.i18n.i18n"
+                }
+            },
+            "appView": {
+                "type": "sap.ui.model.json.JSONModel"
+            },
+            "mainView": {
+                "type": "sap.ui.model.json.JSONModel"
+            },
+            "customerTitles": {
+                "type": "sap.ui.model.json.JSONModel"
+            },
+            "returnBapis": {
+                "type": "sap.ui.model.json.JSONModel"
+            },
+            "account": {
+                "type": "sap.ui.model.json.JSONModel"
+            },
+            "": {
+                "dataSource": "TITCLI_CDS",
+                "preload": true,
+                "settings": {
+                    "operationMode": "Server",
+                    "groupId": "$direct",
+                    "synchronizationMode": "None",
+                    "autoExpandSelect": true,
+                    "defaultBindingMode": "OneWay",
+                    "refreshAfterChange": true
+                }
+            },
+            "GW_CustTitles": {
+                "dataSource": "GW_CustTitles",
+                "preload": true,
+                "settings": {
+                    "operationMode": "Server",
+                    "groupId": "$direct",
+                    "synchronizationMode": "None",
+                    "autoExpandSelect": true,
+                    "defaultBindingMode": "OneWay",
+                    "refreshAfterChange": true
+                }
+            }
+        },
+        "resources": {
+            "css": [
+                {
+                    "uri": "css/style.css"
+                }
+            ]
+        },
+        "routing": {
+            "config": {
+                "routerClass": "sap.m.routing.Router",
+                "viewType": "XML",
+                "async": true,
+                "viewPath": "com.prestativ.unmd.customertitles.view",
+                "controlAggregation": "pages",
+                "controlId": "app",
+                "clearControlAggregation": false
+            },
+            "routes": [
+                {
+                    "pattern": "",
+                    "name": "main",
+                    "target": [
+                        "main"
+                    ]
+                },
+                {
+                    "pattern": "notFound",
+                    "name": "notFound",
+                    "target": [
+                        "notFound"
+                    ]
+                }
+            ],
+            "targets": {
+                "main": {
+                    "viewType": "XML",
+                    "transition": "slide",
+                    "viewName": "Main",
+                    "viewId": "main",
+                    "title": "{i18n>mainViewTitle}"
+                },
+                "notFound": {
+                    "viewType": "XML",
+                    "transition": "slide",
+                    "viewName": "NotFound",
+                    "viewId": "notFound"
+                }
+            }
+        }
+    },
+    "sap.cloud": {
+        "public": true,
+        "service": "com-prestativ-unmd-customertitles"
+    }
+}
