@@ -33,6 +33,7 @@
 							<smartTable:SmartTable
 								id="SmartTable"
 								entitySet="ZFI_CDS_DECLIMOBTRASNP"
+								
 								smartFilterId="smartFilterBar"
 								useExportToExcel="true"
 								beforeExport="onBeforeExport"
@@ -44,9 +45,8 @@
 								enableAutoBinding="true"
 								class="sapUiResponsiveContentPadding"
 								initiallyVisibleFields="bukrs,werks,anlkl,anln1,anln2,txt50,budat,menge,meins,belnr,bwasl,anbtr"
+								enableAutoColumnWidth="true"
 							>
-								
-
 								<smartTable:layoutData>
 									<FlexItemData growFactor="1" baseSize="0%"/>
 								</smartTable:layoutData>
@@ -59,9 +59,9 @@
 					<OverflowToolbar>
 						<ToolbarSpacer/>
 						<Button
-							text="{i18n>mainViewfooterButtonExecute}"
+							text="{i18n>mainViewfooterButtonGenerate}"
 							type="Emphasized"
-							press="onPressExecute"
+							press="onPressGenerete"
 						/>
 					</OverflowToolbar>
 				</footer>

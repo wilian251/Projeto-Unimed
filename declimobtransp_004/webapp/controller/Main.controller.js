@@ -41,73 +41,19 @@ function (
             /* event handlers                                              */
             /* =========================================================== */
 
-            onPressExecute: function(oEvent) {
+            onPressGenerete: function(oEvent) {
                 this.setAppBusy(true);
 
                 let oItems = this.byId("SmartTable").getTable().getAggregation("items"),
                     bValid = false;
 
-                let oLines = oItems.filter(sItem => {
-                    let oCells = sItem.getAggregation("cells");
+                if(oItems.length != 0){
 
-                    let oCell = oCells.find(sCell => {
-                        if(sCell.sId.indexOf("input") != -1) return sCell;
-                    });
-                    
-                    if(oCell.getProperty("value") != "") {
-                        bValid = true;
-                        return sItem;
-                    }
-                });
-
-                if(oLines.length != 0){
-                    let oLineString = "";
-
-                    oLines.map(sItem => {
-                        let oObject = sItem.getBindingContext().getObject(),
-                            oCells  = sItem.getAggregation("cells");
-
-                        let oCell = oCells.find(sCell => {
-                            if(sCell.sId.indexOf("input") != -1) return sCell;
-                        });
-                        
-                        oObject.xref1 = oCell.getProperty("value");
-
-                        oLineString += oObject.bukrs + "," +
-                                       oObject.belnr + "," +
-                                       oObject.gjahr + "," +
-                                       Formatter.dateInUTCAbap(oObject.zfbdt, "yyyyMMdd") + "," +
-                                       Formatter.dateInUTCAbap(oObject.h_budat, "yyyyMMdd") + "," +
-                                       oObject.h_monat + "," +
-                                       oObject.kunnr + "," +
-                                       oObject.wrbtr + "," +
-                                       oObject.vertn + "," +
-                                       oObject.xref1 + ";"
-                    });
-
-                    let oObjectSend = {
-                        Line: oLineString,
-                        Type: "",
-                        Message: ""
-                    }
-
-                    this.getModel("GW_Lease").create("/ReturnBapiSet", oObjectSend, {
-                        success: function(oData){
-                            this.setAppBusy(false);
-                            
-                            if(oData.Type === "S") MessageBox.success(oData.Message);
-                            else MessageBox.error(oData.Message);
-                        }.bind(this),
-                        error: function(oError){
-                            this.setAppBusy(false);
-                            
-                            MessageBox.error(this.getResourceBundle().getText("messageErrorModifyDocuments"));
-                        }.bind(this)
-                    });
+                    //let oObject = sItem.getBindingContext().getObject();         
 
                 }else{
                     this.setAppBusy(false);
-                    MessageBox.warning(this.getResourceBundle().getText("messageWarningFillInput"));
+                    MessageBox.warning(this.getResourceBundle().getText("messageWarningSelectedLine"));
                 }
             },
 
@@ -137,12 +83,10 @@ function (
                         sColumn.width = "17rem";
                     }
                     else 
-                    if(sColumn.columnId.indexOf("wrbtr")   != -1 ){
+                    if(sColumn.columnId.indexOf("anbtr")   != -1 ){
                         sColumn.width = "9rem";
                     }else 
-                    if(sColumn.columnId.indexOf("zfbdt")   != -1 ||
-                       sColumn.columnId.indexOf("h_budat") != -1 )
-                    {
+                    if(sColumn.columnId.indexOf("budat") != -1 ){
                         sColumn.type   = sap.ui.export.EdmType.Date;
 				        sColumn.format = 'dd/mm/yyyy';
                     }
