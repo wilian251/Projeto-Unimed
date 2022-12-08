@@ -1,0 +1,25 @@
+.sapMBarTitleAlignAuto .sapMBarPH {
+    justify-content: center;
+}
+
+@media (min-width: 80rem){
+    .sapUiMedia-Std-Desktop .sapUShellApplicationContainer.sapUShellApplicationContainerLimitedWidth {
+        width: 100% !important;
+        margin-right: auto;
+        margin-left: auto;
+        max-width: 100%;
+    }
+    
+}
+
+@media(max-width: 500px){
+    .dialogClieSecurClear {   
+        margin-top: 1rem;
+        margin-block-end: 1rem;
+    }
+
+    .dialogClieSecurClearFlex {
+        flex-direction: column;
+        justify-content: center;
+    }
+}

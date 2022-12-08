@@ -1,0 +1,71 @@
+<mvc:View 
+	xmlns:mvc="sap.ui.core.mvc" 
+	xmlns="sap.m" 
+	xmlns:core="sap.ui.core"
+	xmlns:ui="sap.ui.table"
+	xmlns:smartTable="sap.ui.comp.smarttable"
+	xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
+	controllerName="com.prestativ.unmd.declimobtransp.controller.Main" 
+	displayBlock="true">
+	<NavContainer id="navContainer">
+		<pages>
+			<Page id="contentPage" title="{i18n>mainViewTitle}" titleLevel="H1">
+				<content>
+					<VBox width="100%">
+						<smartFilterBar:SmartFilterBar
+							id="smartFilterBar" 
+							persistencyKey="UniqueAndStablePersistencyKey"
+							entitySet="ZFI_CDS_DECLIMOBTRASNP"
+						>
+							<smartFilterBar:controlConfiguration>
+								<smartFilterBar:ControlConfiguration
+									key="anln1"
+									visibleInAdvancedArea="true"
+									preventInitialDataFetchInValueHelpDialog="false"
+									index="2"
+								/>
+							</smartFilterBar:controlConfiguration>
+						</smartFilterBar:SmartFilterBar>
+					</VBox>
+					
+					<Panel id="panelTable">
+						<content>
+							<smartTable:SmartTable
+								id="SmartTable"
+								entitySet="ZFI_CDS_DECLIMOBTRASNP"
+								smartFilterId="smartFilterBar"
+								useExportToExcel="true"
+								beforeExport="onBeforeExport"
+								useVariantManagement="false"
+								useTablePersonalisation="true"
+								header="{i18n>mainViewTableTitle}"
+								showRowCount="true"
+								persistencyKey="SmartTableAnalytical_Explored"
+								enableAutoBinding="true"
+								class="sapUiResponsiveContentPadding"
+								initiallyVisibleFields="bukrs,werks,anlkl,anln1,anln2,txt50,budat,menge,meins,belnr,bwasl,anbtr"
+							>
+								
+
+								<smartTable:layoutData>
+									<FlexItemData growFactor="1" baseSize="0%"/>
+								</smartTable:layoutData>
+							</smartTable:SmartTable>
+						</content>
+					</Panel>
+				</content>
+
+				<footer>
+					<OverflowToolbar>
+						<ToolbarSpacer/>
+						<Button
+							text="{i18n>mainViewfooterButtonExecute}"
+							type="Emphasized"
+							press="onPressExecute"
+						/>
+					</OverflowToolbar>
+				</footer>
+			</Page>
+		</pages>
+	</NavContainer>
+</mvc:View>
