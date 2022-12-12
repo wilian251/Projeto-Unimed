@@ -79,7 +79,7 @@ function (
                                        Formatter.dateInUTCAbap(oObject.zfbdt, "yyyyMMdd") + "," +
                                        Formatter.dateInUTCAbap(oObject.h_budat, "yyyyMMdd") + "," +
                                        oObject.h_monat + "," +
-                                       oObject.kunnr + "," +
+                                       oObject.lifnr + "," +
                                        oObject.wrbtr + "," +
                                        oObject.vertn + "," +
                                        oObject.xref1 + ";"

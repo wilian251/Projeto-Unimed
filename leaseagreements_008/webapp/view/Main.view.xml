@@ -62,7 +62,7 @@
 								persistencyKey="SmartTableAnalytical_Explored"
 								enableAutoBinding="true"
 								class="sapUiResponsiveContentPadding"
-								initiallyVisibleFields="bukrs,kunnr,vertn,h_monat,gjahr,belnr,wrbtr"
+								initiallyVisibleFields="bukrs,lifnr,vertn,h_monat,gjahr,belnr,wrbtr"
 							>
 								<Table>
 									<columns>
