@@ -1,87 +1,129 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <edmx:Edmx xmlns:sap="http://www.sap.com/Protocols/SAPData" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" Version="1.0">
-    <edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Uri="https://vhunmds4ci.sap.unimedpoa.com.br:44300/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_AGGREGATION',Version='0001',SAP__Origin='DS4CLNT050')/$value">
+    <edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Uri="https://vhunmds4ci.sap.unimedpoa.com.br:44300/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_AGGREGATION',Version='0001',SAP__Origin='DS4CLNT100')/$value">
         <edmx:Include Alias="Aggregation" Namespace="Org.OData.Aggregation.V1" />
     </edmx:Reference>
 
-    <edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Uri="https://vhunmds4ci.sap.unimedpoa.com.br:44300/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_ANALYTICS',Version='0001',SAP__Origin='DS4CLNT050')/$value">
+    <edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Uri="https://vhunmds4ci.sap.unimedpoa.com.br:44300/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_ANALYTICS',Version='0001',SAP__Origin='DS4CLNT100')/$value">
         <edmx:Include Alias="Analytics" Namespace="com.sap.vocabularies.Analytics.v1" />
     </edmx:Reference>
 
-    <edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Uri="https://vhunmds4ci.sap.unimedpoa.com.br:44300/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_CAPABILITIES',Version='0001',SAP__Origin='DS4CLNT050')/$value">
+    <edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Uri="https://vhunmds4ci.sap.unimedpoa.com.br:44300/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_CAPABILITIES',Version='0001',SAP__Origin='DS4CLNT100')/$value">
         <edmx:Include Alias="Capabilities" Namespace="Org.OData.Capabilities.V1" />
     </edmx:Reference>
 
-    <edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Uri="https://vhunmds4ci.sap.unimedpoa.com.br:44300/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_CODELIST',Version='0001',SAP__Origin='DS4CLNT050')/$value">
+    <edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Uri="https://vhunmds4ci.sap.unimedpoa.com.br:44300/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_CODELIST',Version='0001',SAP__Origin='DS4CLNT100')/$value">
         <edmx:Include Alias="SAP__CodeList" Namespace="com.sap.vocabularies.CodeList.v1" />
 
         <edmx:Include Alias="CodeList" Namespace="com.sap.vocabularies.CodeList.v1" />
     </edmx:Reference>
 
-    <edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Uri="https://vhunmds4ci.sap.unimedpoa.com.br:44300/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMON',Version='0001',SAP__Origin='DS4CLNT050')/$value">
+    <edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Uri="https://vhunmds4ci.sap.unimedpoa.com.br:44300/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMON',Version='0001',SAP__Origin='DS4CLNT100')/$value">
         <edmx:Include Alias="Common" Namespace="com.sap.vocabularies.Common.v1" />
     </edmx:Reference>
 
-    <edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Uri="https://vhunmds4ci.sap.unimedpoa.com.br:44300/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMUNICATION',Version='0001',SAP__Origin='DS4CLNT050')/$value">
+    <edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Uri="https://vhunmds4ci.sap.unimedpoa.com.br:44300/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMUNICATION',Version='0001',SAP__Origin='DS4CLNT100')/$value">
         <edmx:Include Alias="Communication" Namespace="com.sap.vocabularies.Communication.v1" />
     </edmx:Reference>
 
-    <edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Uri="https://vhunmds4ci.sap.unimedpoa.com.br:44300/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_MEASURES',Version='0001',SAP__Origin='DS4CLNT050')/$value">
+    <edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Uri="https://vhunmds4ci.sap.unimedpoa.com.br:44300/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_MEASURES',Version='0001',SAP__Origin='DS4CLNT100')/$value">
         <edmx:Include Alias="Measures" Namespace="Org.OData.Measures.V1" />
     </edmx:Reference>
 
-    <edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Uri="https://vhunmds4ci.sap.unimedpoa.com.br:44300/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_PERSONALDATA',Version='0001',SAP__Origin='DS4CLNT050')/$value">
+    <edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Uri="https://vhunmds4ci.sap.unimedpoa.com.br:44300/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_PERSONALDATA',Version='0001',SAP__Origin='DS4CLNT100')/$value">
         <edmx:Include Alias="PersonalData" Namespace="com.sap.vocabularies.PersonalData.v1" />
     </edmx:Reference>
 
-    <edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Uri="https://vhunmds4ci.sap.unimedpoa.com.br:44300/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_UI',Version='0001',SAP__Origin='DS4CLNT050')/$value">
+    <edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Uri="https://vhunmds4ci.sap.unimedpoa.com.br:44300/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_UI',Version='0001',SAP__Origin='DS4CLNT100')/$value">
         <edmx:Include Alias="UI" Namespace="com.sap.vocabularies.UI.v1" />
     </edmx:Reference>
 
-    <edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Uri="https://vhunmds4ci.sap.unimedpoa.com.br:44300/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_VALIDATION',Version='0001',SAP__Origin='DS4CLNT050')/$value">
+    <edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Uri="https://vhunmds4ci.sap.unimedpoa.com.br:44300/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_VALIDATION',Version='0001',SAP__Origin='DS4CLNT100')/$value">
         <edmx:Include Alias="Validation" Namespace="Org.OData.Validation.V1" />
     </edmx:Reference>
 
     <edmx:DataServices m:DataServiceVersion="2.0">
-        <Schema xml:lang="pt" Namespace="ZFI_CDS_LEASE_AGREEMENTS_CDS" xmlns="http://schemas.microsoft.com/ado/2008/09/edm" sap:schema-version="1">
+        <Schema xml:lang="pt" Namespace="ZFI_CDS_DECLIMOBTRASNP_CDS" xmlns="http://schemas.microsoft.com/ado/2008/09/edm" sap:schema-version="1">
             <Annotation xmlns="http://docs.oasis-open.org/odata/ns/edm" String="1.0.0" Term="Core.SchemaVersion" />
 
-            <EntityType sap:content-version="1" sap:label="Contratos Locação" Name="ZFI_CDS_LEASE_AGREEMENTSType">
+            <EntityType sap:content-version="1" sap:label="Tipo de movimento do imobilizado" Name="ZFI_CDS_ASSET_MOVEMENT_TYPEType">
+                <Key>
+                    <PropertyRef Name="bwasl" />
+                </Key>
+
+                <Property sap:label="Tipo de movimento" Name="bwasl" sap:quickinfo="Tipo de movimento do imobilizado" sap:text="bwasl_Text" sap:display-format="UpperCase" MaxLength="3" Nullable="false" Type="Edm.String" />
+
+                <Property sap:label="Descrição" Name="bwasl_Text" sap:quickinfo="Denominação do tipo de movimento do imobilizado" MaxLength="50" Type="Edm.String" sap:updatable="false" sap:creatable="false" />
+            </EntityType>
+
+            <EntityType sap:content-version="1" sap:label="Declaração de Transporte para baixa de imobilizado" Name="ZFI_CDS_DECLIMOBTRASNPType">
                 <Key>
                     <PropertyRef Name="bukrs" />
 
-                    <PropertyRef Name="belnr" />
+                    <PropertyRef Name="anln1" />
+
+                    <PropertyRef Name="anln2" />
 
                     <PropertyRef Name="gjahr" />
 
-                    <PropertyRef Name="buzei" />
+                    <PropertyRef Name="lnran" />
                 </Key>
 
-                <Property sap:label="Empresa" Name="bukrs" sap:value-list="standard" sap:text="to_Company/bukrs_Text" sap:required-in-filter="true" sap:display-format="UpperCase" MaxLength="4" Nullable="false" Type="Edm.String" />
+                <Property sap:label="Empresa" Name="bukrs" sap:text="to_Company/bukrs_Text" sap:display-format="UpperCase" MaxLength="4" Nullable="false" Type="Edm.String" sap:value-list="standard" sap:required-in-filter="true" />
 
-                <Property sap:label="Nº documento" Name="belnr" sap:display-format="UpperCase" MaxLength="10" Nullable="false" Type="Edm.String" sap:quickinfo="Nº documento de um documento contábil" />
+                <Property sap:label="Nº principal imobilizado" Name="anln1" sap:quickinfo="Nº principal do imobilizado" sap:text="to_Immob/anln1_Text" sap:display-format="UpperCase" MaxLength="12" Nullable="false" Type="Edm.String" sap:value-list="standard" />
 
-                <Property sap:label="Exercício" Name="gjahr" sap:required-in-filter="true" sap:display-format="NonNegative" MaxLength="4" Nullable="false" Type="Edm.String" />
+                <Property sap:label="Subnº imobilizado" Name="anln2" sap:quickinfo="Subnº do imobilizado" sap:display-format="UpperCase" MaxLength="4" Nullable="false" Type="Edm.String" />
 
-                <Property sap:label="Item" Name="buzei" sap:display-format="NonNegative" MaxLength="3" Nullable="false" Type="Edm.String" sap:quickinfo="Nº linha de lançamento no documento contábil" />
+                <Property sap:label="Exercício" Name="gjahr" sap:display-format="NonNegative" MaxLength="4" Nullable="false" Type="Edm.String" />
 
-                <Property sap:label="Contrato" Name="vertn" sap:display-format="UpperCase" MaxLength="13" Type="Edm.String" sap:quickinfo="Nº do contrato" />
+                <Property sap:label="Nº seq.do imob.no exercício" Name="lnran" sap:quickinfo="Nº sequencial da partida individual do imob.no exercício" sap:display-format="NonNegative" MaxLength="5" Nullable="false" Type="Edm.String" />
 
-                <Property sap:label="Data vencimento" Name="zfbdt" sap:display-format="Date" Type="Edm.DateTime" sap:quickinfo="Data base para cálculo do vencimento" Precision="0" />
+                <Property sap:label="Centro" Name="werks" sap:text="to_Plant/werks_Text" sap:display-format="UpperCase" MaxLength="4" Type="Edm.String" sap:value-list="standard" sap:required-in-filter="true" />
 
-                <Property sap:label="Data lançamento" Name="h_budat" sap:display-format="Date" Type="Edm.DateTime" sap:quickinfo="Data de lançamento no documento" Precision="0" />
+                <Property sap:label="Classe Imobilizado" Name="anlkl" sap:quickinfo="Classe do imobilizado" sap:display-format="UpperCase" MaxLength="8" Type="Edm.String" />
 
-                <Property sap:label="Período contábil" Name="h_monat" sap:required-in-filter="true" sap:display-format="NonNegative" MaxLength="2" Type="Edm.String" sap:quickinfo="Mês do exercício" />
+                <Property sap:label="Descrição Imobilizado" Name="txt50" sap:quickinfo="Denominação do imobilizado" MaxLength="50" Type="Edm.String" />
 
-                <Property sap:label="Cliente" Name="kunnr" sap:display-format="UpperCase" MaxLength="10" Type="Edm.String" sap:quickinfo="Nº cliente" />
+                <Property sap:label="Data de lançamento no documento" Name="budat" sap:display-format="Date" Type="Edm.DateTime" sap:required-in-filter="true" Precision="0" />
 
-                <Property sap:label="Moeda" Name="waers" MaxLength="5" Type="Edm.String" sap:quickinfo="Código da moeda" sap:semantics="currency-code" />
+                <Property sap:label="Quantidade" Name="menge" Type="Edm.Decimal" Precision="23" Scale="2" />
 
-                <Property sap:label="Montante" Name="wrbtr" Type="Edm.Decimal" Precision="23" sap:unit="waers" Scale="2" />
+                <Property sap:label="Unidade de medida básica" Name="meins" MaxLength="3" Type="Edm.String" sap:semantics="unit-of-measure" />
 
-                <Property sap:label="Informar Nº documento boleto" Name="xref1" MaxLength="12" Type="Edm.String" />
+                <Property sap:label="Nº documento contábil" Name="belnr" sap:quickinfo="Nº documento de um documento contábil" sap:display-format="UpperCase" MaxLength="10" Type="Edm.String" />
 
-                <NavigationProperty Name="to_Company" ToRole="ToRole_assoc_82C3770C38FB3779AA045ED197C273DC" FromRole="FromRole_assoc_82C3770C38FB3779AA045ED197C273DC" Relationship="ZFI_CDS_LEASE_AGREEMENTS_CDS.assoc_82C3770C38FB3779AA045ED197C273DC" />
+                <Property sap:label="Tipo de movimento do imobilizado" Name="bwasl" sap:text="to_AssMovType/bwasl_Text" sap:display-format="UpperCase" MaxLength="3" Type="Edm.String" sap:value-list="standard" sap:required-in-filter="true" />
+
+                <Property sap:label="Montante lançado" Name="anbtr" Type="Edm.Decimal" Precision="23" Scale="2" />
+
+                <NavigationProperty Name="to_AssMovType" ToRole="ToRole_assoc_82697622784D501F86AE9B3FC7C67F54" FromRole="FromRole_assoc_82697622784D501F86AE9B3FC7C67F54" Relationship="ZFI_CDS_DECLIMOBTRASNP_CDS.assoc_82697622784D501F86AE9B3FC7C67F54" />
+
+                <NavigationProperty Name="to_Company" ToRole="ToRole_assoc_AF182F6842BFDF34BE696806C0488034" FromRole="FromRole_assoc_AF182F6842BFDF34BE696806C0488034" Relationship="ZFI_CDS_DECLIMOBTRASNP_CDS.assoc_AF182F6842BFDF34BE696806C0488034" />
+
+                <NavigationProperty Name="to_Immob" ToRole="ToRole_assoc_85A7C1AF42EB2FBB6C20EB5B82A5474A" FromRole="FromRole_assoc_85A7C1AF42EB2FBB6C20EB5B82A5474A" Relationship="ZFI_CDS_DECLIMOBTRASNP_CDS.assoc_85A7C1AF42EB2FBB6C20EB5B82A5474A" />
+
+                <NavigationProperty Name="to_Plant" ToRole="ToRole_assoc_2A53FB09E1C4B35428DBC635740E0E54" FromRole="FromRole_assoc_2A53FB09E1C4B35428DBC635740E0E54" Relationship="ZFI_CDS_DECLIMOBTRASNP_CDS.assoc_2A53FB09E1C4B35428DBC635740E0E54" />
+            </EntityType>
+
+            <EntityType sap:content-version="1" sap:label="Nº principal do imobilizado" Name="ZFI_CDS_IMMOBILIZEDType">
+                <Key>
+                    <PropertyRef Name="anln1" />
+                </Key>
+
+                <Property sap:label="Nº principal do imobilizado" Name="anln1" sap:text="anln1_Text" sap:display-format="UpperCase" MaxLength="12" Nullable="false" Type="Edm.String" />
+
+                <Property sap:label="Descrição" Name="anln1_Text" sap:quickinfo="Texto do nº principal do imobilizado" MaxLength="50" Type="Edm.String" sap:updatable="false" sap:creatable="false" />
+            </EntityType>
+
+            <EntityType sap:content-version="1" sap:label="Centro" Name="ZFI_CDS_PLANTType">
+                <Key>
+                    <PropertyRef Name="werks" />
+                </Key>
+
+                <Property sap:label="Centro" Name="werks" sap:text="werks_Text" sap:display-format="UpperCase" MaxLength="4" Nullable="false" Type="Edm.String" />
+
+                <Property sap:label="Descrição" Name="werks_Text" sap:quickinfo="Nome" MaxLength="30" Type="Edm.String" sap:updatable="false" sap:creatable="false" />
             </EntityType>
 
             <EntityType sap:content-version="1" sap:label="Número da empresa" Name="ZFI__CDS_COMPANYType">
@@ -89,40 +131,112 @@
                     <PropertyRef Name="bukrs" />
                 </Key>
 
-                <Property sap:label="Número da Empresa" Name="bukrs" sap:text="bukrs_Text" sap:display-format="UpperCase" MaxLength="4" Nullable="false" Type="Edm.String" sap:quickinfo="Empresa" />
+                <Property sap:label="Número da Empresa" Name="bukrs" sap:quickinfo="Empresa" sap:text="bukrs_Text" sap:display-format="UpperCase" MaxLength="4" Nullable="false" Type="Edm.String" />
 
-                <Property sap:label="Descrição" Name="bukrs_Text" MaxLength="25" Type="Edm.String" sap:quickinfo="Denominação de empresa ou sociedade" sap:updatable="false" sap:creatable="false" />
+                <Property sap:label="Descrição" Name="bukrs_Text" sap:quickinfo="Denominação de empresa ou sociedade" MaxLength="25" Type="Edm.String" sap:updatable="false" sap:creatable="false" />
             </EntityType>
 
-            <Association sap:content-version="1" Name="assoc_82C3770C38FB3779AA045ED197C273DC">
-                <End Type="ZFI_CDS_LEASE_AGREEMENTS_CDS.ZFI_CDS_LEASE_AGREEMENTSType" Role="FromRole_assoc_82C3770C38FB3779AA045ED197C273DC" Multiplicity="1" />
+            <Association sap:content-version="1" Name="assoc_AF182F6842BFDF34BE696806C0488034">
+                <End Type="ZFI_CDS_DECLIMOBTRASNP_CDS.ZFI_CDS_DECLIMOBTRASNPType" Role="FromRole_assoc_AF182F6842BFDF34BE696806C0488034" Multiplicity="1" />
 
-                <End Type="ZFI_CDS_LEASE_AGREEMENTS_CDS.ZFI__CDS_COMPANYType" Role="ToRole_assoc_82C3770C38FB3779AA045ED197C273DC" Multiplicity="1" />
+                <End Type="ZFI_CDS_DECLIMOBTRASNP_CDS.ZFI__CDS_COMPANYType" Role="ToRole_assoc_AF182F6842BFDF34BE696806C0488034" Multiplicity="1" />
 
                 <ReferentialConstraint>
-                    <Principal Role="ToRole_assoc_82C3770C38FB3779AA045ED197C273DC">
+                    <Principal Role="ToRole_assoc_AF182F6842BFDF34BE696806C0488034">
                         <PropertyRef Name="bukrs" />
                     </Principal>
 
-                    <Dependent Role="FromRole_assoc_82C3770C38FB3779AA045ED197C273DC">
+                    <Dependent Role="FromRole_assoc_AF182F6842BFDF34BE696806C0488034">
                         <PropertyRef Name="bukrs" />
                     </Dependent>
                 </ReferentialConstraint>
             </Association>
 
-            <EntityContainer Name="ZFI_CDS_LEASE_AGREEMENTS_CDS_Entities" sap:supported-formats="atom json xlsx" sap:message-scope-supported="true" m:IsDefaultEntityContainer="true">
-                <EntitySet sap:content-version="1" Name="ZFI_CDS_LEASE_AGREEMENTS" sap:updatable="false" sap:creatable="false" sap:requires-filter="true" sap:deletable="false" EntityType="ZFI_CDS_LEASE_AGREEMENTS_CDS.ZFI_CDS_LEASE_AGREEMENTSType" />
+            <Association sap:content-version="1" Name="assoc_85A7C1AF42EB2FBB6C20EB5B82A5474A">
+                <End Type="ZFI_CDS_DECLIMOBTRASNP_CDS.ZFI_CDS_DECLIMOBTRASNPType" Role="FromRole_assoc_85A7C1AF42EB2FBB6C20EB5B82A5474A" Multiplicity="1" />
 
-                <EntitySet sap:content-version="1" Name="ZFI__CDS_COMPANY" sap:updatable="false" sap:creatable="false" sap:deletable="false" EntityType="ZFI_CDS_LEASE_AGREEMENTS_CDS.ZFI__CDS_COMPANYType" sap:searchable="true" />
+                <End Type="ZFI_CDS_DECLIMOBTRASNP_CDS.ZFI_CDS_IMMOBILIZEDType" Role="ToRole_assoc_85A7C1AF42EB2FBB6C20EB5B82A5474A" Multiplicity="1" />
 
-                <AssociationSet sap:content-version="1" Name="assoc_82C3770C38FB3779AA045ED197C273DC" sap:updatable="false" sap:creatable="false" sap:deletable="false" Association="ZFI_CDS_LEASE_AGREEMENTS_CDS.assoc_82C3770C38FB3779AA045ED197C273DC">
-                    <End Role="FromRole_assoc_82C3770C38FB3779AA045ED197C273DC" EntitySet="ZFI_CDS_LEASE_AGREEMENTS" />
+                <ReferentialConstraint>
+                    <Principal Role="ToRole_assoc_85A7C1AF42EB2FBB6C20EB5B82A5474A">
+                        <PropertyRef Name="anln1" />
+                    </Principal>
 
-                    <End Role="ToRole_assoc_82C3770C38FB3779AA045ED197C273DC" EntitySet="ZFI__CDS_COMPANY" />
+                    <Dependent Role="FromRole_assoc_85A7C1AF42EB2FBB6C20EB5B82A5474A">
+                        <PropertyRef Name="anln1" />
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+
+            <Association sap:content-version="1" Name="assoc_2A53FB09E1C4B35428DBC635740E0E54">
+                <End Type="ZFI_CDS_DECLIMOBTRASNP_CDS.ZFI_CDS_DECLIMOBTRASNPType" Role="FromRole_assoc_2A53FB09E1C4B35428DBC635740E0E54" Multiplicity="1" />
+
+                <End Type="ZFI_CDS_DECLIMOBTRASNP_CDS.ZFI_CDS_PLANTType" Role="ToRole_assoc_2A53FB09E1C4B35428DBC635740E0E54" Multiplicity="1" />
+
+                <ReferentialConstraint>
+                    <Principal Role="ToRole_assoc_2A53FB09E1C4B35428DBC635740E0E54">
+                        <PropertyRef Name="werks" />
+                    </Principal>
+
+                    <Dependent Role="FromRole_assoc_2A53FB09E1C4B35428DBC635740E0E54">
+                        <PropertyRef Name="werks" />
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+
+            <Association sap:content-version="1" Name="assoc_82697622784D501F86AE9B3FC7C67F54">
+                <End Type="ZFI_CDS_DECLIMOBTRASNP_CDS.ZFI_CDS_DECLIMOBTRASNPType" Role="FromRole_assoc_82697622784D501F86AE9B3FC7C67F54" Multiplicity="1" />
+
+                <End Type="ZFI_CDS_DECLIMOBTRASNP_CDS.ZFI_CDS_ASSET_MOVEMENT_TYPEType" Role="ToRole_assoc_82697622784D501F86AE9B3FC7C67F54" Multiplicity="1" />
+
+                <ReferentialConstraint>
+                    <Principal Role="ToRole_assoc_82697622784D501F86AE9B3FC7C67F54">
+                        <PropertyRef Name="bwasl" />
+                    </Principal>
+
+                    <Dependent Role="FromRole_assoc_82697622784D501F86AE9B3FC7C67F54">
+                        <PropertyRef Name="bwasl" />
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+
+            <EntityContainer Name="ZFI_CDS_DECLIMOBTRASNP_CDS_Entities" sap:supported-formats="atom json xlsx" sap:message-scope-supported="true" m:IsDefaultEntityContainer="true">
+                <EntitySet sap:content-version="1" Name="ZFI_CDS_ASSET_MOVEMENT_TYPE" sap:updatable="false" sap:creatable="false" sap:searchable="true" sap:deletable="false" EntityType="ZFI_CDS_DECLIMOBTRASNP_CDS.ZFI_CDS_ASSET_MOVEMENT_TYPEType" />
+
+                <EntitySet sap:content-version="1" Name="ZFI_CDS_DECLIMOBTRASNP" sap:updatable="false" sap:creatable="false" sap:deletable="false" EntityType="ZFI_CDS_DECLIMOBTRASNP_CDS.ZFI_CDS_DECLIMOBTRASNPType" sap:requires-filter="true" />
+
+                <EntitySet sap:content-version="1" Name="ZFI_CDS_IMMOBILIZED" sap:updatable="false" sap:creatable="false" sap:searchable="true" sap:deletable="false" EntityType="ZFI_CDS_DECLIMOBTRASNP_CDS.ZFI_CDS_IMMOBILIZEDType" />
+
+                <EntitySet sap:content-version="1" Name="ZFI_CDS_PLANT" sap:updatable="false" sap:creatable="false" sap:searchable="true" sap:deletable="false" EntityType="ZFI_CDS_DECLIMOBTRASNP_CDS.ZFI_CDS_PLANTType" />
+
+                <EntitySet sap:content-version="1" Name="ZFI__CDS_COMPANY" sap:updatable="false" sap:creatable="false" sap:searchable="true" sap:deletable="false" EntityType="ZFI_CDS_DECLIMOBTRASNP_CDS.ZFI__CDS_COMPANYType" />
+
+                <AssociationSet sap:content-version="1" Name="assoc_85A7C1AF42EB2FBB6C20EB5B82A5474A" sap:updatable="false" sap:creatable="false" sap:deletable="false" Association="ZFI_CDS_DECLIMOBTRASNP_CDS.assoc_85A7C1AF42EB2FBB6C20EB5B82A5474A">
+                    <End Role="FromRole_assoc_85A7C1AF42EB2FBB6C20EB5B82A5474A" EntitySet="ZFI_CDS_DECLIMOBTRASNP" />
+
+                    <End Role="ToRole_assoc_85A7C1AF42EB2FBB6C20EB5B82A5474A" EntitySet="ZFI_CDS_IMMOBILIZED" />
+                </AssociationSet>
+
+                <AssociationSet sap:content-version="1" Name="assoc_AF182F6842BFDF34BE696806C0488034" sap:updatable="false" sap:creatable="false" sap:deletable="false" Association="ZFI_CDS_DECLIMOBTRASNP_CDS.assoc_AF182F6842BFDF34BE696806C0488034">
+                    <End Role="FromRole_assoc_AF182F6842BFDF34BE696806C0488034" EntitySet="ZFI_CDS_DECLIMOBTRASNP" />
+
+                    <End Role="ToRole_assoc_AF182F6842BFDF34BE696806C0488034" EntitySet="ZFI__CDS_COMPANY" />
+                </AssociationSet>
+
+                <AssociationSet sap:content-version="1" Name="assoc_2A53FB09E1C4B35428DBC635740E0E54" sap:updatable="false" sap:creatable="false" sap:deletable="false" Association="ZFI_CDS_DECLIMOBTRASNP_CDS.assoc_2A53FB09E1C4B35428DBC635740E0E54">
+                    <End Role="FromRole_assoc_2A53FB09E1C4B35428DBC635740E0E54" EntitySet="ZFI_CDS_DECLIMOBTRASNP" />
+
+                    <End Role="ToRole_assoc_2A53FB09E1C4B35428DBC635740E0E54" EntitySet="ZFI_CDS_PLANT" />
+                </AssociationSet>
+
+                <AssociationSet sap:content-version="1" Name="assoc_82697622784D501F86AE9B3FC7C67F54" sap:updatable="false" sap:creatable="false" sap:deletable="false" Association="ZFI_CDS_DECLIMOBTRASNP_CDS.assoc_82697622784D501F86AE9B3FC7C67F54">
+                    <End Role="FromRole_assoc_82697622784D501F86AE9B3FC7C67F54" EntitySet="ZFI_CDS_DECLIMOBTRASNP" />
+
+                    <End Role="ToRole_assoc_82697622784D501F86AE9B3FC7C67F54" EntitySet="ZFI_CDS_ASSET_MOVEMENT_TYPE" />
                 </AssociationSet>
             </EntityContainer>
 
-            <Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="ZFI_CDS_LEASE_AGREEMENTS_CDS.ZFI_CDS_LEASE_AGREEMENTSType/bukrs">
+            <Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="ZFI_CDS_DECLIMOBTRASNP_CDS.ZFI_CDS_DECLIMOBTRASNPType/bukrs">
                 <Annotation Term="Common.ValueList">
                     <Record>
                         <PropertyValue String="Número da empresa" Property="Label" />
@@ -148,11 +262,89 @@
                 </Annotation>
             </Annotations>
 
-            <Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="ZFI_CDS_LEASE_AGREEMENTS_CDS.ZFI_CDS_LEASE_AGREEMENTS_CDS_Entities">
+            <Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="ZFI_CDS_DECLIMOBTRASNP_CDS.ZFI_CDS_DECLIMOBTRASNPType/anln1">
+                <Annotation Term="Common.ValueList">
+                    <Record>
+                        <PropertyValue String="Nº principal do imobilizado" Property="Label" />
+
+                        <PropertyValue String="ZFI_CDS_IMMOBILIZED" Property="CollectionPath" />
+
+                        <PropertyValue Property="SearchSupported" Bool="true" />
+
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="anln1" />
+
+                                    <PropertyValue String="anln1" Property="ValueListProperty" />
+                                </Record>
+
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue String="anln1_Text" Property="ValueListProperty" />
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+
+            <Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="ZFI_CDS_DECLIMOBTRASNP_CDS.ZFI_CDS_DECLIMOBTRASNPType/werks">
+                <Annotation Term="Common.ValueList">
+                    <Record>
+                        <PropertyValue String="Centro" Property="Label" />
+
+                        <PropertyValue String="ZFI_CDS_PLANT" Property="CollectionPath" />
+
+                        <PropertyValue Property="SearchSupported" Bool="true" />
+
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="werks" />
+
+                                    <PropertyValue String="werks" Property="ValueListProperty" />
+                                </Record>
+
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue String="werks_Text" Property="ValueListProperty" />
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+
+            <Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="ZFI_CDS_DECLIMOBTRASNP_CDS.ZFI_CDS_DECLIMOBTRASNPType/bwasl">
+                <Annotation Term="Common.ValueList">
+                    <Record>
+                        <PropertyValue String="Tipo de movimento do imobilizado" Property="Label" />
+
+                        <PropertyValue String="ZFI_CDS_ASSET_MOVEMENT_TYPE" Property="CollectionPath" />
+
+                        <PropertyValue Property="SearchSupported" Bool="true" />
+
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="bwasl" />
+
+                                    <PropertyValue String="bwasl" Property="ValueListProperty" />
+                                </Record>
+
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue String="bwasl_Text" Property="ValueListProperty" />
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+
+            <Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="ZFI_CDS_DECLIMOBTRASNP_CDS.ZFI_CDS_DECLIMOBTRASNP_CDS_Entities">
                 <Annotation Term="Common.ApplyMultiUnitBehaviorForSortingAndFiltering" Bool="true" />
             </Annotations>
 
-            <Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="ZFI_CDS_LEASE_AGREEMENTS_CDS.ZFI_CDS_LEASE_AGREEMENTS_CDS_Entities/ZFI_CDS_LEASE_AGREEMENTS">
+            <Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="ZFI_CDS_DECLIMOBTRASNP_CDS.ZFI_CDS_DECLIMOBTRASNP_CDS_Entities/ZFI_CDS_DECLIMOBTRASNP">
                 <Annotation Term="Capabilities.FilterRestrictions">
                     <Record>
                         <PropertyValue Property="RequiresFilter" Bool="true" />
@@ -161,18 +353,20 @@
                             <Collection>
                                 <PropertyPath>bukrs</PropertyPath>
 
-                                <PropertyPath>gjahr</PropertyPath>
+                                <PropertyPath>werks</PropertyPath>
 
-                                <PropertyPath>h_monat</PropertyPath>
+                                <PropertyPath>budat</PropertyPath>
+
+                                <PropertyPath>bwasl</PropertyPath>
                             </Collection>
                         </PropertyValue>
                     </Record>
                 </Annotation>
             </Annotations>
 
-            <atom:link xmlns:atom="http://www.w3.org/2005/Atom" href="https://vhunmds4ci.sap.unimedpoa.com.br:44300/sap/opu/odata/sap/ZFI_CDS_LEASE_AGREEMENTS_CDS/$metadata" rel="self" />
+            <atom:link xmlns:atom="http://www.w3.org/2005/Atom" href="https://vhunmds4ci.sap.unimedpoa.com.br:44300/sap/opu/odata/sap/ZFI_CDS_DECLIMOBTRASNP_CDS/$metadata" rel="self" />
 
-            <atom:link xmlns:atom="http://www.w3.org/2005/Atom" href="https://vhunmds4ci.sap.unimedpoa.com.br:44300/sap/opu/odata/sap/ZFI_CDS_LEASE_AGREEMENTS_CDS/$metadata" rel="latest-version" />
+            <atom:link xmlns:atom="http://www.w3.org/2005/Atom" href="https://vhunmds4ci.sap.unimedpoa.com.br:44300/sap/opu/odata/sap/ZFI_CDS_DECLIMOBTRASNP_CDS/$metadata" rel="latest-version" />
         </Schema>
     </edmx:DataServices>
 </edmx:Edmx>

@@ -24,214 +24,101 @@
 									preventInitialDataFetchInValueHelpDialog="false"
 									index="2"
 								/>
+								<smartFilterBar:ControlConfiguration
+									key="to_Company.bukrs_Text"
+									visibleInAdvancedArea="false"
+									preventInitialDataFetchInValueHelpDialog="false"
+									visible="false"
+								/>
+								<smartFilterBar:ControlConfiguration
+									key="to_Immob.anln1_Text"
+									visibleInAdvancedArea="false"
+									preventInitialDataFetchInValueHelpDialog="false"
+									visible="false"
+								/>
+								<smartFilterBar:ControlConfiguration
+									key="to_AssMovType.bwasl_Text"
+									visibleInAdvancedArea="false"
+									preventInitialDataFetchInValueHelpDialog="false"
+									visible="false"
+								/>
+								<smartFilterBar:ControlConfiguration
+									key="to_Plant.werks_Text"
+									visibleInAdvancedArea="false"
+									preventInitialDataFetchInValueHelpDialog="false"
+									visible="false"
+								/>
 							</smartFilterBar:controlConfiguration>
 						</smartFilterBar:SmartFilterBar>
 					</VBox>
 					
 					<Panel id="panelTable">
 						<content>
-							<ui:Table
-								id="table"
-								rows="{
-									path: 'declimobtransp>/items'
-								}"
-								selectionMode="None"
-								visibleRowCount="12"
-								enableColumnFreeze="false"
-								enableGrouping="true"
-								group="onGroup"
+							<smartTable:SmartTable
+								id="SmartTable"
+								entitySet="ZFI_CDS_DECLIMOBTRASNP"
+								smartFilterId="smartFilterBar"
+								tableType="ResponsiveTable"
+								useExportToExcel="true"
+								beforeExport="onBeforeExport"
+								useVariantManagement="false"
+								useTablePersonalisation="true"
+								header="{i18n>mainViewTableTitle}"
+								showRowCount="true"
+								persistencyKey="SmartTableAnalytical_Explored"
+								enableAutoBinding="true"
+								class="sapUiResponsiveContentPadding"
+								initiallyVisibleFields="bukrs,werks,anlkl,anln1,anln2,txt50,menge,meins,belnr,bwasl"
 							>
-								<ui:extension>
-									<OverflowToolbar style="Clear">
-										<Title text="{declimobtransp>/headerTitleTable}" level="H1" titleStyle="H3"/>
-										<ToolbarSpacer />
-										<!--<OverflowToolbarButton
-											type="Transparent"
-											icon="sap-icon://action-settings"
-											iconDensityAware="false"
-											press="onPersoButtonPressed"
-										/>-->
-										<Button
-											icon="sap-icon://excel-attachment"
-											tooltip="{i18n>mainExportExcel}"
-											text="{i18n>mainExportExcel}"
-											press="onExportExcel"
-										/>
-									</OverflowToolbar>
-								</ui:extension>
-								<ui:columns>
-									<ui:Column
-										id="bukrs"
-										width="6rem"
-										filterOperator="Contains" 
-										filterProperty="bukrs"
-										sortProperty="bukrs"
-									>
-										<Label text="{i18n>mainTableCompany}" />
-										<ui:template>
-											<Text text="{declimobtransp>bukrs}"/>
-										</ui:template>
-									</ui:Column>
-									<ui:Column
-										id="werks"
-										width="10rem"
-										filterOperator="Contains" 
-										filterProperty="werks"
-										sortProperty="werks"
-									>
-										<Label text="{i18n>mainTablePlant}" />
-										<ui:template>
-											<Text text="{declimobtransp>werks}"/>
-										</ui:template>
-									</ui:Column>
-									<ui:Column
-										id="anlkl"
-										width="6rem"
-										filterOperator="Contains" 
-										filterProperty="anlkl"
-										sortProperty="anlkl"
-									>
-										<Label text="{i18n>mainTableImmobilizedClass}" />
-										<ui:template>
-											<Text text="{declimobtransp>anlkl}"/>
-										</ui:template>
-									</ui:Column>
-									<ui:Column
-										id="anln1"
-										width="10rem"
-										filterOperator="Contains" 
-										filterProperty="anln1"
-										sortProperty="anln1"
-									>
-										<Label text="{i18n>mainTableMainFixedNumber}" />
-										<ui:template>
-											<Text text="{declimobtransp>anln1}"/>
-										</ui:template>
-									</ui:Column>
-									<ui:Column
-										id="anln2"
-										width="10rem"
-										filterOperator="Contains" 
-										filterProperty="anln2"
-										sortProperty="anln2"
-									>
-										<Label text="{i18n>mainTableExercise}" />
-										<ui:template>
-											<Text text="{declimobtransp>anln2} - {declimobtransp>typeDocumentName}"/>
-										</ui:template>
-									</ui:Column>
-									<ui:Column
-										id="txt50"
-										width="8rem"
-										filterOperator="Contains" 
-										filterProperty="txt50"
-										sortProperty="txt50"
-									>
-										<Label text="{i18n>mainTableDescriptionFixedAssets}" />
-										<ui:template>
-											<Text 
-												text="{
-													path: 'declimobtransp>txt50'
-												}"
-											/>
-										</ui:template>
-									</ui:Column>
-									<ui:Column
-										id="budat"
-										width="8rem"
-										filterOperator="Contains" 
-										filterProperty="budat"
-										sortProperty="budat"
-									>
-										<Label text="{i18n>mainTableReleaseDate}" />
-										<ui:template>
-											<Text 
-												text="{
-													path: 'declimobtransp>budat',
-													type : 'sap.ui.model.type.Date',
-													formatOptions: {
-														style: 'short'
-													}
-												}"
-											/>
-										</ui:template>
-									</ui:Column>
-									<ui:Column
-										id="merge"
-										width="10rem"
-										filterOperator="Contains" 
-										filterProperty="merge"
-										sortProperty="merge"
-									>
-										<Label text="{i18n>mainTableTheAmount}" />
-										<ui:template>
-											<Text text="{declimobtransp>merge}"/>
-										</ui:template>
-									</ui:Column>
-									<ui:Column
-										id="meins"
-										width="8rem"
-										filterOperator="Contains" 
-										filterProperty="meins"
-										sortProperty="meins"
-									>
-										<Label text="{i18n>mainTableBasicUnitOfMeasure}" />
-										<ui:template>
-											<Text text="{declimobtransp>meins}"/>
-										</ui:template>
-									</ui:Column>
-									<ui:Column
-										id="belnr"
-										width="8rem"
-										filterOperator="Contains" 
-										filterProperty="belnr"
-										sortProperty="belnr"
-									>
-										<Label text="{i18n>mainTableAccountingDocumentNumber}" />
-										<ui:template>
-											<Text 
-												text="{
-													path: 'declimobtransp>belnr',
-                                            		formatter: '.formatter.currencyInBRL'
-												}"
-											/>
-										</ui:template>
-									</ui:Column>
-									<ui:Column
-										id="bwasl"
-										width="8rem"
-										filterOperator="Contains" 
-										filterProperty="bwasl"
-										sortProperty="bwasl"
-									>
-										<Label text="{i18n>mainTableAssetMovementType}" />
-										<ui:template>
-											<Text 
-												text="{
-													path: 'declimobtransp>bwasl'
-												}"
-											/>
-										</ui:template>
-									</ui:Column>
-									<ui:Column
-										id="anbtr"
-										width="8rem"
-										filterOperator="Contains" 
-										filterProperty="anbtr"
-										sortProperty="anbtr"
-									>
-										<Label text="{i18n>mainTablePostedAmount}" />
-										<ui:template>
-											<Text 
-												text="{
-													path: 'declimobtransp>anbtr',
-                                            		formatter: '.formatter.currencyInBRL'
-												}"
-											/>
-										</ui:template>
-									</ui:Column>
-								</ui:columns>
-							</ui:Table>
+								<Table>
+									<columns>
+										<Column id="budat" hAlign="Begin" width="6rem">
+											<customData>
+												<core:CustomData 
+													key="p13nData"
+													value='\{"columnKey": "budat", "columnIndex":"6", "leadingProperty": "budat", "sortProperty": "budat", "displayBehaviour": "descriptionOnly", "width": "360px"}'
+												/>
+											</customData>
+											<Label text="{/#ZFI_CDS_DECLIMOBTRASNP/budat/@sap:label}" />
+										</Column>
+										<Column id="anbtr" hAlign="Begin" width="12rem">
+											<customData>
+												<core:CustomData 
+													key="p13nData"
+													value='\{"columnKey": "anbtr", "columnIndex":"11", "leadingProperty": "anbtr", "sortProperty": "anbtr", "displayBehaviour": "descriptionOnly", "width": "360px"}'
+												/>
+											</customData>
+											<Label text="{/#ZFI_CDS_DECLIMOBTRASNP/anbtr/@sap:label}" />
+										</Column>
+									</columns>
+									<items>
+										<ColumnListItem>
+											<cells>
+												<Text 
+													text="{
+														path: 'budat',
+														type : 'sap.ui.model.type.Date',
+														formatOptions: {
+															style: 'short'
+														}
+													}"
+												/>
+
+												<Text 
+													text="{
+														path: 'anbtr',
+														formatter: '._formateValue'
+													}"
+												/>
+											</cells>
+										</ColumnListItem>
+									</items>
+								</Table>
+
+								<smartTable:layoutData>
+									<FlexItemData growFactor="1" baseSize="0%"/>
+								</smartTable:layoutData>
+							</smartTable:SmartTable>
 						</content>
 					</Panel>
 				</content>
