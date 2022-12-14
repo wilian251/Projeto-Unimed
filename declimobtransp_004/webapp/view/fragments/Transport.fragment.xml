@@ -1,0 +1,56 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core"
+    xmlns:f="sap.ui.layout.form"
+>
+
+    <Dialog
+        contentHeight="100%"
+        contentWidth="100%"
+        title="{i18n>dialogHeaderTitle}"
+    >
+        <beginButton>
+            
+        </beginButton>
+        <content>
+            <f:SimpleForm
+                id="SimpleFormTransport"
+                editable="false"
+                layout="ResponsiveGridLayout"
+                adjustLabelSpan="true"
+                singleContainerFullSize="true"
+            >
+                <f:content>
+                    <Label text="{i18n>dialogSupplierTransporter}"/>
+                    <Input 
+                        id="lifnr"
+						showValueHelp="true"
+						valueHelpOnly="true"
+						valueHelpRequest="onValueHelpRequestedSupplier"
+						suggestionItems="{
+							path: '/ZFI_CDS_PROVIDER'
+						}"
+					>
+						<core:Item key="{lifnr}" text="{lifnr_Text} ({lifnr})" />
+                    </Input>
+
+                    <Label text="{i18n>dialogLicensePlate}"/>
+                    <Input />
+
+                    <Label text="{i18n>dialogCNPJAndCPF}"/>
+                    <Input />
+
+                    <Label text="{i18n>dialogEmbPed}"/>
+                    <Input />
+
+                    <Label text="{i18n>dialogVolumes}"/>
+                    <Input />
+
+                </f:content>
+            </f:SimpleForm>
+        </content>
+        <endButton>
+        </endButton>
+    </Dialog>
+
+</core:FragmentDefinition>

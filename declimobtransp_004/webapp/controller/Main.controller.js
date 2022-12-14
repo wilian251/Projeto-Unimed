@@ -6,9 +6,7 @@ sap.ui.define([
     "sap/ui/model/json/JSONModel",
     "sap/ui/core/Fragment",
     "../model/formatter",
-    "sap/m/TablePersoController",
-    "sap/ui/export/Spreadsheet",
-    "../model/columnExcel",
+    "../model/columnsSupplier",
     "../model/declimobtransp",
     "sap/m/MessageBox"
 ],
@@ -20,9 +18,7 @@ function (
     JSONModel,
     Fragment,
     Formatter,
-    TablePersoController,
-    Spreadsheet,
-    ColumnExcel,
+    ColumnsSupplier,
     declimobtransp,
     MessageBox
 ) {
@@ -46,7 +42,7 @@ function (
             /* event handlers                                              */
             /* =========================================================== */
 
-            onPressGenerete: function(oEvent) {
+            onPressGenerete: async function(oEvent) {
                 //this.setAppBusy(true);
 
                 let oItems = this.byId("SmartTable").getTable().getSelectedItems();
@@ -69,7 +65,7 @@ function (
 
                     if(!bValid) MessageBox.warning(this.getResourceBundle().getText("messageWarningDocumentNumberDifferent"));
                     else {
-
+                        await this._openDialogTransport();
                     }
                 }else{
                     this.setAppBusy(false);bhg
@@ -108,12 +104,91 @@ function (
                     }
                 });
             },
+
+            onValueHelpRequestedSupplier: function(oEvent) {
+                let aCols = ColumnsSupplier.initModel();
+
+                Fragment.load({
+                    name: "com.prestativ.unmd.declimobtransp.view.fragments.SupplierValueHelp",
+                    controller: this
+                }).then(function name(oFragment) {
+                    this._oValueHelpDialogSupplier = oFragment;
+                    this.getView().addDependent(this._oValueHelpDialogSupplier);
+    
+                    this._oValueHelpDialogSupplier.getTableAsync().then( async function (oTable) {
+
+                        this.getModel().read("/ZFI_CDS_PROVIDER", {
+                            success: function(oData) {
+
+                            }.bind(this),
+                            error: function(oError) {
+
+                            }.bind(this)
+                        });
+
+                        oTable.setModel(new JSONModel(sap.ui.require.toUrl("sap/opu/odata/sap/ZFI_CDS_DECLIMOBTRASNP_CDS/")));
+                        oTable.setModel(new JSONModel(aCols), "columns");
+    
+                        if (oTable.bindRows) {
+                            oTable.bindAggregation("rows", "/ZFI_CDS_PROVIDER");
+                        }
+    
+                        if (oTable.bindItems) {
+                            oTable.bindAggregation("items", "/ZFI_CDS_PROVIDER", function () {
+                                return new ColumnListItem({
+                                    cells: aCols.map(function (column) {
+                                        return new Label({ text: "{" + column.template + "}" });
+                                    })
+                                });
+                            });
+                        }
+    
+                        this._oValueHelpDialogSupplier.update();
+                    }.bind(this));
+    
+                    this._oValueHelpDialogSupplier.open();
+                }.bind(this));
+            },
+
+            onValueHelpSupplierOk: function(oEvent) {
+                let aTokens = oEvent.getParameter("tokens");
+                this._oInput.setSelectedKey(aTokens[0].getKey());
+                this._oValueHelpDialogSupplier.close();
+            },
+
+            onValueHelpSupplierCancel: function(oEvent) {
+                this._oValueHelpDialogSupplier.close();
+            },
+
+            onValueHelpSupplierAfterClose: function(oEvent) {
+                this._oValueHelpDialogSupplier.destroy();
+            },
             /* =========================================================== */
             /* internal methods                                            */
             /* =========================================================== */
             _onObjectMatched: async function(oEvent) { 
                 this.getModel("declimobtransp").setData(declimobtransp.initSelectionModel(this.getResourceBundle().getText("mainViewTableTitle")));
                 this.getModel("declimobtransp").refresh(true);
+            },
+
+            _openDialogTransport: async function(){
+                if(!this._DialogTransport){
+                    this._DialogTransport = new Fragment.load({
+                        id: this.getView().getId(),
+                        name: "com.prestativ.unmd.declimobtransp.view.fragments.Transport",
+                        controller: this
+                    })
+                    
+                    await this._DialogTransport.then(
+                        function(oFragment){
+                            this.getView().addDependent(oFragment);
+    
+                            this._DialogTransport = oFragment;
+                        }.bind(this)
+                    );
+                }			
+    
+                this._DialogTransport.open();
             }
         });
     });
