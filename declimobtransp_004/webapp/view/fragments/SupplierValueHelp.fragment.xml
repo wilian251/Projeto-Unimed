@@ -1,15 +1,39 @@
 <core:FragmentDefinition
-	xmlns="sap.ui.comp.valuehelpdialog"
-	xmlns:core="sap.ui.core">
-	<ValueHelpDialog
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core"
+>
+	<TableSelectDialog
+		id="myDialog"
 		title="{i18n>dialogSupplier}"
-		ok="onValueHelpSupplierOk"
+		search="onHandleSearch"
+		confirm="onValueHelpSupplierOk"
 		cancel="onValueHelpSupplierCancel"
-		afterClose="onValueHelpSupplierAfterClose"
-		supportMultiselect="false"
-		key="lifnr"
-		descriptionKey="lifnr_Text"
+		items="{
+			path : '/ZFI_CDS_PROVIDER',
+			sorter : {
+				path : 'lifnr_Text',
+				descending : false
+			}
+		}"
 	>
-	</ValueHelpDialog>
+		<ColumnListItem vAlign="Middle">
+			<cells>
+				<Text text="{lifnr}" />
+				<Text text="{lifnr_Text}" />
+			</cells>
+		</ColumnListItem>
+		<columns>
+			<Column width="6rem">
+				<header>
+					<Text text="{i18n>dialogSupplierCode}" />
+				</header>
+			</Column>
+			<Column minScreenWidth="Tablet" demandPopin="true" width="100%">
+				<header>
+					<Text text="{i18n>dialogSupplierDescription}" />
+				</header>
+			</Column>
+		</columns>
+	</TableSelectDialog>
 
 </core:FragmentDefinition>

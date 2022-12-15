@@ -30,6 +30,7 @@
 						suggestionItems="{
 							path: '/ZFI_CDS_PROVIDER'
 						}"
+                        selectedKey=""
 					>
 						<core:Item key="{lifnr}" text="{lifnr_Text} ({lifnr})" />
                     </Input>

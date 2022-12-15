@@ -8,7 +8,9 @@ sap.ui.define([
     "../model/formatter",
     "../model/columnsSupplier",
     "../model/declimobtransp",
-    "sap/m/MessageBox"
+    "sap/m/MessageBox",
+    "sap/m/Label",
+    "sap/m/ColumnListItem"
 ],
 function (
     BaseController,
@@ -20,7 +22,9 @@ function (
     Formatter,
     ColumnsSupplier,
     declimobtransp,
-    MessageBox
+    MessageBox,
+    Label,
+    ColumnListItem
 ) {
         "use strict";
 
@@ -106,69 +110,59 @@ function (
             },
 
             onValueHelpRequestedSupplier: function(oEvent) {
-                let aCols = ColumnsSupplier.initModel();
-
-                Fragment.load({
-                    name: "com.prestativ.unmd.declimobtransp.view.fragments.SupplierValueHelp",
-                    controller: this
-                }).then(function name(oFragment) {
-                    this._oValueHelpDialogSupplier = oFragment;
-                    this.getView().addDependent(this._oValueHelpDialogSupplier);
-    
-                    this._oValueHelpDialogSupplier.getTableAsync().then( async function (oTable) {
-
-                        this.getModel().read("/ZFI_CDS_PROVIDER", {
-                            success: function(oData) {
-
-                            }.bind(this),
-                            error: function(oError) {
-
-                            }.bind(this)
-                        });
-
-                        oTable.setModel(new JSONModel(sap.ui.require.toUrl("sap/opu/odata/sap/ZFI_CDS_DECLIMOBTRASNP_CDS/")));
-                        oTable.setModel(new JSONModel(aCols), "columns");
-    
-                        if (oTable.bindRows) {
-                            oTable.bindAggregation("rows", "/ZFI_CDS_PROVIDER");
-                        }
-    
-                        if (oTable.bindItems) {
-                            oTable.bindAggregation("items", "/ZFI_CDS_PROVIDER", function () {
-                                return new ColumnListItem({
-                                    cells: aCols.map(function (column) {
-                                        return new Label({ text: "{" + column.template + "}" });
-                                    })
-                                });
-                            });
-                        }
-    
-                        this._oValueHelpDialogSupplier.update();
-                    }.bind(this));
-    
-                    this._oValueHelpDialogSupplier.open();
+                if (!this._oValueHelpDialogSupplier) {
+                    this._oValueHelpDialogSupplier = Fragment.load({
+                        id: this.getView().getId(),
+                        name: "com.prestativ.unmd.declimobtransp.view.fragments.SupplierValueHelp",
+                        controller: this
+                    }).then(
+                        function(oFragment) {
+                            this.getView().addDependent(oFragment);
+                            return oFragment;
+                        }.bind(this)
+                    );
+                }
+                this._oValueHelpDialogSupplier.then(function(oValueHelpDialog) {
+                    oValueHelpDialog.open();
                 }.bind(this));
             },
 
+            onHandleSearch: function(oEvent) {
+                let sValue   = oEvent.getParameter("value");
+                let oFilter  = new Filter({
+                    filters: [
+                        new Filter("lifnr", FilterOperator.Contains, sValue),
+                        new Filter("lifnr_Text", FilterOperator.Contains, sValue)
+                    ],
+                    and: false
+                });
+
+                oEvent.getSource().getBinding("items").filter([oFilter]);
+            },
+
             onValueHelpSupplierOk: function(oEvent) {
-                let aTokens = oEvent.getParameter("tokens");
-                this._oInput.setSelectedKey(aTokens[0].getKey());
-                this._oValueHelpDialogSupplier.close();
+                let oItem = oEvent.getParameter("selectedItem")
+                this.byId("lifnr").setSelectedKey(oItem.getAggregation("cells")[0].getProperty("text"));
             },
 
             onValueHelpSupplierCancel: function(oEvent) {
-                this._oValueHelpDialogSupplier.close();
+                oEvent.getSource().getBinding("items").filter([]);
             },
 
-            onValueHelpSupplierAfterClose: function(oEvent) {
-                this._oValueHelpDialogSupplier.destroy();
-            },
             /* =========================================================== */
             /* internal methods                                            */
             /* =========================================================== */
             _onObjectMatched: async function(oEvent) { 
                 this.getModel("declimobtransp").setData(declimobtransp.initSelectionModel(this.getResourceBundle().getText("mainViewTableTitle")));
                 this.getModel("declimobtransp").refresh(true);
+
+                this.getModel().read("/ZFI_CDS_PROVIDER", {
+                    success: function(oData) {
+                        this.getModel("supplier").setData({ items: oData.results });
+                        this.getModel("supplier").refresh(true);
+                    }.bind(this),
+                    error: function(oError) {}.bind(this)
+                });
             },
 
             _openDialogTransport: async function(){
