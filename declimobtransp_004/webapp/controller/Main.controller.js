@@ -53,6 +53,8 @@ function (
                     sUrl  = this.getModel("GW_DCIMOBTP").sServiceUrl + oPath;
 
                 window.open(sUrl);
+
+                this._DialogTransport.close();
             },
 
             onPressGenerete: async function(oEvent) {
@@ -62,14 +64,17 @@ function (
 
                 if(oItems.length != 0){
                     let oDocumentNumber = "",
+                        oPlant          = "",
                         bValid          = true;
 
                     oItems.map(sItem => {
                         let oObject = sItem.getBindingContext().getObject();
 
-                        if(oDocumentNumber === "") oDocumentNumber = oObject.belnr;
-                        else {
-                            if(oDocumentNumber != oObject.belnr) {
+                        if(oDocumentNumber === "" && oPlant === "") {
+                            oDocumentNumber = oObject.belnr;
+                            oPlant          = oObject.werks;
+                        }else {
+                            if(oDocumentNumber != oObject.belnr || oPlant != oObject.werks) {
                                 bValid = false;
                                 return;
                             }
