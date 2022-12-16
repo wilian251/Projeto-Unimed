@@ -10,7 +10,12 @@
         title="{i18n>dialogHeaderTitle}"
     >
         <beginButton>
-            
+            <Button
+                text="{i18n>dialogSupplierConfirm}"
+                icon="sap-icon://accept"
+                type="Accept"
+                press="onPressGeneratePDF"
+            />
         </beginButton>
         <content>
             <f:SimpleForm
@@ -28,29 +33,66 @@
 						valueHelpOnly="true"
 						valueHelpRequest="onValueHelpRequestedSupplier"
 						suggestionItems="{
-							path: '/ZFI_CDS_PROVIDER'
+							path: 'supplier>/items'
 						}"
-                        selectedKey=""
+                        selectedKey="{supplier>/supplierCode}"
 					>
-						<core:Item key="{lifnr}" text="{lifnr_Text} ({lifnr})" />
+						<core:Item key="{supplier>lifnr}" text="{supplier>lifnr_Text} ({supplier>lifnr})" />
                     </Input>
 
                     <Label text="{i18n>dialogLicensePlate}"/>
-                    <Input />
+                    <Input 
+                        value="{
+                            path: 'supplier>/licensePlate',
+                            type : 'sap.ui.model.type.String',
+							constraints : {
+								minLength: 1,
+								maxLength: 7
+							}
+                        }"
+                    />
 
                     <Label text="{i18n>dialogCNPJAndCPF}"/>
-                    <Input />
+                    <Input
+                        value="{
+                            path: 'supplier>/CNPJAndCPF',
+                            type : 'sap.ui.model.type.String',
+							constraints : {
+								minLength: 1,
+								maxLength: 17
+							}
+                        }"
+                    />
 
                     <Label text="{i18n>dialogEmbPed}"/>
-                    <Input />
+                    <Input
+                        value="{
+                            path: 'supplier>/embPed'
+                        }"
+                    />
 
                     <Label text="{i18n>dialogVolumes}"/>
-                    <Input />
+                    <Input
+                        value="{
+                            path: 'supplier>/volumes',
+                            type : 'sap.ui.model.type.String',
+							constraints : {
+								minLength: 1,
+								maxLength: 3
+							}
+                        }"
+                    />
 
                 </f:content>
             </f:SimpleForm>
         </content>
         <endButton>
+            <Button 
+                text="{i18n>dialogSupplierCancel}"
+                icon="sap-icon://cancel"
+                type="Reject"
+                press="onDialoTransportCancel"
+            />
         </endButton>
     </Dialog>
 

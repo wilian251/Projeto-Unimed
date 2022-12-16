@@ -19,6 +19,15 @@
                     "localUri": "localService/metadata.xml",
                     "odataVersion": "2.0"
                 }
+            },
+            "GW_DCIMOBTP": {
+                "uri": "/sap/opu/odata/sap/ZFI_GW_DECLIMMOBTRANSP_SRV/",
+                "type": "OData",
+				"settings": {
+					"annotations": [],
+                    "localUri": "localService/metadata.xml",
+                    "odataVersion": "2.0"
+                }
             }
         },
         "ach": "ach",
@@ -102,6 +111,18 @@
             },
             "": {
                 "dataSource": "mainService",
+                "preload": true,
+                "settings": {
+                    "operationMode": "Server",
+                    "groupId": "$direct",
+                    "synchronizationMode": "None",
+                    "autoExpandSelect": true,
+                    "defaultBindingMode": "OneWay",
+                    "refreshAfterChange": true
+                }
+            },
+            "GW_DCIMOBTP": {
+                "dataSource": "GW_DCIMOBTP",
                 "preload": true,
                 "settings": {
                     "operationMode": "Server",

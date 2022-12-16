@@ -9,17 +9,13 @@
 		confirm="onValueHelpSupplierOk"
 		cancel="onValueHelpSupplierCancel"
 		items="{
-			path : '/ZFI_CDS_PROVIDER',
-			sorter : {
-				path : 'lifnr_Text',
-				descending : false
-			}
+			path : 'supplier>/items'
 		}"
 	>
-		<ColumnListItem vAlign="Middle">
+		<ColumnListItem vAlign="Middle" id="columnListItem">
 			<cells>
-				<Text text="{lifnr}" />
-				<Text text="{lifnr_Text}" />
+				<Text text="{supplier>lifnr}" />
+				<Text text="{supplier>lifnr_Text}" />
 			</cells>
 		</ColumnListItem>
 		<columns>

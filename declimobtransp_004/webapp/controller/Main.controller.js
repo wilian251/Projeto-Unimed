@@ -46,8 +46,17 @@ function (
             /* event handlers                                              */
             /* =========================================================== */
 
+            onPressGeneratePDF: function(oEvent) {
+                let oModel = this.getModel("supplier").getData();
+
+                let oPath = `/FileSet(Line='${this._line}',TransportName='${oModel.supplierCode}',TransportPlate='${oModel.licensePlate}',TransportCnpjCpf='${oModel.CNPJAndCPF}',TransportEmbPed='${oModel.embPed}',TransportVolumes='${oModel.volumes}')/$value`,
+                    sUrl  = this.getModel("GW_DCIMOBTP").sServiceUrl + oPath;
+
+                window.open(sUrl);
+            },
+
             onPressGenerete: async function(oEvent) {
-                //this.setAppBusy(true);
+                this.setAppBusy(true);
 
                 let oItems = this.byId("SmartTable").getTable().getSelectedItems();
 
@@ -69,10 +78,27 @@ function (
 
                     if(!bValid) MessageBox.warning(this.getResourceBundle().getText("messageWarningDocumentNumberDifferent"));
                     else {
+                        let oLine = "";
+
+                        oItems.map(sItem => {
+                            let oObject = sItem.getBindingContext().getObject();
+
+                            oLine += oObject.bukrs + "," + 
+                                     ("000000000000" + oObject.anln1).slice(-12) + "," +
+                                     ("0000" + oObject.anln2).slice(-4) + "," +
+                                     oObject.gjahr + "," +
+                                     ("00000" + oObject.lnran).slice(-5) + "," +
+                                     oObject.werks + "," +
+                                     oObject.bwasl + ";"
+                        });
+
+                        this._line = oLine;
                         await this._openDialogTransport();
                     }
+
+                    this.setAppBusy(false);
                 }else{
-                    this.setAppBusy(false);bhg
+                    this.setAppBusy(false);
                     MessageBox.warning(this.getResourceBundle().getText("messageWarningSelectedLine"));
                 }
             },
@@ -143,10 +169,17 @@ function (
             onValueHelpSupplierOk: function(oEvent) {
                 let oItem = oEvent.getParameter("selectedItem")
                 this.byId("lifnr").setSelectedKey(oItem.getAggregation("cells")[0].getProperty("text"));
+                //this.byId("lifnr").setValue(oItem.getAggregation("cells")[0].getProperty("text"));
             },
 
             onValueHelpSupplierCancel: function(oEvent) {
                 oEvent.getSource().getBinding("items").filter([]);
+            },
+
+            onDialoTransportCancel: function(oEvent) {
+                this.byId("lifnr").setSelectedKey("");
+                this.byId("lifnr").setValue("");
+                this._DialogTransport.close();
             },
 
             /* =========================================================== */
@@ -158,10 +191,31 @@ function (
 
                 this.getModel().read("/ZFI_CDS_PROVIDER", {
                     success: function(oData) {
-                        this.getModel("supplier").setData({ items: oData.results });
+                        this.getModel("supplier").setData(
+                            { 
+                                items: oData.results,
+                                supplierCode: "",
+                                licensePlate: "",
+                                CNPJAndCPF: "",
+                                embPed: "",
+                                volumes: ""
+                            }
+                        );
                         this.getModel("supplier").refresh(true);
                     }.bind(this),
-                    error: function(oError) {}.bind(this)
+                    error: function(oError) {
+                        this.getModel("supplier").setData(
+                            { 
+                                items: [],
+                                supplierCode: "",
+                                licensePlate: "",
+                                CNPJAndCPF: "",
+                                embPed: "",
+                                volumes: ""
+                            }
+                        );
+                        this.getModel("supplier").refresh(true);
+                    }.bind(this)
                 });
             },
 
