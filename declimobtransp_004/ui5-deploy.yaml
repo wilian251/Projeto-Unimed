@@ -17,7 +17,7 @@ builder:
           url: https://vhunmds4ci.sap.unimedpoa.com.br:44300
           client: "050"
         app:
-          name: ZUI5_LEASAGRMTS
-          description: Contratos de locação
+          name: ZUI5_DECIMBTRNP
+          description: Declaração de Transporte para baixa de Imobilizado
           package: Z001
-          transport: DS4K901919
+          transport: DS4K902037
