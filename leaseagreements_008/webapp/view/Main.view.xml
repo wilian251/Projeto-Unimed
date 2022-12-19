@@ -62,7 +62,7 @@
 								persistencyKey="SmartTableAnalytical_Explored"
 								enableAutoBinding="true"
 								class="sapUiResponsiveContentPadding"
-								initiallyVisibleFields="bukrs,lifnr,vertn,h_monat,gjahr,belnr,wrbtr"
+								initiallyVisibleFields="bukrs,lifnr,vertn,h_monat,gjahr,belnr,buzei,wrbtr"
 							>
 								<Table>
 									<columns>
@@ -88,7 +88,7 @@
 											<customData>
 												<core:CustomData 
 													key="p13nData"
-													value='\{"columnKey": "xref1", "columnIndex":"9", "leadingProperty": "xref1", "sortProperty": "xref1", "displayBehaviour": "descriptionOnly", "width": "360px"}'
+													value='\{"columnKey": "xref1", "columnIndex":"11", "leadingProperty": "xref1", "sortProperty": "xref1", "displayBehaviour": "descriptionOnly", "width": "360px"}'
 												/>
 											</customData>
 											<Label text="{/#ZFI_CDS_LEASE_AGREEMENTS/xref1/@sap:label}" />

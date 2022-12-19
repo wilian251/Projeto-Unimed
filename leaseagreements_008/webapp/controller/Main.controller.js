@@ -74,8 +74,9 @@ function (
                         oObject.xref1 = oCell.getProperty("value");
 
                         oLineString += oObject.bukrs + "," +
-                                       oObject.belnr + "," +
+                                       ("0000000000" + oObject.belnr).slice(-10) + "," +
                                        oObject.gjahr + "," +
+                                       oObject.buzei + "," +
                                        Formatter.dateInUTCAbap(oObject.zfbdt, "yyyyMMdd") + "," +
                                        Formatter.dateInUTCAbap(oObject.h_budat, "yyyyMMdd") + "," +
                                        oObject.h_monat + "," +
