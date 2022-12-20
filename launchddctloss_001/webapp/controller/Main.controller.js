@@ -2,6 +2,7 @@ sap.ui.define([
     "./BaseController",
     "../model/launchDDCTLoss",
     "../model/columnExcel",
+    "../model/columnsPersonalizationTable",
     "sap/ui/export/Spreadsheet",
     "sap/ui/model/Sorter",
     "sap/ui/model/Filter",
@@ -16,7 +17,8 @@ sap.ui.define([
     function (
         BaseController, 
         LaunchDDCTLoss, 
-        ColumnExcel, 
+        ColumnExcel,
+        ColumnsPersonalizationTable,
         Spreadsheet, 
         Sorter, 
         Filter, 
@@ -38,10 +40,6 @@ sap.ui.define([
             onInit: function () {
                 this.getRouter().getRoute("main").attachPatternMatched(this._onObjectMatched.bind(this), this);
             },
-
-            onExit: function () {
-				this._oTPC.destroy();
-			},
 
             /* =========================================================== */
             /* event handlers                                              */
@@ -260,10 +258,49 @@ sap.ui.define([
             },
 
 			onPersoButtonPressed: function (oEvent) {
-                if(this._oTPC != null){
-                    this._oTPC.openDialog();
-                    this._oTPC.attachPersonalizationsDone(this, this._onPerscoDonePressed.bind(this));
-                }
+                this._personalizationTable();
+            },
+
+            onPressConfirm: function(oEvent) {
+                let oModel    = this.getModel("personalizationTable").getData();
+
+                oModel.items.map(sItem => {
+                    this.byId(sItem.id).setVisible(sItem.visible);
+                });
+
+                this.getModel("personalizationTable").refresh(true);
+
+                this._DialogPersonalizationTable.close();
+            },
+
+            onPressCancel: function(oEvent) {
+                this._DialogPersonalizationTable.close();
+            },
+
+            onPressSelectColumnsAll: function(oEvent) {
+                let oModel    = this.getModel("personalizationTable").getData(),
+                    oSelected = oEvent.getParameter("selected");
+
+                oModel.items.map(sItem => {
+                    sItem.visible = oSelected;
+                });
+
+                oModel.visibleAll = oSelected;
+
+                this.getModel("personalizationTable").refresh(true);
+            },
+
+            onPressSelectColumn: function(oEvent) {
+                let oModel = this.getModel("personalizationTable").getData();
+
+                let oItem = oModel.items.find(sItem => {
+                    if(sItem.visible === false) return sItem;
+                });
+
+                if(oItem != undefined) oModel.visibleAll = false;
+                else oModel.visibleAll = true;
+
+                this.getModel("personalizationTable").refresh(true);
             },
 
             onPressGoReport: function(oEvent) {
@@ -301,6 +338,8 @@ sap.ui.define([
                                 sItem.selectionColumnVisible = true;
                                 sItem.selectionColumn        = false;
                                 sItem.typeDocument           = `${sItem.blart} - ${sItem.typeDocumentName}`;
+                                sItem.wrbtr                  = this._formateValue(sItem.wrbtr, "");
+                            
                             });
 
                             this.getModel("launchddctloss").getData().headerTitleTable = this.getResourceBundle().getText("mainTableTitleParms", [oData.results.length])
@@ -341,25 +380,8 @@ sap.ui.define([
                 }
 
                 this._columnExcel = ColumnExcel.initModel(oI18n);
-                //this._personalizationTable();
-            },
-
-            _personalizationTable: function () {
-                this._oTPC = null;
-                var oPersonalizationService = sap.ushell.Container.getService("Personalization");
-                var oPersonalizer = oPersonalizationService.getPersonalizer({
-                    container: "com.prestativ.unmd.launchddctloss",
-                    item: "itemDataTable"
-                });
-                this._oTPC = new TablePersoController({
-                    table: this.byId("tableLaunchDDCTLoss"),
-                    componentName: "table",
-                    persoService: oPersonalizer
-                }).activate();
-            },
-
-            _onPerscoDonePressed: function (oEvent) {
-                this._oTPC.savePersonalizations();
+                this.getModel("personalizationTable").setData(ColumnsPersonalizationTable.initModel(oI18n));
+                this.getModel("personalizationTable").refresh(true);
             },
 
             _searchSelectedValues: function(sTokens, sPath){
@@ -381,6 +403,17 @@ sap.ui.define([
                             value1: oToken.getProperty("key"),
                             and: false
                         }));
+                    }else if(sPath === "zuonr"){
+                        let { oValue1, oValue2, oFilterOperator } = this._validationFilterOperator(oToken.getProperty("text"));
+
+                        oFilter.push(new Filter({
+                            path: sPath,
+                            operator: oFilterOperator,
+                            value1: oValue1,
+                            value2: oValue2,
+                            and: false
+                        }));
+
                     }else{    
                         oFilter.push(new Filter({
                             path: sPath,
@@ -394,11 +427,107 @@ sap.ui.define([
 
                 return oFilter;
             },
+
+            _validationFilterOperator: function(sValue){
+                /*
+                    Verifica se o tipo do filtro é EXCLUIR
+                    SENÂO
+                    Entra no INCLUIR
+                */
+                if(sValue.indexOf("!(") != -1){
+
+                    if(sValue.indexOf("*") != -1){
+                        let oValue = sValue.replace("*", "");
+
+                        if(oValue.indexOf("*") != -1){
+                            let oValue1 = sValue.replaceAll("*", "").replace("!(", "").replace(")", "");
+
+                            return { oValue1, oValue2: "", oFilterOperator: FilterOperator.NotContains };
+                        }else{
+                            if(sValue.indexOf("*") === 1){
+                                let oValue1 = sValue.replaceAll("*", "").replace("!(", "").replace(")", "");
+
+                                return { oValue1, oValue2: "", oFilterOperator: FilterOperator.NotEndsWith };
+                            }else{
+                                let oValue1 = sValue.replaceAll("*", "").replace("!(", "").replace(")", "");
+
+                                return { oValue1, oValue2: "", oFilterOperator: FilterOperator.NotStartsWith };
+                            }
+                        }
+                    }else 
+                    if(sValue.indexOf("=") != -1){
+                        let oValue1 = sValue.replace("=", "").replace("!(", "").replace(")", "");
+
+                        return { oValue1, oValue2: "", oFilterOperator: FilterOperator.NE };
+                    }else
+                    if(sValue.indexOf("...") != -1){
+                        let oValues = sValue.replace("!(", "").replace(")", "").split("...");
+
+                        return { oValue1: oValues[0], oValue2: oValues[1], oFilterOperator: FilterOperator.NB };
+                    }
+
+                }else{
+
+                    if(sValue.indexOf("*") != -1){
+                        let oValue = sValue.replace("*", "");
+
+                        if(oValue.indexOf("*") != -1){
+                            let oValue1 = sValue.replaceAll("*", "");
+
+                            return { oValue1, oValue2: "", oFilterOperator: FilterOperator.Contains };
+                        }else{
+                            if(sValue.indexOf("*") === 1){
+                                let oValue1 = sValue.replaceAll("*", "");
+
+                                return { oValue1, oValue2: "", oFilterOperator: FilterOperator.EndsWith };
+                            }else{
+                                let oValue1 = sValue.replaceAll("*", "");
+
+                                return { oValue1, oValue2: "", oFilterOperator: FilterOperator.StartsWith };
+                            }
+                        }
+                    }else
+                    if(sValue.indexOf("=") != -1){
+                        let oValue1 = sValue.replace("=", "");
+
+                        return { oValue1, oValue2: "", oFilterOperator: FilterOperator.EQ };
+                    }else
+                    if(sValue.indexOf("...") != -1){
+                        let oValues = sValue.split("...");
+
+                        return { oValue1: oValues[0], oValue2: oValues[1], oFilterOperator: FilterOperator.BT };
+                    }else
+                    if(sValue.indexOf("<") != -1){
+                        if(sValue.indexOf("=") != -1){
+                            let oValue1 = sValue.replace("<=", "");
+
+                            return { oValue1, oValue2: "", oFilterOperator: FilterOperator.LE };
+                        }else{
+                            let oValue1 = sValue.replace("<", "");
+
+                            return { oValue1, oValue2: "", oFilterOperator: FilterOperator.LT };
+                        }
+                    }else
+                    if(sValue.indexOf(">") != -1){
+                        if(sValue.indexOf("=") != -1){
+                            let oValue1 = sValue.replace(">=", "");
+
+                            return { oValue1, oValue2: "", oFilterOperator: FilterOperator.GE };
+                        }else{
+                            let oValue1 = sValue.replace(">", "");
+
+                            return { oValue1, oValue2: "", oFilterOperator: FilterOperator.GT };
+                        }
+                    }
+
+                }
+            },
             
             _createFilters: function() {
-                let oCompanyID = this.byId("container-launchddctloss---main--smartFilterBar-filterItemControlA_-bukrs"),
-                    oClientID  = this.byId("container-launchddctloss---main--smartFilterBar-filterItemControlA_-kunnr"),
-                    oStatusID  = this.byId("container-launchddctloss---main--smartFilterBar-filterItemControlA_-valor_de");
+                let oCompanyID   = this.byId("container-launchddctloss---main--smartFilterBar-filterItemControlA_-bukrs"),
+                    oClientID    = this.byId("container-launchddctloss---main--smartFilterBar-filterItemControlA_-kunnr"),
+                    oStatusID    = this.byId("container-launchddctloss---main--smartFilterBar-filterItemControlA_-valor_de"),
+                    oAtribuiteID = this.byId("container-launchddctloss---main--smartFilterBar-filterItemControlA_-zuonr");
             
                 let oFilters = [];
 
@@ -412,6 +541,10 @@ sap.ui.define([
 
                 if(oStatusID === undefined){
                     oStatusID = this.byId("application-ZSEM_FI25_LAUNCH_004-display-component---main--smartFilterBar-filterItemControlA_-valor_de");
+                }
+
+                if(oAtribuiteID === undefined){
+                    oAtribuiteID = this.byId("application-ZSEM_FI25_LAUNCH_004-display-component---main--smartFilterBar-filterItemControlA_-zuonr");
                 }
 
                 if(oCompanyID.getTokens().length != 0){
@@ -441,7 +574,38 @@ sap.ui.define([
                     }));
                 }
 
+                if(oAtribuiteID !== undefined){
+                    if(oAtribuiteID.getTokens().length != 0){
+                        let oFilterAtribuite = this._searchSelectedValues(oAtribuiteID.getTokens(), "zuonr");
+
+                        oFilters.push(new Filter({
+                            filters: oFilterAtribuite,
+                            and: false
+                        }));
+                    }
+                }
+
                 return oFilters;
+            },
+
+            _personalizationTable: async function () {
+                if(!this._DialogPersonalizationTable){
+                    this._DialogPersonalizationTable = new Fragment.load({
+                        id: this.getView().getId(),
+                        name: "com.prestativ.unmd.launchddctloss.view.fragments.PersonalizationTableDialog",
+                        controller: this
+                    })
+                    
+                    await this._DialogPersonalizationTable.then(
+                        function(oFragment){
+                            this.getView().addDependent(oFragment);
+    
+                            this._DialogPersonalizationTable = oFragment;
+                        }.bind(this)
+                    );
+                }
+    
+                this._DialogPersonalizationTable.open();
             },
 
             _openDialogDocumentReleaseDates: async function(){

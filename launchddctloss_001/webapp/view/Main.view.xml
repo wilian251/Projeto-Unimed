@@ -21,20 +21,231 @@
 								<smartFilterBar:ControlConfiguration
 									key="bukrs"
 									visibleInAdvancedArea="true"
-									preventInitialDataFetchInValueHelpDialog="false">
-								</smartFilterBar:ControlConfiguration>
+									preventInitialDataFetchInValueHelpDialog="false"
+								/>
 
 								<smartFilterBar:ControlConfiguration
 									key="kunnr"
 									visibleInAdvancedArea="true"
-									preventInitialDataFetchInValueHelpDialog="false">
-								</smartFilterBar:ControlConfiguration>
+									preventInitialDataFetchInValueHelpDialog="false"
+								/>
 
 								<smartFilterBar:ControlConfiguration
 									key="valor_de"
 									visibleInAdvancedArea="true"
-									preventInitialDataFetchInValueHelpDialog="false">
-								</smartFilterBar:ControlConfiguration>
+									preventInitialDataFetchInValueHelpDialog="false"
+								/>
+
+								<smartFilterBar:ControlConfiguration
+									key="valor_ate"
+									visibleInAdvancedArea="false"
+									preventInitialDataFetchInValueHelpDialog="false"
+									visible="false"
+								/>
+
+								<smartFilterBar:ControlConfiguration
+									key="to_AccountingRecord.blart_Text"
+									visibleInAdvancedArea="false"
+									preventInitialDataFetchInValueHelpDialog="false"
+									visible="false"
+								/>
+
+								<smartFilterBar:ControlConfiguration
+									key="to_Client.kunnr_Text"
+									visibleInAdvancedArea="false"
+									preventInitialDataFetchInValueHelpDialog="false"
+									visible="false"
+								/>
+
+								<smartFilterBar:ControlConfiguration
+									key="typeDocumentName"
+									visibleInAdvancedArea="false"
+									preventInitialDataFetchInValueHelpDialog="false"
+									visible="false"
+								/>
+
+								<smartFilterBar:ControlConfiguration
+									key="to_Company.bukrs_Text"
+									visibleInAdvancedArea="false"
+									preventInitialDataFetchInValueHelpDialog="false"
+									visible="false"
+								/>
+
+								<smartFilterBar:ControlConfiguration
+									key="to_Status.valor_de_Text"
+									visibleInAdvancedArea="false"
+									preventInitialDataFetchInValueHelpDialog="false"
+									visible="false"
+								/>
+
+								<smartFilterBar:ControlConfiguration
+									key="dmbtr"
+									visibleInAdvancedArea="false"
+									preventInitialDataFetchInValueHelpDialog="false"
+									visible="false"
+								/>
+
+								<smartFilterBar:ControlConfiguration
+									key="to_Status.dias_vencidos"
+									visibleInAdvancedArea="false"
+									preventInitialDataFetchInValueHelpDialog="false"
+									visible="false"
+								/>
+
+								<smartFilterBar:ControlConfiguration
+									key="waers"
+									visibleInAdvancedArea="false"
+									preventInitialDataFetchInValueHelpDialog="false"
+									visible="false"
+								/>
+
+								<smartFilterBar:ControlConfiguration
+									key="bschl"
+									visibleInAdvancedArea="false"
+									preventInitialDataFetchInValueHelpDialog="false"
+									visible="false"
+								/>
+								
+								<smartFilterBar:ControlConfiguration
+									key="shkzg"
+									visibleInAdvancedArea="false"
+									preventInitialDataFetchInValueHelpDialog="false"
+									visible="false"
+								/>
+
+								<smartFilterBar:ControlConfiguration
+									key="hkont"
+									visibleInAdvancedArea="false"
+									preventInitialDataFetchInValueHelpDialog="false"
+									visible="false"
+								/>
+
+								<smartFilterBar:ControlConfiguration
+									key="budat"
+									visibleInAdvancedArea="false"
+									preventInitialDataFetchInValueHelpDialog="false"
+									visible="false"
+								/>
+
+								<smartFilterBar:ControlConfiguration
+									key="bldat"
+									visibleInAdvancedArea="false"
+									preventInitialDataFetchInValueHelpDialog="false"
+									visible="false"
+								/>
+
+								<smartFilterBar:ControlConfiguration
+									key="days_delay"
+									visibleInAdvancedArea="false"
+									preventInitialDataFetchInValueHelpDialog="false"
+									visible="false"
+								/>
+
+								<smartFilterBar:ControlConfiguration
+									key="dias_vencidos"
+									visibleInAdvancedArea="false"
+									preventInitialDataFetchInValueHelpDialog="false"
+									visible="false"
+								/>
+
+								<smartFilterBar:ControlConfiguration
+									key="gjahr"
+									visibleInAdvancedArea="false"
+									preventInitialDataFetchInValueHelpDialog="false"
+									visible="false"
+								/>
+
+								<smartFilterBar:ControlConfiguration
+									key="buzei"
+									visibleInAdvancedArea="false"
+									preventInitialDataFetchInValueHelpDialog="false"
+									visible="false"
+								/>
+
+								<smartFilterBar:ControlConfiguration
+									key="to_AccountingRecord.blart"
+									visibleInAdvancedArea="false"
+									preventInitialDataFetchInValueHelpDialog="false"
+									visible="false"
+								/>
+
+								<smartFilterBar:ControlConfiguration
+									key="wrbtr"
+									visibleInAdvancedArea="false"
+									preventInitialDataFetchInValueHelpDialog="false"
+									visible="false"
+								/>
+
+								<smartFilterBar:ControlConfiguration
+									key="belnr"
+									visibleInAdvancedArea="false"
+									preventInitialDataFetchInValueHelpDialog="false"
+									visible="false"
+								/>
+
+								<smartFilterBar:ControlConfiguration
+									key="clientName"
+									visibleInAdvancedArea="false"
+									preventInitialDataFetchInValueHelpDialog="false"
+									visible="false"
+								/>
+
+								<smartFilterBar:ControlConfiguration
+									key="companyName"
+									visibleInAdvancedArea="false"
+									preventInitialDataFetchInValueHelpDialog="false"
+									visible="false"
+								/>
+
+								<smartFilterBar:ControlConfiguration
+									key="to_Company.bukrs"
+									visibleInAdvancedArea="false"
+									preventInitialDataFetchInValueHelpDialog="false"
+									visible="false"
+								/>
+
+								<smartFilterBar:ControlConfiguration
+									key="to_Client.kunnr"
+									visibleInAdvancedArea="false"
+									preventInitialDataFetchInValueHelpDialog="false"
+									visible="false"
+								/>
+
+								<smartFilterBar:ControlConfiguration
+									key="xblnr"
+									visibleInAdvancedArea="false"
+									preventInitialDataFetchInValueHelpDialog="false"
+									visible="false"
+								/>
+
+								<smartFilterBar:ControlConfiguration
+									key="koart"
+									visibleInAdvancedArea="false"
+									preventInitialDataFetchInValueHelpDialog="false"
+									visible="false"
+								/>
+
+								<smartFilterBar:ControlConfiguration
+									key="blart"
+									visibleInAdvancedArea="false"
+									preventInitialDataFetchInValueHelpDialog="false"
+									visible="false"
+								/>
+
+								<smartFilterBar:ControlConfiguration
+									key="to_Status.valor_ate"
+									visibleInAdvancedArea="false"
+									preventInitialDataFetchInValueHelpDialog="false"
+									visible="false"
+								/>
+
+								<smartFilterBar:ControlConfiguration
+									key="to_Status.valor_de"
+									visibleInAdvancedArea="false"
+									preventInitialDataFetchInValueHelpDialog="false"
+									visible="false"
+								/>							
+								
 							</smartFilterBar:controlConfiguration>
 						</smartFilterBar:SmartFilterBar>
 					</VBox>
@@ -64,12 +275,12 @@
 												<Text text="{launchddctloss>key}"/>
 											</dependents>
 										</Button>
-										<!--<OverflowToolbarButton
+										<OverflowToolbarButton
 											type="Transparent"
 											icon="sap-icon://action-settings"
 											iconDensityAware="false"
 											press="onPersoButtonPressed"
-										/>-->
+										/>
 										<Button
 											icon="sap-icon://excel-attachment"
 											tooltip="{i18n>mainExportExcel}"
@@ -259,8 +470,7 @@
 										<ui:template>
 											<Text 
 												text="{
-													path: 'launchddctloss>wrbtr',
-                                            		formatter: '.formatter.currencyInBRL'
+													path: 'launchddctloss>wrbtr'
 												}"
 											/>
 										</ui:template>

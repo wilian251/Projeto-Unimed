@@ -1,0 +1,75 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core"
+>
+<Dialog
+    contentHeight="100%"
+    contentWidth="40rem"
+    title="{i18n>dialogPersonalizationTable}"
+>
+    <beginButton>
+        <Button 
+            text="{i18n>dialogPersonalizationTableConfirm}"
+            press="onPressConfirm"
+        />
+    </beginButton>
+
+    <content>
+        <Panel id="panelDialogPersonalizationTable">
+            <content>
+                <Table
+                    id="personalizationTable"
+                    items="{personalizationTable>/items}"
+                    mode="None"
+                >
+                    <columns>
+                        <Column
+                            hAlign="Begin"
+                            width="4rem"
+                        >
+                            <CheckBox
+                                id="checkBoxColumnsAll"
+                                selected="{personalizationTable>/visibleAll}"
+                                select="onPressSelectColumnsAll"
+                            />
+                        </Column>
+
+                        <Column
+                            hAlign="Begin"
+                            width="100%"
+                        >
+                            <Label text="{i18n>dialogPersonalizationTableColumns}"/>
+                        </Column>
+                    </columns>
+
+                    <items>
+                        <ColumnListItem>
+                            <cells>
+                                <CheckBox
+                                    selected="{personalizationTable>visible}"
+                                    tooltip="{personalizationTable>id}"
+                                    select="onPressSelectColumn"
+                                />
+
+                                <Text
+                                    text="{personalizationTable>label}"
+                                    tooltip="{personalizationTable>id}"
+                                />
+                            </cells>
+                        </ColumnListItem>
+                    </items>
+                </Table>
+            </content>
+        </Panel>
+    </content>
+
+    <endButton>
+        <Button
+            text="{i18n>dialogPersonalizationTableCancel}"
+            press="onPressCancel"
+        />
+    </endButton>
+</Dialog>
+
+
+</core:FragmentDefinition>

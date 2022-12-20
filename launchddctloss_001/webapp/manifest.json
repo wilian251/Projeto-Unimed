@@ -103,6 +103,9 @@
             "returnBapis": {
                 "type": "sap.ui.model.json.JSONModel"
             },
+            "personalizationTable": {
+                "type": "sap.ui.model.json.JSONModel"
+            },
             "": {
                 "dataSource": "mainService",
                 "preload": true,
