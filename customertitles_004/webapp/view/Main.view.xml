@@ -133,6 +133,18 @@
 										</ui:template>
 									</ui:Column>
 									<ui:Column
+										id="belnr"
+										width="10rem"
+										filterOperator="Contains" 
+										filterProperty="belnr"
+										sortProperty="belnr"
+									>
+										<Label text="{i18n>mainTableDocumentNumber}" />
+										<ui:template>
+											<Text text="{customerTitles>belnr}"/>
+										</ui:template>
+									</ui:Column>
+									<ui:Column
 										id="blart"
 										width="10rem"
 										filterOperator="Contains" 

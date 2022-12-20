@@ -58,7 +58,7 @@ function (
                     this.byId("containerCorporateBank").setProperty("visible", false);
                 }else{
                     this.byId("containerAccountCorporateBank").setProperty("visible", false);
-                    this.byId("containerAccount").setProperty("visible", false);
+                    this.byId("containerAccount").setProperty("visible", true);
                     this.byId("containerCorporateBank").setProperty("visible", false);
                 }
             },
