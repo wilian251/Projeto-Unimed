@@ -30,6 +30,12 @@ sap.ui.define([
                     width: "14rem"
                 },
                 {
+                    label: i18n.documentNumber,
+					property: "belnr",
+				    type: sap.ui.export.EdmType.String,
+                    width: "10rem"
+                },
+                {
                     label: i18n.blart,
 					type: sap.ui.export.EdmType.String,
                     property: ['blart', 'typeDocumentName'],

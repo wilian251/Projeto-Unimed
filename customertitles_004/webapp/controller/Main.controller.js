@@ -57,7 +57,7 @@ function (
                     this.byId("containerAccount").setProperty("visible", true);
                     this.byId("containerCorporateBank").setProperty("visible", false);
                 }else{
-                    this.byId("containerAccountCorporateBank").setProperty("visible", false);
+                    this.byId("containerAccountCorporateBank").setProperty("visible", true);
                     this.byId("containerAccount").setProperty("visible", true);
                     this.byId("containerCorporateBank").setProperty("visible", false);
                 }
@@ -291,6 +291,7 @@ function (
                     customerName: this.getResourceBundle().getText("mainTableCustomerName"),
                     bukrs: this.getResourceBundle().getText("mainTableCompany"),
                     companyName: this.getResourceBundle().getText("mainTableCompanyName"),
+                    documentNumber: this.getResourceBundle().getText("mainTableDocumentNumber"),
                     blart: this.getResourceBundle().getText("mainTableDocumentType"),
                     xblnr: this.getResourceBundle().getText("mainTableReferenceDocument"),                
                     bldat: this.getResourceBundle().getText("mainTableDocumentDate"),
