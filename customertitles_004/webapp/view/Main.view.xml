@@ -19,12 +19,22 @@
 						>
 							<smartFilterBar:controlConfiguration>
 								<smartFilterBar:ControlConfiguration
+									key="kunnr"
+									visibleInAdvancedArea="true"
+									preventInitialDataFetchInValueHelpDialog="false"
+								/>
+								<smartFilterBar:ControlConfiguration
 									key="bukrs"
 									visibleInAdvancedArea="true"
 									preventInitialDataFetchInValueHelpDialog="false"
 								/>
 								<smartFilterBar:ControlConfiguration
-									key="kunnr"
+									key="taxtype"
+									visibleInAdvancedArea="true"
+									preventInitialDataFetchInValueHelpDialog="false"
+								/>
+								<smartFilterBar:ControlConfiguration
+									key="taxnum"
 									visibleInAdvancedArea="true"
 									preventInitialDataFetchInValueHelpDialog="false"
 								/>
@@ -38,6 +48,171 @@
 									visibleInAdvancedArea="true"
 									preventInitialDataFetchInValueHelpDialog="false"
 								/>
+				<!--/////////////////////////////////////////////////////////////////////////////-->
+								<smartFilterBar:ControlConfiguration
+									key="hkont"
+									visibleInAdvancedArea="false"
+									preventInitialDataFetchInValueHelpDialog="false"
+									visible="false"
+								/>
+								<smartFilterBar:ControlConfiguration
+									key="to_ACCBank.hbkid"
+									visibleInAdvancedArea="false"
+									preventInitialDataFetchInValueHelpDialog="false"
+									visible="false"
+								/>
+								<smartFilterBar:ControlConfiguration
+									key="bldat"
+									visibleInAdvancedArea="false"
+									preventInitialDataFetchInValueHelpDialog="false"
+									visible="false"
+								/>
+								<smartFilterBar:ControlConfiguration
+									key="budat"
+									visibleInAdvancedArea="false"
+									preventInitialDataFetchInValueHelpDialog="false"
+									visible="false"
+								/>
+								<smartFilterBar:ControlConfiguration
+									key="typeDocumentName"
+									visibleInAdvancedArea="false"
+									preventInitialDataFetchInValueHelpDialog="false"
+									visible="false"
+								/>
+								<smartFilterBar:ControlConfiguration
+									key="to_ACCBank.hbkid_Text"
+									visibleInAdvancedArea="false"
+									preventInitialDataFetchInValueHelpDialog="false"
+									visible="false"
+								/>
+								<smartFilterBar:ControlConfiguration
+									key="to_ACCRecord.blart_Text"
+									visibleInAdvancedArea="false"
+									preventInitialDataFetchInValueHelpDialog="false"
+									visible="false"
+								/>
+								<smartFilterBar:ControlConfiguration
+									key="to_Client.kunnr_Text"
+									visibleInAdvancedArea="false"
+									preventInitialDataFetchInValueHelpDialog="false"
+									visible="false"
+								/>
+								<smartFilterBar:ControlConfiguration
+									key="to_Company.bukrs_Text"
+									visibleInAdvancedArea="false"
+									preventInitialDataFetchInValueHelpDialog="false"
+									visible="false"
+								/>
+								<smartFilterBar:ControlConfiguration
+									key="to_PlaceBusiness.bupla_Text"
+									visibleInAdvancedArea="false"
+									preventInitialDataFetchInValueHelpDialog="false"
+									visible="false"
+								/>
+								<smartFilterBar:ControlConfiguration
+									key="to_TaxNumberType.taxtype_Text"
+									visibleInAdvancedArea="false"
+									preventInitialDataFetchInValueHelpDialog="false"
+									visible="false"
+								/>
+								<smartFilterBar:ControlConfiguration
+									key="to_ACCBank.bukrs"
+									visibleInAdvancedArea="false"
+									preventInitialDataFetchInValueHelpDialog="false"
+									visible="false"
+								/>
+								<smartFilterBar:ControlConfiguration
+									key="to_PlaceBusiness.bukrs"
+									visibleInAdvancedArea="false"
+									preventInitialDataFetchInValueHelpDialog="false"
+									visible="false"
+								/>
+								<smartFilterBar:ControlConfiguration
+									key="gjahr"
+									visibleInAdvancedArea="false"
+									preventInitialDataFetchInValueHelpDialog="false"
+									visible="false"
+								/>
+								<smartFilterBar:ControlConfiguration
+									key="buzei"
+									visibleInAdvancedArea="false"
+									preventInitialDataFetchInValueHelpDialog="false"
+									visible="false"
+								/>
+								<smartFilterBar:ControlConfiguration
+									key="to_ACCRecord.blart"
+									visibleInAdvancedArea="false"
+									preventInitialDataFetchInValueHelpDialog="false"
+									visible="false"
+								/>
+								<smartFilterBar:ControlConfiguration
+									key="belnr"
+									visibleInAdvancedArea="false"
+									preventInitialDataFetchInValueHelpDialog="false"
+									visible="false"
+								/>
+								<smartFilterBar:ControlConfiguration
+									key="to_PlaceBusiness.bupla"
+									visibleInAdvancedArea="false"
+									preventInitialDataFetchInValueHelpDialog="false"
+									visible="false"
+								/>
+								<smartFilterBar:ControlConfiguration
+									key="wrbtr_appl"
+									visibleInAdvancedArea="false"
+									preventInitialDataFetchInValueHelpDialog="false"
+									visible="false"
+								/>
+								<smartFilterBar:ControlConfiguration
+									key="wrbtr"
+									visibleInAdvancedArea="false"
+									preventInitialDataFetchInValueHelpDialog="false"
+									visible="false"
+								/>
+								<smartFilterBar:ControlConfiguration
+									key="companyName"
+									visibleInAdvancedArea="false"
+									preventInitialDataFetchInValueHelpDialog="false"
+									visible="false"
+								/>
+								<smartFilterBar:ControlConfiguration
+									key="customerName"
+									visibleInAdvancedArea="false"
+									preventInitialDataFetchInValueHelpDialog="false"
+									visible="false"
+								/>
+								<smartFilterBar:ControlConfiguration
+									key="to_Company.bukrs"
+									visibleInAdvancedArea="false"
+									preventInitialDataFetchInValueHelpDialog="false"
+									visible="false"
+								/>
+								<smartFilterBar:ControlConfiguration
+									key="to_Client.kunnr"
+									visibleInAdvancedArea="false"
+									preventInitialDataFetchInValueHelpDialog="false"
+									visible="false"
+								/>
+								<smartFilterBar:ControlConfiguration
+									key="xblnr"
+									visibleInAdvancedArea="false"
+									preventInitialDataFetchInValueHelpDialog="false"
+									visible="false"
+								/>
+								<smartFilterBar:ControlConfiguration
+									key="bktxt"
+									visibleInAdvancedArea="false"
+									preventInitialDataFetchInValueHelpDialog="false"
+									visible="false"
+								/>
+								<smartFilterBar:ControlConfiguration
+									key="to_TaxNumberType.taxtype"
+									visibleInAdvancedArea="false"
+									preventInitialDataFetchInValueHelpDialog="false"
+									visible="false"
+								/>
+								
+
 							</smartFilterBar:controlConfiguration>
 						</smartFilterBar:SmartFilterBar>
 					</VBox>

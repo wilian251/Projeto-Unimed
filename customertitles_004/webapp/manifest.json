@@ -106,6 +106,9 @@
             "account": {
                 "type": "sap.ui.model.json.JSONModel"
             },
+            "personalizationTable": {
+                "type": "sap.ui.model.json.JSONModel"
+            },
             "": {
                 "dataSource": "TITCLI_CDS",
                 "preload": true,

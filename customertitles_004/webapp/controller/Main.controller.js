@@ -6,7 +6,7 @@ sap.ui.define([
     "sap/ui/model/json/JSONModel",
     "sap/ui/core/Fragment",
     "../model/formatter",
-    "sap/m/TablePersoController",
+    "../model/columnsPersonalizationTable",
     "sap/ui/export/Spreadsheet",
     "../model/columnExcel",
     "../model/customerTitles",
@@ -20,7 +20,7 @@ function (
     JSONModel,
     Fragment,
     Formatter,
-    TablePersoController,
+    ColumnsPersonalizationTable,
     Spreadsheet,
     ColumnExcel,
     CustomerTitles,
@@ -72,6 +72,8 @@ function (
                     aFields.push(this.byId("account"));
                     aFields.push(this.byId("corporateBank"));
                 }else if(oGroupCompIndex === 1){
+                    aFields.push(this.byId("account"));
+                }else if(oGroupCompIndex === 2){
                     aFields.push(this.byId("account"));
                 }
 
@@ -133,7 +135,7 @@ function (
                     if(oGroupCompIndex === 1){
                         oCorporateBank = "";
                     }else if(oGroupCompIndex === 2){
-                        oAccount       = "",
+                        //oAccount       = "",
                         oCorporateBank = "";
                     }
 
@@ -236,7 +238,8 @@ function (
                         this.getModel("customerTitles").getData().items = oData.results;
                         this.getModel("customerTitles").refresh(true);
                         
-                        let oAccount = [];
+                        let oAccount = [],
+                            oFilters = [];
 
                         oData.results.map(sItem => {
                             sItem.wrbtr_appl = "";
@@ -247,16 +250,33 @@ function (
                                 value1: sItem.hkont,
                                 and: false
                             }));
-                        });                  
+                        });
+
+                        oFilters.push(new Filter({
+                            filters: oAccount,
+                            and: false
+                        }));
+
+                        oFilters.push(new Filter({
+                            filters:[
+                                new Filter({
+                                    path: "belnr",
+                                    operator: FilterOperator.EQ,
+                                    value1: "1231",
+                                    and: false
+                                })
+                            ],
+                            and: false
+                        }));
 
                         this.getModel("GW_CustTitles").read("/SearchHelpAccountSet", {
-                            filters: oAccount,
+                            filters: oFilters,
                             success: function(oData) {
                                 this.getModel("account").setData({ items: oData.results });
                                 this.getModel("account").refresh(true);
                             }.bind(this),
                             error: function(oError) {
-                                MessageBox.error(this.getResourceBundle().getText("messageErrorSearchData"));
+                                //MessageBox.error(this.getResourceBundle().getText("messageErrorSearchData"));
                             }.bind(this)
                         });
 
@@ -269,14 +289,49 @@ function (
             },
 
 			onPersoButtonPressed: function (oEvent) {
-                if(this._oTPC != null){
-                    this._oTPC.openDialog();
-                    this._oTPC.attachPersonalizationsDone(this, this._onPerscoDonePressed.bind(this));
-                }
+                this._personalizationTable();
             },
 
-			_onPerscoDonePressed: function (oEvent) {
-                this._oTPC.savePersonalizations();
+            onPressConfirm: function(oEvent) {
+                let oModel    = this.getModel("personalizationTable").getData();
+
+                oModel.items.map(sItem => {
+                    this.byId(sItem.id).setVisible(sItem.visible);
+                });
+
+                this.getModel("personalizationTable").refresh(true);
+
+                this._DialogPersonalizationTable.close();
+            },
+
+            onPressCancel: function(oEvent) {
+                this._DialogPersonalizationTable.close();
+            },
+
+            onPressSelectColumnsAll: function(oEvent) {
+                let oModel    = this.getModel("personalizationTable").getData(),
+                    oSelected = oEvent.getParameter("selected");
+
+                oModel.items.map(sItem => {
+                    sItem.visible = oSelected;
+                });
+
+                oModel.visibleAll = oSelected;
+
+                this.getModel("personalizationTable").refresh(true);
+            },
+
+            onPressSelectColumn: function(oEvent) {
+                let oModel = this.getModel("personalizationTable").getData();
+
+                let oItem = oModel.items.find(sItem => {
+                    if(sItem.visible === false) return sItem;
+                });
+
+                if(oItem != undefined) oModel.visibleAll = false;
+                else oModel.visibleAll = true;
+
+                this.getModel("personalizationTable").refresh(true);
             },
 
             /* =========================================================== */
@@ -304,7 +359,8 @@ function (
 
                 this._columnExcel = ColumnExcel.initModel(oI18n);
 
-                this._personalizationTable();
+                this.getModel("personalizationTable").setData(ColumnsPersonalizationTable.initModel(oI18n));
+                this.getModel("personalizationTable").refresh(true);
             },
 
             _createFilters: function() {
@@ -395,30 +451,24 @@ function (
                 return oFilter;
             },
 
-            _personalizationTable: function () {
-                this._oTPC = null;
-                
-                let oPersonalizationService;
-
-                try {
-                    oPersonalizationService = sap.ushell.Container.getService("Personalization");
-                } catch (error) {
+            _personalizationTable: async function () {
+                if(!this._DialogPersonalizationTable){
+                    this._DialogPersonalizationTable = new Fragment.load({
+                        id: this.getView().getId(),
+                        name: "com.prestativ.unmd.customertitles.view.fragments.PersonalizationTableDialog",
+                        controller: this
+                    })
                     
+                    await this._DialogPersonalizationTable.then(
+                        function(oFragment){
+                            this.getView().addDependent(oFragment);
+    
+                            this._DialogPersonalizationTable = oFragment;
+                        }.bind(this)
+                    );
                 }
-
-                if(oPersonalizationService != undefined){
-                    let oPersonalizer = oPersonalizationService.getPersonalizer({
-                        container: "com.prestativ.unmd.customertitles", // This key must be globally unique (use a key to
-                        // identify the app) Note that only 40 characters are allowed
-                        item: "itemDataTable" // Maximum of 40 characters applies to this key as well
-                    });
-                    this._oTPC = new TablePersoController({
-                        table: this.byId("tableTitClient"),
-                        //specify the first part of persistence ids e.g. 'demoApp-productsTable-dimensionsCol'
-                        componentName: "table",
-                        persoService: oPersonalizer
-                    }).activate();
-                }
+    
+                this._DialogPersonalizationTable.open();
             },
 
             _openDialogClientSecrClearing: async function(){
