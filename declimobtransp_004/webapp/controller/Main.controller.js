@@ -49,7 +49,7 @@ function (
             onPressGeneratePDF: function(oEvent) {
                 let oModel = this.getModel("supplier").getData();
 
-                let oPath = `/FileSet(Line='${this._line}',TransportName='${oModel.supplierCode}',TransportPlate='${oModel.licensePlate}',TransportCnpjCpf='${oModel.CNPJAndCPF}',TransportEmbPed='${oModel.embPed}',TransportVolumes='${oModel.volumes}')/$value`,
+                let oPath = `/FileSet(Line='${this._line}',TransportName='${("0000000000" + oModel.supplierCode).slice(-10)}',TransportPlate='${oModel.licensePlate}',TransportCnpjCpf='${oModel.CNPJAndCPF}',TransportEmbPed='${oModel.embPed}',TransportVolumes='${oModel.volumes}')/$value`,
                     sUrl  = this.getModel("GW_DCIMOBTP").sServiceUrl + oPath;
 
                 window.open(sUrl);
