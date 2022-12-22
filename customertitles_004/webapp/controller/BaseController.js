@@ -66,9 +66,9 @@ sap.ui.define([
                 oCifrao  = "";
 
             if(position === -1){
-                oCifrao = "R$ ";
+                //oCifrao = "R$ ";
             }else {
-                oCifrao = "R$ -";
+                oCifrao = "-";
             }
 
             let oValue = Number(oValueInit.replace("R$ ", "").replace("-","").replaceAll(".","").replace(",","").replaceAll("_","")).toString();

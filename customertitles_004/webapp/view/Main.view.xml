@@ -418,8 +418,7 @@
 										<ui:template>
 											<Text 
 												text="{
-													path: 'customerTitles>wrbtr',
-                                            		formatter: '.formatter.currencyInBRL'
+													path: 'customerTitles>wrbtr'
 												}"
 											/>
 										</ui:template>

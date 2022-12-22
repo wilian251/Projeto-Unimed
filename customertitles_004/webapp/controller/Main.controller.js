@@ -45,10 +45,13 @@ function (
             /* event handlers                                              */
             /* =========================================================== */
 
-            onSelectCompensateRB: function(oEvent) {
+            onSelectCompensateRB: async function(oEvent) {
                 let oID = oEvent.getParameter("id");
 
                 if(oID.indexOf("Origin") != -1){
+                    //Busca contas do Razão
+                    await this._SearchHelpAccountSet();
+
                     this.byId("containerAccountCorporateBank").setProperty("visible", true);
                     this.byId("containerAccount").setProperty("visible", true);
                     this.byId("containerCorporateBank").setProperty("visible", true);
@@ -58,14 +61,16 @@ function (
                     this.byId("containerCorporateBank").setProperty("visible", false);
                 }else{
                     this.byId("containerAccountCorporateBank").setProperty("visible", true);
-                    this.byId("containerAccount").setProperty("visible", true);
-                    this.byId("containerCorporateBank").setProperty("visible", false);
+                    this.byId("containerAccount").setProperty("visible", false);
+                    this.byId("containerCorporateBank").setProperty("visible", true);
                 }
             },
 
-            onValidationFields: function(oEvent) {
+            onValidationFields: async function(oEvent) {
                 let aFields         = [this.byId("documentDate"), this.byId("releaseDate"), this.byId("accountingEntry"), this.byId("headerText")],
                     oGroupCompIndex = this.byId("GroupCompensate").getProperty("selectedIndex"),
+                    oCompSpecificID = this.byId("compensateSpecific"),
+                    oCompBankID     = this.byId("compensateBank"),
                     bValid          = true;
 
                 if(oGroupCompIndex === 0){
@@ -74,7 +79,7 @@ function (
                 }else if(oGroupCompIndex === 1){
                     aFields.push(this.byId("account"));
                 }else if(oGroupCompIndex === 2){
-                    aFields.push(this.byId("account"));
+                    aFields.push(this.byId("corporateBank"));
                 }
 
                 aFields.forEach(sField => {
@@ -94,6 +99,41 @@ function (
                 if(bValid) this.byId("launchCustomerTitles").setProperty("enabled", true);
                 else this.byId("launchCustomerTitles").setProperty("enabled", false);
                 
+
+                if(oCompSpecificID.getSelected()){
+                    let oValue = this.byId("account").getSelectedKey("key");
+
+                    let oKey = this.getModel("GW_CustTitles").createKey("/validationAccountSet",{
+                        saknr: oValue
+                    });
+
+                    let oPromise = new Promise(
+                        function(resolve, reject){
+                            this.getModel("GW_CustTitles").read(oKey, {
+                                success: function(oData){
+                                    resolve(oData);
+                                }.bind(this),
+                                error: function(oError){
+                                    reject(oError);
+                                }.bind(this)
+                            });
+                        }.bind(this)
+                    );
+
+                    await oPromise.then(
+                        function(oData){
+                            if(!oData.bValid){
+                                MessageBox.warning(this.getResourceBundle().getText("messageWarningAccountIsInitialZ"));
+                                this.byId("launchCustomerTitles").setProperty("enabled", false);
+                            }
+                        }.bind(this)
+                    )
+
+                }else
+                if(oCompBankID.getSelected()){
+
+                }
+
             },
 
             onReturnBapisCancel: function(oEvent) {
@@ -135,8 +175,8 @@ function (
                     if(oGroupCompIndex === 1){
                         oCorporateBank = "";
                     }else if(oGroupCompIndex === 2){
-                        //oAccount       = "",
-                        oCorporateBank = "";
+                        oAccount       = "";
+                        //oCorporateBank = "";
                     }
 
                     this.getModel("GW_CustTitles").callFunction("/LaunchCustomerTitles", {
@@ -232,53 +272,30 @@ function (
 
                 this.getModel().read("/ZFI_CDS_RETURN_TITCLI", {
                     filters: oFilters,
-                    success: function(oData){
+                    success: async function(oData){                        
+                        this.oDocumentNumber = [];
+
+                        oData.results.map(sItem => {
+                            sItem.wrbtr_appl = "";
+                            sItem.wrbtr      = this._formateValue(sItem.wrbtr, "");
+
+                            this.oDocumentNumber.push(
+                                new Filter({
+                                    path: "belnr",
+                                    operator: FilterOperator.EQ,
+                                    value1: ("0000000000" + sItem.belnr).slice(-10),
+                                    and: false
+                                })
+                            );
+                        });
+
+                        //Busca contas do Razão
+                        await this._SearchHelpAccountSet();
+
                         this.setAppBusy(false);
                         this.getModel("customerTitles").getData().headerTitleTable = this.getResourceBundle().getText("mainViewTableTitleParms", [oData.results.length])
                         this.getModel("customerTitles").getData().items = oData.results;
                         this.getModel("customerTitles").refresh(true);
-                        
-                        let oAccount = [],
-                            oFilters = [];
-
-                        oData.results.map(sItem => {
-                            sItem.wrbtr_appl = "";
-
-                            oAccount.push(new Filter({
-                                path: "saknr",
-                                operator: FilterOperator.EQ,
-                                value1: sItem.hkont,
-                                and: false
-                            }));
-                        });
-
-                        oFilters.push(new Filter({
-                            filters: oAccount,
-                            and: false
-                        }));
-
-                        oFilters.push(new Filter({
-                            filters:[
-                                new Filter({
-                                    path: "belnr",
-                                    operator: FilterOperator.EQ,
-                                    value1: "1231",
-                                    and: false
-                                })
-                            ],
-                            and: false
-                        }));
-
-                        this.getModel("GW_CustTitles").read("/SearchHelpAccountSet", {
-                            filters: oFilters,
-                            success: function(oData) {
-                                this.getModel("account").setData({ items: oData.results });
-                                this.getModel("account").refresh(true);
-                            }.bind(this),
-                            error: function(oError) {
-                                //MessageBox.error(this.getResourceBundle().getText("messageErrorSearchData"));
-                            }.bind(this)
-                        });
 
                     }.bind(this),
                     error: function(oError){
@@ -361,6 +378,32 @@ function (
 
                 this.getModel("personalizationTable").setData(ColumnsPersonalizationTable.initModel(oI18n));
                 this.getModel("personalizationTable").refresh(true);
+            },
+
+            _SearchHelpAccountSet: async function(){
+                let oPromise = new Promise(
+                    function(resolve, reject){
+                        this.getModel("GW_CustTitles").read("/SearchHelpAccountSet", {
+                            filters: this.oDocumentNumber,
+                            success: function(oData) {
+                                resolve(oData);
+                            }.bind(this),
+                            error: function(oError) {
+                                reject(oError);
+                            }.bind(this)
+                        });
+                    }.bind(this)
+                );
+
+                await oPromise.then(
+                    function(oData){
+                        this.getModel("account").setData({ items: oData.results });
+                        this.getModel("account").refresh(true);
+                    }.bind(this)
+                ).catch(
+                    function(oError){}.bind(this)
+                )
+                
             },
 
             _createFilters: function() {
