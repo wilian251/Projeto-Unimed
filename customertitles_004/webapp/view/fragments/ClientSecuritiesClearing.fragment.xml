@@ -63,10 +63,10 @@
 								selectedKey=""
 								valueState="None"
 								valueStateText=""
-								items="{ path: '/ZFI__CDS_ACCOUNTINGBANK' }"
+								items="{ path: 'corporateBank>/items' }"
 								change="onValidationFields"
 							>
-								<core:Item key="{hbkid}" text="{hbkid} - {hbkid_Text}"/>
+								<core:Item key="{corporateBank>hbkid}" text="{corporateBank>hbkid} - {corporateBank>hbkid_Text}"/>
 							</ComboBox>
 						</VBox>
 					</VBox>

@@ -109,6 +109,9 @@
             "personalizationTable": {
                 "type": "sap.ui.model.json.JSONModel"
             },
+            "corporateBank": {
+                "type": "sap.ui.model.json.JSONModel"
+            },
             "": {
                 "dataSource": "TITCLI_CDS",
                 "preload": true,

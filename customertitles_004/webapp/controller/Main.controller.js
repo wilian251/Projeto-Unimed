@@ -46,15 +46,20 @@ function (
             /* =========================================================== */
 
             onSelectCompensateRB: async function(oEvent) {
+                this.setAppBusy(true);
+
                 let oID = oEvent.getParameter("id");
 
                 if(oID.indexOf("Origin") != -1){
-                    //Busca contas do Razão
-                    await this._SearchHelpAccountSet();
-
                     this.byId("containerAccountCorporateBank").setProperty("visible", true);
                     this.byId("containerAccount").setProperty("visible", true);
                     this.byId("containerCorporateBank").setProperty("visible", true);
+
+                    //Busca contas do Razão
+                    await this._SearchHelpAccountSet();
+
+                    await this._SearchHelpCorporateBankCDS();
+
                 }else if(oID.indexOf("Specific") != -1){
                     this.byId("containerAccountCorporateBank").setProperty("visible", true);
                     this.byId("containerAccount").setProperty("visible", true);
@@ -63,7 +68,11 @@ function (
                     this.byId("containerAccountCorporateBank").setProperty("visible", true);
                     this.byId("containerAccount").setProperty("visible", false);
                     this.byId("containerCorporateBank").setProperty("visible", true);
+
+                    await this._SearchHelpCorporateBankSetGW();
                 }
+
+                this.setAppBusy(false);
             },
 
             onValidationFields: async function(oEvent) {
@@ -131,7 +140,16 @@ function (
 
                 }else
                 if(oCompBankID.getSelected()){
+                    let oSelectedKey = this.byId("corporateBank").getSelectedKey(),
+                        oModel       = this.getModel("corporateBank").getData();
 
+                    let oItem = oModel.items.find(sItem => {
+                        if(sItem.hbkid === oSelectedKey) return sItem;
+                    });
+
+                    if(oItem != undefined){
+                        this.byId("account").setSelectedKey(oItem.hkont);
+                    }
                 }
 
             },
@@ -164,20 +182,20 @@ function (
                     oItemsCompensate.forEach(function(sItem) {
                         let oValueCustomer = ("0000000000" + sItem.kunnr).slice(-10)
 
-                        if(oAmountAllocated === ""){
-                            oAmountAllocated = `${sItem.bukrs},${oValueCustomer},${sItem.gjahr},${sItem.belnr},${sItem.buzei},${Formatter.realInAmount(sItem.wrbtr_appl)}`;
-                        }else{
-                            oAmountAllocated += ";" + `${sItem.bukrs},${oValueCustomer},${sItem.gjahr},${sItem.belnr},${sItem.buzei},${Formatter.realInAmount(sItem.wrbtr_appl)}`;
-                        }
+                        // if(oAmountAllocated === ""){
+                            oAmountAllocated = `${sItem.bukrs},${oValueCustomer},${sItem.gjahr},${sItem.belnr},${sItem.buzei},${Formatter.realInAmount(sItem.wrbtr_appl)}";"`;
+                        // }else{
+                        //     oAmountAllocated += ";" + `${sItem.bukrs},${oValueCustomer},${sItem.gjahr},${sItem.belnr},${sItem.buzei},${Formatter.realInAmount(sItem.wrbtr_appl)}`;
+                        // }
                     });
 
                     //Verifico qual compensação o usuário escolheu
                     if(oGroupCompIndex === 1){
                         oCorporateBank = "";
-                    }else if(oGroupCompIndex === 2){
-                        oAccount       = "";
+                    }//else if(oGroupCompIndex === 2){
+                        //oAccount       = "";
                         //oCorporateBank = "";
-                    }
+                    //}
 
                     this.getModel("GW_CustTitles").callFunction("/LaunchCustomerTitles", {
                         urlParameters: {
@@ -378,7 +396,70 @@ function (
 
                 this.getModel("personalizationTable").setData(ColumnsPersonalizationTable.initModel(oI18n));
                 this.getModel("personalizationTable").refresh(true);
+
+                await this._SearchHelpCorporateBankCDS();
             },
+
+            _SearchHelpCorporateBankSetGW: async function(){
+                let oPromise = new Promise(
+                    function(resolve, reject){
+                        this.getModel("GW_CustTitles").read("/SearchHelpCorporateBankSet", {
+                            success: function(oData){
+                                resolve(oData);
+                            }.bind(this),
+                            error: function(oError){
+                                reject(oError);
+                            }.bind(this)
+                        });
+                    }.bind(this)
+                );
+
+                await oPromise.then(
+                    function(oData){
+                        oData.results.map(sItem => {
+                            sItem.hbkid_Text = sItem.banka;
+                        });
+
+                        this.getModel("corporateBank").setData({ items: oData.results });
+                        this.getModel("corporateBank").refresh(true);
+                    }.bind(this)
+                ).catch(
+                    function(oError){
+                        this.getModel("corporateBank").setData({ items: [] });
+                        this.getModel("corporateBank").refresh(true);
+                    }.bind(this)
+                )
+
+            },
+
+            _SearchHelpCorporateBankCDS: async function(){
+                let oPromise = new Promise(
+                    function(resolve, reject){
+                        this.getModel().read("/ZFI__CDS_ACCOUNTINGBANK", {
+                            filters: this.oDocumentNumber,
+                            success: function(oData) {
+                                resolve(oData);
+                            }.bind(this),
+                            error: function(oError) {
+                                reject(oError);
+                            }.bind(this)
+                        });
+                    }.bind(this)
+                );
+
+                await oPromise.then(
+                    function(oData){
+                        this.getModel("corporateBank").setData({ items: oData.results });
+                        this.getModel("corporateBank").refresh(true);
+                    }.bind(this)
+                ).catch(
+                    function(oError){
+                        this.getModel("corporateBank").setData({ items: oData.results });
+                        this.getModel("corporateBank").refresh(true);
+                    }.bind(this)
+                )
+            },
+
 
             _SearchHelpAccountSet: async function(){
                 let oPromise = new Promise(
