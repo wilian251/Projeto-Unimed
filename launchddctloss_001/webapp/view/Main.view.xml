@@ -268,6 +268,13 @@
 										<Title text="{launchddctloss>/headerTitleTable}" level="H1" titleStyle="H3"/>
 										<ToolbarSpacer />
 										<Button
+											id="disableGroup"
+											text="{i18n>mainButtonDisableGroup}"
+											icon="sap-icon://group-2"
+											press="onDisableGroup"
+											enabled="false"								
+										/>
+										<Button
 											text="{i18n>mainLauncDDCTLoss}"
 											press="onOpenDialog"
 										>

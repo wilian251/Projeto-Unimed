@@ -46,6 +46,8 @@ sap.ui.define([
             /* =========================================================== */
 
             onGroup: function(oEvent) {
+                this.oEvent = oEvent;
+
                 let oID    = oEvent.getParameter("column").getId(),
                     oModel = this.getModel("launchddctloss").getData();
 
@@ -105,6 +107,25 @@ sap.ui.define([
                 });
 
                 this.getModel("launchddctloss").refresh(true);
+
+                this.byId("disableGroup").setEnabled(true);
+            },
+
+            onDisableGroup: function(oEvent){
+                this.oEvent.preventDefault();
+
+                let oModel = this.getModel("launchddctloss").getData();
+
+                this.byId("tableLaunchDDCTLoss").setGroupBy(null);
+
+                let oItems = oModel.items.filter(sItem => {
+                    if(sItem.key != "") return sItem;
+                });
+
+                oModel.items = oItems;
+                this.getModel("launchddctloss").refresh(true);
+
+                this.byId("disableGroup").setEnabled(false);
             },
 
             onSelectedAllLines: function(oEvent){
