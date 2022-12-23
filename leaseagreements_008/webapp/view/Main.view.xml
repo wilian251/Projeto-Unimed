@@ -62,7 +62,7 @@
 								persistencyKey="SmartTableAnalytical_Explored"
 								enableAutoBinding="true"
 								class="sapUiResponsiveContentPadding"
-								initiallyVisibleFields="bukrs,lifnr,vertn,h_monat,gjahr,belnr,buzei,wrbtr"
+								initiallyVisibleFields="bukrs,lifnr,vertn,h_monat,gjahr,belnr,buzei"
 							>
 								<Table>
 									<columns>
@@ -84,6 +84,15 @@
 											</customData>
 											<Label text="{/#ZFI_CDS_LEASE_AGREEMENTS/h_budat/@sap:label}" />
 										</Column>
+										<Column id="wrbtr" hAlign="Begin" width="12rem">
+											<customData>
+												<core:CustomData 
+													key="p13nData"
+													value='\{"columnKey": "wrbtr", "columnIndex":"10", "leadingProperty": "wrbtr", "sortProperty": "wrbtr", "displayBehaviour": "descriptionOnly", "width": "360px"}'
+												/>
+											</customData>
+											<Label text="{i18n>mainViewTableAmount}" />
+										</Column>
 										<Column id="xref1" hAlign="Begin" width="14rem">
 											<customData>
 												<core:CustomData 
@@ -91,7 +100,7 @@
 													value='\{"columnKey": "xref1", "columnIndex":"11", "leadingProperty": "xref1", "sortProperty": "xref1", "displayBehaviour": "descriptionOnly", "width": "360px"}'
 												/>
 											</customData>
-											<Label text="{/#ZFI_CDS_LEASE_AGREEMENTS/xref1/@sap:label}" />
+											<Label text="{i18n>mainViewTableInformBilletDocumentNo}" />
 										</Column>
 									</columns>
 									<items>
@@ -114,6 +123,13 @@
 														formatOptions: {
 															style: 'short'
 														}
+													}"
+												/>
+
+												<Text 
+													text="{
+														path: 'wrbtr',
+														formatter: '.formatter.formateValue'
 													}"
 												/>
 
