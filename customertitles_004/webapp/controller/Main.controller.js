@@ -45,31 +45,88 @@ function (
             /* event handlers                                              */
             /* =========================================================== */
 
+            onValueHelpRequestedCorporateBank: function(oEvent) {
+                if (!this._oValueHelpDialogCorporateBank) {
+                    this._oValueHelpDialogCorporateBank = Fragment.load({
+                        id: this.getView().getId(),
+                        name: "com.prestativ.unmd.customertitles.view.fragments.CorporateBankValueHelp",
+                        controller: this
+                    }).then(
+                        function(oFragment) {
+                            this.getView().addDependent(oFragment);
+                            return oFragment;
+                        }.bind(this)
+                    );
+                }
+                this._oValueHelpDialogCorporateBank.then(function(oValueHelpDialog) {
+                    oValueHelpDialog.open();
+                }.bind(this));
+            },
+
+            onHandleSearch: function(oEvent) {
+                let sValue   = oEvent.getParameter("value");
+                let oFilter  = new Filter({
+                    filters: [
+                        new Filter("hbkid", FilterOperator.Contains, sValue),
+                        new Filter("hbkid_Text", FilterOperator.Contains, sValue)
+                    ],
+                    and: false
+                });
+
+                oEvent.getSource().getBinding("items").filter([oFilter]);
+            },
+
+            onValueHelpCorporateBankOk: function(oEvent) {
+                let oItem = oEvent.getParameter("selectedItem")
+                this.byId("corporateBank").setSelectedKey(oItem.getAggregation("cells")[0].getProperty("text"));
+            },
+
+            onValueHelpCorporateBankCancel: function(oEvent) {
+                oEvent.getSource().getBinding("items").filter([]);
+            },
+
             onSelectCompensateRB: async function(oEvent) {
                 this.setAppBusy(true);
 
-                let oID = oEvent.getParameter("id");
+                if(oEvent.getParameter("selected")){
 
-                if(oID.indexOf("Origin") != -1){
-                    this.byId("containerAccountCorporateBank").setProperty("visible", true);
-                    this.byId("containerAccount").setProperty("visible", true);
-                    this.byId("containerCorporateBank").setProperty("visible", true);
+                    let oID = oEvent.getParameter("id");
 
-                    //Busca contas do Razão
-                    await this._SearchHelpAccountSet();
+                    if(oID.indexOf("Origin") != -1){
+                        this.byId("containerAccountCorporateBank").setProperty("visible", true);
+                        this.byId("containerAccount").setProperty("visible", true);
+                        this.byId("containerCorporateBank").setProperty("visible", true);
 
-                    await this._SearchHelpCorporateBankCDS();
+                        this.byId("account").setSelectedKey("");
+                        this.byId("corporateBank").setSelectedKey("");
 
-                }else if(oID.indexOf("Specific") != -1){
-                    this.byId("containerAccountCorporateBank").setProperty("visible", true);
-                    this.byId("containerAccount").setProperty("visible", true);
-                    this.byId("containerCorporateBank").setProperty("visible", false);
-                }else{
-                    this.byId("containerAccountCorporateBank").setProperty("visible", true);
-                    this.byId("containerAccount").setProperty("visible", false);
-                    this.byId("containerCorporateBank").setProperty("visible", true);
+                        //Busca contas do Razão
+                        await this._SearchHelpAccountSet();
 
-                    await this._SearchHelpCorporateBankSetGW();
+                        await this._SearchHelpCorporateBankCDS();
+
+                    }else if(oID.indexOf("Specific") != -1){
+                        this.byId("containerAccountCorporateBank").setProperty("visible", true);
+                        this.byId("containerAccount").setProperty("visible", true);
+                        this.byId("containerCorporateBank").setProperty("visible", false);
+
+                        this.byId("account").setSelectedKey("");
+                        this.byId("corporateBank").setSelectedKey("");
+
+                        //Busca contas do Razão
+                        await this._SearchHelpAccountSet();
+
+                        await this._SearchHelpCorporateBankCDS();
+                    }else{
+                        this.byId("containerAccountCorporateBank").setProperty("visible", true);
+                        this.byId("containerAccount").setProperty("visible", false);
+                        this.byId("containerCorporateBank").setProperty("visible", true);
+
+                        this.byId("account").setSelectedKey("");
+                        this.byId("corporateBank").setSelectedKey("");
+
+                        await this._SearchHelpCorporateBankSetGW();
+                    }
                 }
 
                 this.setAppBusy(false);
@@ -180,10 +237,11 @@ function (
 
 
                     oItemsCompensate.forEach(function(sItem) {
-                        let oValueCustomer = ("0000000000" + sItem.kunnr).slice(-10)
+                        let oValueCustomer       = ("0000000000" + sItem.kunnr).slice(-10),
+                            oValueDocumentNumber = ("0000000000" + sItem.belnr).slice(-10);
 
                         // if(oAmountAllocated === ""){
-                            oAmountAllocated = `${sItem.bukrs},${oValueCustomer},${sItem.gjahr},${sItem.belnr},${sItem.buzei},${Formatter.realInAmount(sItem.wrbtr_appl)}";"`;
+                            oAmountAllocated = `${sItem.bukrs},${oValueCustomer},${sItem.gjahr},${oValueDocumentNumber},${sItem.buzei},${Formatter.realInAmount(sItem.wrbtr_appl)};`;
                         // }else{
                         //     oAmountAllocated += ";" + `${sItem.bukrs},${oValueCustomer},${sItem.gjahr},${sItem.belnr},${sItem.buzei},${Formatter.realInAmount(sItem.wrbtr_appl)}`;
                         // }
@@ -192,10 +250,7 @@ function (
                     //Verifico qual compensação o usuário escolheu
                     if(oGroupCompIndex === 1){
                         oCorporateBank = "";
-                    }//else if(oGroupCompIndex === 2){
-                        //oAccount       = "";
-                        //oCorporateBank = "";
-                    //}
+                    }
 
                     this.getModel("GW_CustTitles").callFunction("/LaunchCustomerTitles", {
                         urlParameters: {
@@ -383,7 +438,9 @@ function (
                     companyName: this.getResourceBundle().getText("mainTableCompanyName"),
                     documentNumber: this.getResourceBundle().getText("mainTableDocumentNumber"),
                     blart: this.getResourceBundle().getText("mainTableDocumentType"),
-                    xblnr: this.getResourceBundle().getText("mainTableReferenceDocument"),                
+                    xblnr: this.getResourceBundle().getText("mainTableReferenceDocument"),
+                    taxtype: this.getResourceBundle().getText("mainTableTaxNumberType"),
+                    taxnum: this.getResourceBundle().getText("mainTableTaxIDNo"),
                     bldat: this.getResourceBundle().getText("mainTableDocumentDate"),
                     budat: this.getResourceBundle().getText("mainTableReleaseDate"),
                     bktxt: this.getResourceBundle().getText("mainTableHeaderText"),
@@ -396,6 +453,12 @@ function (
 
                 this.getModel("personalizationTable").setData(ColumnsPersonalizationTable.initModel(oI18n));
                 this.getModel("personalizationTable").refresh(true);
+
+                this.getModel("corporateBank").setData({ items: [] });
+                this.getModel("corporateBank").refresh(true);
+
+                this.getModel("account").setData({ items: [] });
+                this.getModel("account").refresh(true);
 
                 await this._SearchHelpCorporateBankCDS();
             },
@@ -420,23 +483,25 @@ function (
                             sItem.hbkid_Text = sItem.banka;
                         });
 
-                        this.getModel("corporateBank").setData({ items: oData.results });
+                        let oModel = this.getModel("corporateBank").getData();
+
+                        oModel.items = oData.results;
                         this.getModel("corporateBank").refresh(true);
                     }.bind(this)
                 ).catch(
                     function(oError){
-                        this.getModel("corporateBank").setData({ items: [] });
+                        let oModel = this.getModel("corporateBank").getData();
+
+                        oModel.items = [];
                         this.getModel("corporateBank").refresh(true);
                     }.bind(this)
                 )
-
             },
 
             _SearchHelpCorporateBankCDS: async function(){
                 let oPromise = new Promise(
                     function(resolve, reject){
                         this.getModel().read("/ZFI__CDS_ACCOUNTINGBANK", {
-                            filters: this.oDocumentNumber,
                             success: function(oData) {
                                 resolve(oData);
                             }.bind(this),
@@ -449,12 +514,16 @@ function (
 
                 await oPromise.then(
                     function(oData){
-                        this.getModel("corporateBank").setData({ items: oData.results });
+                        let oModel = this.getModel("corporateBank").getData();
+
+                        oModel.items = oData.results;
                         this.getModel("corporateBank").refresh(true);
                     }.bind(this)
                 ).catch(
                     function(oError){
-                        this.getModel("corporateBank").setData({ items: oData.results });
+                        let oModel = this.getModel("corporateBank").getData();
+
+                        oModel.items = [];
                         this.getModel("corporateBank").refresh(true);
                     }.bind(this)
                 )
@@ -478,11 +547,14 @@ function (
 
                 await oPromise.then(
                     function(oData){
-                        this.getModel("account").setData({ items: oData.results });
+                        this.getModel("account").getData().items = oData.results ;
                         this.getModel("account").refresh(true);
                     }.bind(this)
                 ).catch(
-                    function(oError){}.bind(this)
+                    function(oError){
+                        this.getModel("account").getData().items = [];
+                        this.getModel("account").refresh(true);
+                    }.bind(this)
                 )
                 
             },
@@ -491,7 +563,9 @@ function (
                 let oCompanyID          = this.byId("container-customertitles---main--smartFilterBar-filterItemControlA_-bukrs"),
                     oClientID           = this.byId("container-customertitles---main--smartFilterBar-filterItemControlA_-kunnr"),
                     oAccountingEntryID  = this.byId("container-customertitles---main--smartFilterBar-filterItemControlA_-blart"),
-                    oBusinessLocationID = this.byId("container-customertitles---main--smartFilterBar-filterItemControlA_-bupla");
+                    oBusinessLocationID = this.byId("container-customertitles---main--smartFilterBar-filterItemControlA_-bupla"),
+                    oTaxNumberTypeID    = this.byId("container-customertitles---main--smartFilterBar-filterItemControlA_-taxtype"),
+                    oTaxIDNoID          = this.byId("container-customertitles---main--smartFilterBar-filterItemControlA_-taxnum");
             
                 let oFilters = [];
 
@@ -509,6 +583,14 @@ function (
                 
                 if(oBusinessLocationID === undefined){
                     oBusinessLocationID = this.byId("application-ZSEM_FI225_CUSTTITLES_001-display-component---main--smartFilterBar-filterItemControlA_-bupla");
+                }
+
+                if(oTaxNumberTypeID === undefined){
+                    oTaxNumberTypeID = this.byId("application-ZSEM_FI225_CUSTTITLES_001-display-component---main--smartFilterBar-filterItemControlA_-taxtype");
+                }
+
+                if(oTaxIDNoID === undefined){
+                    oTaxIDNoID = this.byId("application-ZSEM_FI225_CUSTTITLES_001-display-component---main--smartFilterBar-filterItemControlA_-taxnum");
                 }
 
                 if(oCompanyID.getTokens().length != 0){
@@ -547,6 +629,24 @@ function (
                     }));
                 }
 
+                if(oTaxNumberTypeID.getTokens().length != 0){
+                    let oFilterTaxNumberType = this._searchSelectedValues(oTaxNumberTypeID.getTokens(), "taxtype");
+
+                    oFilters.push(new Filter({
+                        filters: oFilterTaxNumberType,
+                        and: false
+                    }));
+                }
+
+                if(oTaxIDNoID.getTokens().length != 0){
+                    let oFilterTaxIDNo = this._searchSelectedValues(oTaxIDNoID.getTokens(), "taxnum");
+
+                    oFilters.push(new Filter({
+                        filters: oFilterTaxIDNo,
+                        and: false
+                    }));
+                }
+
                 return oFilters;
             },
 
@@ -561,6 +661,16 @@ function (
                             value1: ("0000000000" + oToken.getProperty("key")).slice(-10),
                             and: false
                         }));
+                    }else if(sPath === "taxnum"){
+                        let { oValue1, oValue2, oFilterOperator } = this._validationFilterOperator(oToken.getProperty("text"));
+
+                        oFilter.push(new Filter({
+                            path: sPath,
+                            operator: oFilterOperator,
+                            value1: oValue1,
+                            value2: oValue2,
+                            and: false
+                        }));
                     }else{    
                         oFilter.push(new Filter({
                             path: sPath,
@@ -573,6 +683,101 @@ function (
                 }
 
                 return oFilter;
+            },
+
+            _validationFilterOperator: function(sValue){
+                /*
+                    Verifica se o tipo do filtro é EXCLUIR
+                    SENÂO
+                    Entra no INCLUIR
+                */
+                if(sValue.indexOf("!(") != -1){
+
+                    if(sValue.indexOf("*") != -1){
+                        let oValue = sValue.replace("*", "");
+
+                        if(oValue.indexOf("*") != -1){
+                            let oValue1 = sValue.replaceAll("*", "").replace("!(", "").replace(")", "");
+
+                            return { oValue1, oValue2: "", oFilterOperator: FilterOperator.NotContains };
+                        }else{
+                            if(sValue.indexOf("*") === 1){
+                                let oValue1 = sValue.replaceAll("*", "").replace("!(", "").replace(")", "");
+
+                                return { oValue1, oValue2: "", oFilterOperator: FilterOperator.NotEndsWith };
+                            }else{
+                                let oValue1 = sValue.replaceAll("*", "").replace("!(", "").replace(")", "");
+
+                                return { oValue1, oValue2: "", oFilterOperator: FilterOperator.NotStartsWith };
+                            }
+                        }
+                    }else 
+                    if(sValue.indexOf("=") != -1){
+                        let oValue1 = sValue.replace("=", "").replace("!(", "").replace(")", "");
+
+                        return { oValue1, oValue2: "", oFilterOperator: FilterOperator.NE };
+                    }else
+                    if(sValue.indexOf("...") != -1){
+                        let oValues = sValue.replace("!(", "").replace(")", "").split("...");
+
+                        return { oValue1: oValues[0], oValue2: oValues[1], oFilterOperator: FilterOperator.NB };
+                    }
+
+                }else{
+
+                    if(sValue.indexOf("*") != -1){
+                        let oValue = sValue.replace("*", "");
+
+                        if(oValue.indexOf("*") != -1){
+                            let oValue1 = sValue.replaceAll("*", "");
+
+                            return { oValue1, oValue2: "", oFilterOperator: FilterOperator.Contains };
+                        }else{
+                            if(sValue.indexOf("*") === 1){
+                                let oValue1 = sValue.replaceAll("*", "");
+
+                                return { oValue1, oValue2: "", oFilterOperator: FilterOperator.EndsWith };
+                            }else{
+                                let oValue1 = sValue.replaceAll("*", "");
+
+                                return { oValue1, oValue2: "", oFilterOperator: FilterOperator.StartsWith };
+                            }
+                        }
+                    }else
+                    if(sValue.indexOf("=") != -1){
+                        let oValue1 = sValue.replace("=", "");
+
+                        return { oValue1, oValue2: "", oFilterOperator: FilterOperator.EQ };
+                    }else
+                    if(sValue.indexOf("...") != -1){
+                        let oValues = sValue.split("...");
+
+                        return { oValue1: oValues[0], oValue2: oValues[1], oFilterOperator: FilterOperator.BT };
+                    }else
+                    if(sValue.indexOf("<") != -1){
+                        if(sValue.indexOf("=") != -1){
+                            let oValue1 = sValue.replace("<=", "");
+
+                            return { oValue1, oValue2: "", oFilterOperator: FilterOperator.LE };
+                        }else{
+                            let oValue1 = sValue.replace("<", "");
+
+                            return { oValue1, oValue2: "", oFilterOperator: FilterOperator.LT };
+                        }
+                    }else
+                    if(sValue.indexOf(">") != -1){
+                        if(sValue.indexOf("=") != -1){
+                            let oValue1 = sValue.replace(">=", "");
+
+                            return { oValue1, oValue2: "", oFilterOperator: FilterOperator.GE };
+                        }else{
+                            let oValue1 = sValue.replace(">", "");
+
+                            return { oValue1, oValue2: "", oFilterOperator: FilterOperator.GT };
+                        }
+                    }
+
+                }
             },
 
             _personalizationTable: async function () {

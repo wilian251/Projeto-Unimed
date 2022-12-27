@@ -344,6 +344,32 @@
 										</ui:template>
 									</ui:Column>
 									<ui:Column
+										id="taxtype"
+										width="8rem"
+										filterOperator="Contains" 
+										filterProperty="taxtype"
+										sortProperty="taxtype"
+										visible="false"
+									>
+										<Label text="{i18n>mainTableTaxNumberType}" />
+										<ui:template>
+											<Text text="{customerTitles>taxtype}"/>
+										</ui:template>
+									</ui:Column>
+									<ui:Column
+										id="taxnum"
+										width="8rem"
+										filterOperator="Contains" 
+										filterProperty="taxnum"
+										sortProperty="taxnum"
+										visible="false"
+									>
+										<Label text="{i18n>mainTableTaxIDNo}" />
+										<ui:template>
+											<Text text="{customerTitles>taxnum}"/>
+										</ui:template>
+									</ui:Column>
+									<ui:Column
 										id="budat"
 										width="8rem"
 										filterOperator="Contains" 

@@ -49,6 +49,18 @@ sap.ui.define([
                     width: "8rem"
                 },
                 {
+                    label: i18n.taxtype,
+					property: "taxtype",
+				    type: sap.ui.export.EdmType.String,
+                    width: "10rem"
+                },
+                {
+                    label: i18n.taxnum,
+					property: "taxnum",
+				    type: sap.ui.export.EdmType.String,
+                    width: "8rem"
+                },
+                {
                     label: i18n.bldat,
 				    property: "bldat",
 					type: sap.ui.export.EdmType.Date,

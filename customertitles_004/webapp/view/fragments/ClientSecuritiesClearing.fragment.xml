@@ -48,7 +48,10 @@
 								selectedKey=""
 								valueState="None"
 								valueStateText=""
-								items="{account>/items}"
+								items="{
+									path: 'account>/items',
+									length: 5000
+								}"
 								change="onValidationFields"
 							>
 								<core:Item key="{account>saknr}" text="{account>saknr} - {account>txt50}"/>
@@ -57,17 +60,39 @@
 
 						<VBox id="containerCorporateBank" class="marginTop05REM">
 							<Label text="{i18n>dialogClieSecurClearCorporateBank}" required="true"/>
-							<ComboBox
+							<!--<ComboBox
 								id="corporateBank"
 								width="250px"
 								selectedKey=""
 								valueState="None"
 								valueStateText=""
-								items="{ path: 'corporateBank>/items' }"
+								items="{ 
+									path: 'corporateBank>/items',
+									length: 5000
+								}"
 								change="onValidationFields"
 							>
 								<core:Item key="{corporateBank>hbkid}" text="{corporateBank>hbkid} - {corporateBank>hbkid_Text}"/>
-							</ComboBox>
+							</ComboBox>-->
+
+							<Input
+								id="corporateBank"
+								width="250px"
+								showValueHelp="true"
+								valueHelpOnly="true"
+								valueHelpRequest="onValueHelpRequestedCorporateBank"
+								suggestionItems="{
+									path: 'corporateBank>/items',
+									length: '5000'
+								}"
+								change="onValidationFields"
+								selectedKey=""
+								valueState="None"
+								valueStateText=""
+							>
+								<core:Item key="{corporateBank>hbkid}" text="{corporateBank>hbkid_Text} ({corporateBank>hbkid})" />
+							</Input>
+
 						</VBox>
 					</VBox>
 				</VBox>

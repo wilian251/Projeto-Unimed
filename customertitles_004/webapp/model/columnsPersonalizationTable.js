@@ -5,7 +5,7 @@ sap.ui.define([
     return {
         initModel: function (i18n) {
             return {
-                visibleAll: true,
+                visibleAll: false,
                 items: [
                     {
                         label: i18n.kunnr,
@@ -41,6 +41,16 @@ sap.ui.define([
                         label: i18n.xblnr,
                         id: "xblnr",
                         visible: true,
+                    },
+                    {
+                        label: i18n.taxtype,
+                        id: "taxtype",
+                        visible: false,
+                    },
+                    {
+                        label: i18n.taxnum,
+                        id: "taxnum",
+                        visible: false,
                     },
                     {
                         label: i18n.bldat,

@@ -64,10 +64,10 @@
     </content>
 
     <endButton>
-        <Button
+        <!--<Button
             text="{i18n>dialogPersonalizationTableCancel}"
             press="onPressCancel"
-        />
+        />-->
     </endButton>
 </Dialog>
 
