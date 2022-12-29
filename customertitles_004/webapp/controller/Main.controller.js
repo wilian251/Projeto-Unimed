@@ -93,17 +93,12 @@ function (
                     let oID = oEvent.getParameter("id");
 
                     if(oID.indexOf("Origin") != -1){
-                        this.byId("containerAccountCorporateBank").setProperty("visible", true);
-                        this.byId("containerAccount").setProperty("visible", true);
-                        this.byId("containerCorporateBank").setProperty("visible", true);
+                        this.byId("containerAccountCorporateBank").setProperty("visible", false);
+                        this.byId("containerAccount").setProperty("visible", false);
+                        this.byId("containerCorporateBank").setProperty("visible", false);
 
                         this.byId("account").setSelectedKey("");
                         this.byId("corporateBank").setSelectedKey("");
-
-                        //Busca contas do Razão
-                        await this._SearchHelpAccountSet();
-
-                        await this._SearchHelpCorporateBankCDS();
 
                     }else if(oID.indexOf("Specific") != -1){
                         this.byId("containerAccountCorporateBank").setProperty("visible", true);

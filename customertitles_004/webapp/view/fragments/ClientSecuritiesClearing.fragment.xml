@@ -25,6 +25,7 @@
 								id="compensateOrigin"
 								text="{i18n>dialogClieSecurClearCompensateOrigin}"
 								select="onSelectCompensateRB"
+								selected="true"
 							/>
 							<RadioButton
 								id="compensateSpecific"
@@ -39,7 +40,7 @@
 						</RadioButtonGroup>
 					</VBox>
 
-					<VBox id="containerAccountCorporateBank" class="dialogClieSecurClear">
+					<VBox id="containerAccountCorporateBank" class="dialogClieSecurClear" visible="false">
 						<VBox id="containerAccount">
 							<Label text="{i18n>dialogClieSecurClearAccount}" required="true"/>
 							<ComboBox
