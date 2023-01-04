@@ -412,7 +412,8 @@
 													path: 'launchddctloss>budat',
 													type : 'sap.ui.model.type.Date',
 													formatOptions: {
-														style: 'short'
+														style: 'short',
+														UTC: 'true'
 													}
 												}"
 											/>
@@ -432,7 +433,8 @@
 													path: 'launchddctloss>bldat',
 													type : 'sap.ui.model.type.Date',
 													formatOptions: {
-														style: 'short'
+														style: 'short',
+														UTC: 'true'
 													}
 												}"
 											/>
@@ -440,14 +442,15 @@
 									</ui:Column>
 									<ui:Column
 										id="blart"
-										width="11rem"
+										width="10rem"
 										filterOperator="Contains" 
 										filterProperty="blart"
 										sortProperty="blart"
+										hAlign="Center"
 									>
 										<Label text="{i18n>mainTableDocumentType}" />
 										<ui:template>
-											<Text text="{launchddctloss>typeDocument}"/>
+											<Text text="{launchddctloss>blart}"/>
 										</ui:template>
 									</ui:Column>
 									<ui:Column
