@@ -135,8 +135,8 @@ function (
                     bValid          = true;
 
                 if(oGroupCompIndex === 0){
-                    aFields.push(this.byId("account"));
-                    aFields.push(this.byId("corporateBank"));
+                    // aFields.push(this.byId("account"));
+                    // aFields.push(this.byId("corporateBank"));
                 }else if(oGroupCompIndex === 1){
                     aFields.push(this.byId("account"));
                 }else if(oGroupCompIndex === 2){
@@ -221,14 +221,15 @@ function (
                 if(oItemsCompensate.length != 0){
                     this.setAppBusy(true);
 
-                    let oAccount         = this.byId("account").getSelectedKey(),
-                        oCorporateBank   = this.byId("corporateBank").getSelectedKey(),
-                        oDocumentDate    = Formatter.dateInUTCAbap(this.byId("documentDate").getProperty("dateValue"), "yyyy-MM-dd"),
-                        oReleaseDate     = Formatter.dateInUTCAbap(this.byId("releaseDate").getProperty("dateValue"), "yyyy-MM-dd"),
-                        oAccountingEntry = this.byId("accountingEntry").getSelectedKey(),
-                        oHeaderText      = this.byId("headerText").getProperty("value"),
-                        oGroupCompIndex  = this.byId("GroupCompensate").getProperty("selectedIndex"),
-                        oAmountAllocated = "";
+                    let oAccount          = this.byId("account").getSelectedKey(),
+                        oCorporateBank    = this.byId("corporateBank").getSelectedKey(),
+                        oDocumentDate     = Formatter.dateInUTCAbap(this.byId("documentDate").getProperty("dateValue"), "yyyy-MM-dd"),
+                        oReleaseDate      = Formatter.dateInUTCAbap(this.byId("releaseDate").getProperty("dateValue"), "yyyy-MM-dd"),
+                        oAccountingEntry  = this.byId("accountingEntry").getSelectedKey(),
+                        oHeaderText       = this.byId("headerText").getProperty("value"),
+                        oGroupCompIndex   = this.byId("GroupCompensate").getProperty("selectedIndex"),
+                        oAmountAllocated  = "",
+                        oCompensationType = "";
 
 
                     oItemsCompensate.forEach(function(sItem) {
@@ -236,19 +237,27 @@ function (
                             oValueDocumentNumber = ("0000000000" + sItem.belnr).slice(-10);
 
                         // if(oAmountAllocated === ""){
-                            oAmountAllocated = `${sItem.bukrs},${oValueCustomer},${sItem.gjahr},${oValueDocumentNumber},${sItem.buzei},${Formatter.realInAmount(sItem.wrbtr_appl)};`;
+                        oAmountAllocated = `${sItem.bukrs},${oValueCustomer},${sItem.gjahr},${oValueDocumentNumber},${sItem.buzei},${Formatter.realInAmount(sItem.wrbtr_appl)};`;
                         // }else{
                         //     oAmountAllocated += ";" + `${sItem.bukrs},${oValueCustomer},${sItem.gjahr},${sItem.belnr},${sItem.buzei},${Formatter.realInAmount(sItem.wrbtr_appl)}`;
                         // }
                     });
 
                     //Verifico qual compensação o usuário escolheu
+                    if(oGroupCompIndex === 0){
+                        oCompensationType = "Origin";
+                    }else
                     if(oGroupCompIndex === 1){
-                        oCorporateBank = "";
+                        oCorporateBank    = "";
+                        oCompensationType = "Specific";
+                    }else 
+                    if(oGroupCompIndex === 2){
+                        oCompensationType = "Bank";
                     }
 
                     this.getModel("GW_CustTitles").callFunction("/LaunchCustomerTitles", {
                         urlParameters: {
+                            CompensationType: oCompensationType,
                             Account: oAccount,
                             CorporateBank: oCorporateBank,
                             DocumentDate: oDocumentDate,
