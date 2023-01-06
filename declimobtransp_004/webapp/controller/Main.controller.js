@@ -94,7 +94,7 @@ function (
                                      oObject.gjahr + "," +
                                      ("00000" + oObject.lnran).slice(-5) + "," +
                                      oObject.werks + "," +
-                                     oObject.bwasl + ";"
+                                     oObject.h_blart + ";"
                         });
 
                         this._line = oLine;
