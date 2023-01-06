@@ -68,7 +68,7 @@
 								persistencyKey="SmartTableAnalytical_Explored"
 								enableAutoBinding="true"
 								class="sapUiResponsiveContentPadding"
-								initiallyVisibleFields="bukrs,werks,gjahr,lnran,anlkl,anln1,anln2,txt50,menge,meins,belnr,bwasl"
+								initiallyVisibleFields="bukrs,werks,gjahr,lnran,anlkl,anln1,anln2,txt50,menge,meins,belnr,h_blart"
 							>
 								<Table>
 									<columns>
