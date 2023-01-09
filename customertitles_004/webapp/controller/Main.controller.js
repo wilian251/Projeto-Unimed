@@ -201,6 +201,8 @@ function (
 
                     if(oItem != undefined){
                         this.byId("account").setSelectedKey(oItem.hkont);
+                        this.getModel("customerTitles").getData().hktid = oItem.hktid;
+                        this.getModel("customerTitles").refresh(true);
                     }
                 }
 

@@ -7,6 +7,7 @@ sap.ui.define([
 		initSelectionModel: function(sHeaderTitleTable) {
 			return {
 				id: "",
+				hktid: "",
 				simpleForm: {
 					account: "",
 					corporateBank: "",
