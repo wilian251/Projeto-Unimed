@@ -14,11 +14,23 @@
 	>
 		<ColumnListItem vAlign="Middle" id="columnListItem">
 			<cells>
+				<Text text="{corporateBank>hkont}"/>
+				<Text text="{corporateBank>hktid}"/>
 				<Text text="{corporateBank>hbkid}" />
 				<Text text="{corporateBank>hbkid_Text}" />
 			</cells>
 		</ColumnListItem>
 		<columns>
+			<Column width="6rem">
+				<header>
+					<Text text="{i18n>dialogClieSecurClearAccount}" />
+				</header>
+			</Column>
+			<Column width="6rem">
+				<header>
+					<Text text="{i18n>dialogClieSecurClearAccountID}" />
+				</header>
+			</Column>
 			<Column width="6rem">
 				<header>
 					<Text text="{i18n>dialogCorporateBankValueHelpCorporateBank}" />

@@ -466,7 +466,7 @@ function (
                 this.getModel("account").setData({ items: [] });
                 this.getModel("account").refresh(true);
 
-                await this._SearchHelpCorporateBankCDS();
+                //await this._SearchHelpCorporateBankCDS();
             },
 
             _SearchHelpCorporateBankSetGW: async function(){
@@ -540,7 +540,7 @@ function (
                 let oPromise = new Promise(
                     function(resolve, reject){
                         this.getModel("GW_CustTitles").read("/SearchHelpAccountSet", {
-                            filters: this.oDocumentNumber,
+                            //filters: this.oDocumentNumber,
                             success: function(oData) {
                                 resolve(oData);
                             }.bind(this),
